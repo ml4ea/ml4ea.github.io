@@ -618,6 +618,7 @@ p {
 .page-hero-image,
 .chapter-hero-image {
   position: absolute;
+  z-index: 0;
   inset: 0;
   background-position: 50% 58%;
   background-size: cover;
@@ -626,6 +627,7 @@ p {
 .page-hero::before,
 .chapter-hero::before {
   position: absolute;
+  z-index: 2;
   top: 0;
   bottom: 0;
   left: 0;
