@@ -1,0 +1,44 @@
+---
+import { Menu, X } from 'lucide-react';
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="ML4EA home">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span>ML4EA</span>
+    </a>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation">
+      <Menu className="menu-open-icon" aria-hidden="true" size={20} />
+      <X className="menu-close-icon" aria-hidden="true" size={20} />
+    </button>
+
+    <nav id="primary-navigation" class="primary-navigation" aria-label="Primary navigation">
+      <a href="#book">Book</a>
+      <a href="#learn">Learn</a>
+      <a href="#teach">Teach</a>
+      <a href="#community">Community</a>
+      <a href="#updates">Updates</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const navigation = document.querySelector<HTMLElement>('.primary-navigation');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+    toggle.setAttribute('aria-label', isOpen ? 'Open navigation' : 'Close navigation');
+    navigation?.classList.toggle('is-open', !isOpen);
+  });
+
+  navigation?.addEventListener('click', (event) => {
+    if (!(event.target instanceof HTMLAnchorElement)) return;
+    toggle?.setAttribute('aria-expanded', 'false');
+    toggle?.setAttribute('aria-label', 'Open navigation');
+    navigation.classList.remove('is-open');
+  });
+</script>

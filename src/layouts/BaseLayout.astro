@@ -1,0 +1,61 @@
+---
+import '../styles/global.css';
+import '@fontsource/source-sans-3/400.css';
+import '@fontsource/source-sans-3/500.css';
+import '@fontsource/source-serif-4/500.css';
+import '@fontsource/ibm-plex-mono/400.css';
+import Header from '../components/Header.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Machine Learning for Engineering Applications',
+  description = 'The companion portal for Machine Learning for Engineering Applications: chapter resources, Python materials, updates, and teaching support.',
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL('/images/engineering-lab-hero.jpg', Astro.site)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL('/images/engineering-lab-hero.jpg', Astro.site)} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <a class="brand footer-brand" href="/" aria-label="ML4EA home">
+            <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span>ML4EA</span>
+          </a>
+          <p>The companion portal for <cite>Machine Learning for Engineering Applications</cite>.</p>
+        </div>
+        <p class="footer-note">Built for learning, teaching, and engineering practice.</p>
+      </div>
+    </footer>
+  </body>
+</html>

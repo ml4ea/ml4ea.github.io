@@ -1,0 +1,122 @@
+---
+import { ArrowRight, BookOpen, Braces, GraduationCap, MessagesSquare, Wrench } from 'lucide-react';
+import AudiencePath from '../components/AudiencePath.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const foundations = [
+  'Linear algebra',
+  'Probability and statistics',
+  'Optimization',
+  'Machine learning foundations',
+];
+
+const methods = [
+  'Regression and classification',
+  'Ensemble and deep learning',
+  'Unsupervised and reinforcement learning',
+  'Generative and physics-informed ML',
+];
+---
+
+<BaseLayout>
+  <section class="hero" id="book" aria-labelledby="hero-title">
+    <div class="hero-image" role="img" aria-label="A robotic inspection system measuring a turbine component in an engineering laboratory"></div>
+    <div class="container hero-content">
+      <p class="eyebrow">The official companion portal · Yan Jin</p>
+      <h1 id="hero-title">Machine Learning for Engineering Applications</h1>
+      <p class="hero-summary">Connect mathematical foundations, modern learning methods, and engineering judgment through practical examples and Python resources.</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#learn">Explore the book <ArrowRight aria-hidden="true" size={18} /></a>
+        <a class="button button-secondary" href="#resources"><Braces aria-hidden="true" size={18} /> Browse Python resources</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="audience-band" id="learn">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Start where you are"
+        title="One book, three ways in"
+        description="Move directly into the materials and conversations most useful to you."
+      />
+      <div class="audience-grid">
+        <AudiencePath
+          eyebrow="Students and readers"
+          title="Learn by building"
+          description="Review background concepts, work through Application Examples, and explore Python scripts and datasets."
+          href="#resources"
+          linkLabel="Open learning resources"
+          icon={BookOpen}
+          tone="cyan"
+        />
+        <AudiencePath
+          eyebrow="Verified instructors"
+          title="Teach with context"
+          description="Use course pathways, chapter notes, assessment guidance, and protected instructor materials."
+          href="#teach"
+          linkLabel="View instructor access"
+          icon={GraduationCap}
+          tone="orange"
+        />
+        <AudiencePath
+          id="community"
+          eyebrow="Engineering community"
+          title="Extend the field guide"
+          description="Discuss engineering choices, report errata, and contribute insights, examples, and resources."
+          href="#community"
+          linkLabel="Join the community"
+          icon={MessagesSquare}
+          tone="green"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="book-map" id="resources">
+    <div class="container book-map-grid">
+      <SectionHeading
+        eyebrow="15 chapters"
+        title="From foundations to engineering systems"
+        description="The book develops essential mathematics first, then connects learning paradigms to responsible engineering decisions."
+      />
+      <div class="part-list" aria-label="Book structure">
+        <section>
+          <span class="part-number">PART I</span>
+          <h3>Mathematical foundations</h3>
+          <ul>{foundations.map((item) => <li>{item}</li>)}</ul>
+        </section>
+        <section>
+          <span class="part-number">PART II</span>
+          <h3>Concepts and algorithms</h3>
+          <ul>{methods.map((item) => <li>{item}</li>)}</ul>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section class="principles-band" id="teach">
+    <div class="container principles-grid">
+      <div>
+        <p class="eyebrow">Engineering emphasis</p>
+        <h2>Models are only part of the decision.</h2>
+      </div>
+      <div class="principle-list">
+        <div><Wrench aria-hidden="true" size={20} /><p><strong>Frame the problem.</strong> Match methods to data, physics, constraints, and consequences.</p></div>
+        <div><Braces aria-hidden="true" size={20} /><p><strong>Make it executable.</strong> Connect concepts to transparent Python implementations.</p></div>
+        <div><GraduationCap aria-hidden="true" size={20} /><p><strong>Build judgment.</strong> Evaluate reliability, interpretation, and deployment in context.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="coming-next" id="updates">
+    <div class="container coming-next-inner">
+      <div>
+        <p class="eyebrow">A living companion</p>
+        <h2>Stay current beyond the printed page.</h2>
+        <p>Find corrections, new Application Examples, revised scripts, and additional engineering resources as they are published.</p>
+      </div>
+      <a class="button button-secondary" href="#book">Return to top <ArrowRight aria-hidden="true" size={18} /></a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,25 @@
+---
+import type { LucideIcon } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+
+interface Props {
+  id?: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  href: string;
+  linkLabel: string;
+  icon: LucideIcon;
+  tone: 'orange' | 'cyan' | 'green';
+}
+
+const { id, eyebrow, title, description, href, linkLabel, icon: PathIcon, tone } = Astro.props;
+---
+
+<article id={id} class={`audience-path tone-${tone}`}>
+  <div class="audience-icon"><PathIcon aria-hidden="true" size={22} strokeWidth={1.8} /></div>
+  <p class="eyebrow">{eyebrow}</p>
+  <h3>{title}</h3>
+  <p>{description}</p>
+  <a class="text-link" href={href}>{linkLabel}<ArrowRight aria-hidden="true" size={17} /></a>
+</article>
