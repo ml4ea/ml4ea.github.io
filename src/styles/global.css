@@ -607,9 +607,9 @@ p {
 .page-hero {
   position: relative;
   display: grid;
-  min-height: min(610px, calc(100svh - 110px));
+  min-height: 320px;
   align-items: center;
-  padding-block: clamp(64px, 8vw, 108px);
+  padding-block: clamp(36px, 3.8vw, 48px);
   overflow: hidden;
   border-bottom: 1px solid var(--line);
   background: var(--paper-soft);
@@ -619,7 +619,7 @@ p {
 .chapter-hero-image {
   position: absolute;
   inset: 0;
-  background-position: center;
+  background-position: 50% 58%;
   background-size: cover;
 }
 
@@ -629,7 +629,7 @@ p {
   top: 0;
   bottom: 0;
   left: 0;
-  width: 7px;
+  width: 10px;
   background: var(--cyan);
   content: '';
 }
@@ -647,7 +647,7 @@ p {
 }
 
 .page-hero-copy {
-  width: min(58%, 720px);
+  width: min(62%, 720px);
 }
 
 .page-hero .eyebrow {
@@ -655,15 +655,16 @@ p {
 }
 
 .page-hero h1 {
+  max-width: 18ch;
   margin: 0;
-  font-size: clamp(2.6rem, 5.5vw, 5rem);
+  font-size: clamp(2.15rem, 3vw, 3rem);
 }
 
 .page-hero-copy > p:last-child {
   max-width: 58ch;
-  margin: 20px 0 0;
+  margin: 10px 0 0;
   color: var(--ink-soft);
-  font-size: 1.14rem;
+  font-size: 1.05rem;
 }
 
 .content-section {
@@ -1368,9 +1369,9 @@ p {
 .chapter-hero {
   position: relative;
   display: grid;
-  min-height: min(590px, calc(100svh - 130px));
+  min-height: 380px;
   align-items: center;
-  padding-block: clamp(64px, 8vw, 108px);
+  padding-block: clamp(40px, 4.5vw, 56px);
   overflow: hidden;
   background: var(--paper-soft);
 }
@@ -1379,28 +1380,28 @@ p {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 0.58fr) minmax(220px, 0.42fr);
+  grid-template-columns: minmax(0, 0.64fr) minmax(190px, 0.36fr);
   gap: clamp(42px, 6vw, 84px);
   align-items: center;
 }
 
 .chapter-hero h1 {
   max-width: 16ch;
-  margin-bottom: 18px;
-  font-size: clamp(2.7rem, 5.5vw, 5.1rem);
+  margin-bottom: 14px;
+  font-size: clamp(2.35rem, 3.7vw, 3.5rem);
 }
 
 .chapter-hero-grid > div > p:last-child {
   max-width: 66ch;
   margin: 0;
   color: var(--ink-soft);
-  font-size: 1.12rem;
+  font-size: 1.05rem;
 }
 
 .chapter-hero-number {
   justify-self: end;
   color: var(--cyan);
-  font-size: clamp(4.5rem, 9vw, 8.5rem);
+  font-size: clamp(4rem, 7vw, 7.25rem);
   font-weight: 700;
   line-height: 0.78;
   opacity: 0.22;
@@ -1661,15 +1662,18 @@ p {
 }
 
 @media (max-width: 700px) {
-  .page-hero,
+  .page-hero {
+    min-height: 400px;
+  }
+
   .chapter-hero {
-    min-height: 560px;
+    min-height: 430px;
   }
 
   .page-hero-image,
   .chapter-hero-image {
     background-position: 64% center;
-    opacity: 0.3;
+    opacity: 0.28;
   }
 
   .page-hero-copy {
@@ -1752,12 +1756,12 @@ p {
 @media (max-width: 520px) {
   .page-hero,
   .chapter-hero {
-    padding-block: 58px;
+    padding-block: 48px;
   }
 
   .page-hero h1,
   .chapter-hero h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
 
   .protected-resource-list > div,
