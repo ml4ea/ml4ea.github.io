@@ -20,6 +20,7 @@ const isActive = (href: string) => href === '/' ? pathname === '/' : pathname.st
     <nav id="primary-navigation" class="primary-navigation" aria-label="Primary navigation">
       <a href="/book" aria-current={isActive('/book') ? 'page' : undefined}>Book</a>
       <a href="/learn" aria-current={isActive('/learn') || isActive('/chapters') || isActive('/resources') ? 'page' : undefined}>Learn</a>
+      <a href="/application-examples" aria-current={isActive('/application-examples') ? 'page' : undefined}>AEs</a>
       <a href="/teach" aria-current={isActive('/teach') ? 'page' : undefined}>Teach</a>
       <a href="/community" aria-current={isActive('/community') ? 'page' : undefined}>Community</a>
       <a href="/updates" aria-current={isActive('/updates') ? 'page' : undefined}>Updates</a>

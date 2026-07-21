@@ -9,11 +9,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <PageHero
     eyebrow="Resources"
     title="Find the right chapter or engineering example."
-    description="Search the public catalog by topic, material type, or chapter. Validated Python notebooks and datasets will be added here as they are released."
+    description="Search chapter guides and book topics, or move directly into the published Application Example notebook collection."
     accent="cyan"
   />
   <section class="content-section catalog-section">
     <div class="container">
+      <div class="resource-callout">
+        <div><p class="eyebrow">Executable notebooks</p><h2>Application Examples are now available.</h2></div>
+        <a class="button button-primary" href="/application-examples">Explore all AEs</a>
+      </div>
       <CatalogExplorer items={resourceItems} initialQueryFromUrl={true} client:load />
     </div>
   </section>

@@ -1,0 +1,1305 @@
+{
+  "generated": "2026-07-21",
+  "count": 56,
+  "notebooks": [
+    {
+      "filename": "Notebook-06.3.5-RG-SteelStrength.ipynb",
+      "ae_number": "6.3.5",
+      "chapter": 6,
+      "chapter_title": "Supervised Learning: Regression",
+      "title": "Predicting Tensile Strength of Steel",
+      "method": "linear regression",
+      "source_urls": [
+        "https://raw.githubusercontent.com/batiukmaks/Steel-Strength-Prediction/main/steel_strength.csv"
+      ],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "pandas",
+        "scikit-learn"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-06.4.5-RG-BuildingHeatLoss.ipynb",
+      "ae_number": "6.4.5",
+      "chapter": 6,
+      "chapter_title": "Supervised Learning: Regression",
+      "title": "Estimating Parameters for Heat Loss in a Building",
+      "method": "linear regression parameter estimation",
+      "source_urls": [
+        "https://github.com/pik1989/FBProphet/blob/main/DailyDelhiClimateTrain.csv"
+      ],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "pandas",
+        "scikit-learn"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-06.5.4-RG-BatteryRUL.ipynb",
+      "ae_number": "6.5.4",
+      "chapter": 6,
+      "chapter_title": "Supervised Learning: Regression",
+      "title": "Evaluating a Regression Model for Battery Lifetime Prediction",
+      "method": "regression model evaluation",
+      "source_urls": [
+        "https://www.kaggle.com/datasets/ignaciovinuales/battery-remaining-useful-life-rul"
+      ],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "pandas",
+        "scikit-learn",
+        "statsmodels"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-06.6.4-RG-CantileverBeam.ipynb",
+      "ae_number": "6.6.4",
+      "chapter": 6,
+      "chapter_title": "Supervised Learning: Regression",
+      "title": "Modeling Deflection of a Cantilever Beam",
+      "method": "polynomial regression",
+      "source_urls": [],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "pandas",
+        "scikit-learn"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-06.7.5-Reglar-MPG.ipynb",
+      "ae_number": "6.7.5",
+      "chapter": 6,
+      "chapter_title": "Supervised Learning: Regression",
+      "title": "Predicting Automobile MPG with Regularized Regression",
+      "method": "regularized regression",
+      "source_urls": [
+        "https://archive.ics.uci.edu/static/public/9/data.csv"
+      ],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "pandas",
+        "scikit-learn"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-07.3.5-LogisticRegr-APS-dataset.ipynb",
+      "ae_number": "7.3.5",
+      "chapter": 7,
+      "chapter_title": "Supervised Learning: Classification",
+      "title": "Predicting Mechanical Failure Status with Logistic Regression",
+      "method": "logistic regression",
+      "source_urls": [
+        "https://archive.ics.uci.edu/static/public/421/aps+failure+at+scania+trucks.zip"
+      ],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "pandas",
+        "requests",
+        "scikit-learn",
+        "seaborn"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-07.4.4-DecisionTree-ConcreteStrength.ipynb",
+      "ae_number": "7.4.4",
+      "chapter": 7,
+      "chapter_title": "Supervised Learning: Classification",
+      "title": "Classifying Concrete Strength with Decision Trees",
+      "method": "decision-tree classification",
+      "source_urls": [
+        "https://archive.ics.uci.edu/static/public/165/data.csv"
+      ],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "pandas",
+        "scikit-learn"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-07.5.5-SVM-cwru-bearing.ipynb",
+      "ae_number": "7.5.5",
+      "chapter": 7,
+      "chapter_title": "Supervised Learning: Classification",
+      "title": "SVMs for Rotating Equipment Fault Classification",
+      "method": "support vector machine classification",
+      "source_urls": [
+        "https://www.kaggle.com/datasets/brjapon/cwru-bearing-datasets"
+      ],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "pandas",
+        "scikit-learn"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-07.6.4-kNN-AirQuality.ipynb",
+      "ae_number": "7.6.4",
+      "chapter": 7,
+      "chapter_title": "Supervised Learning: Classification",
+      "title": "K-NN for Air Quality Monitoring",
+      "method": "k-nearest-neighbor classification",
+      "source_urls": [
+        "https://archive.ics.uci.edu/static/public/360/data.csv"
+      ],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "pandas",
+        "scikit-learn"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-08.2.4-Bagging-SteelPlate.ipynb",
+      "ae_number": "8.2.4",
+      "chapter": 8,
+      "chapter_title": "Ensemble Methods",
+      "title": "Bagging for Steel Plate Quality Control",
+      "method": "bagging",
+      "source_urls": [
+        "https://archive.ics.uci.edu/static/public/198/data.csv"
+      ],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "pandas",
+        "scikit-learn",
+        "seaborn"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-08.3.4-RandForest-C-MAPSS.ipynb",
+      "ae_number": "8.3.4",
+      "chapter": 8,
+      "chapter_title": "Ensemble Methods",
+      "title": "Random Forest for Equipment Failure Prediction",
+      "method": "random forests",
+      "source_urls": [
+        "https://www.kaggle.com/datasets/behrad3d/nasa-cmaps"
+      ],
+      "packages": [
+        "matplotlib",
+        "pandas",
+        "scikit-learn"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-08.4.4-GradientBoost-C-MAPSS.ipynb",
+      "ae_number": "8.4.4",
+      "chapter": 8,
+      "chapter_title": "Ensemble Methods",
+      "title": "Gradient Boosting for Fault Detection",
+      "method": "gradient boosting",
+      "source_urls": [
+        "https://www.kaggle.com/datasets/behrad3d/nasa-cmaps"
+      ],
+      "packages": [
+        "matplotlib",
+        "pandas",
+        "scikit-learn"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-08.5.4-RFEval-Flotation.ipynb",
+      "ae_number": "8.5.4",
+      "chapter": 8,
+      "chapter_title": "Ensemble Methods",
+      "title": "Evaluating and Interpreting a Random Forest",
+      "method": "random-forest evaluation and interpretation",
+      "source_urls": [
+        "https://www.kaggle.com/datasets/sgwgl/flotation-plant"
+      ],
+      "packages": [
+        "gdown",
+        "matplotlib",
+        "numpy",
+        "pandas",
+        "scikit-learn"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-09.2.5-Perceptron-PartClassification.ipynb",
+      "ae_number": "9.2.5",
+      "chapter": 9,
+      "chapter_title": "Neural Networks and Deep Learning",
+      "title": "Binary Classification of Manufactured Parts",
+      "method": "perceptron classification",
+      "source_urls": [],
+      "packages": [
+        "numpy"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-09.3.4-MLP-SECOM.ipynb",
+      "ae_number": "9.3.4",
+      "chapter": 9,
+      "chapter_title": "Neural Networks and Deep Learning",
+      "title": "Classifying Manufacturing Quality Using MLP",
+      "method": "multilayer perceptron classification",
+      "source_urls": [
+        "https://archive.ics.uci.edu/static/public/179/data.csv"
+      ],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "pandas",
+        "scikit-learn",
+        "torch"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-09.3.5-MLP-Regressor-Concrete.ipynb",
+      "ae_number": "9.3.5",
+      "chapter": 9,
+      "chapter_title": "Neural Networks and Deep Learning",
+      "title": "MLP for Predicting Concrete Strength",
+      "method": "multilayer perceptron regression",
+      "source_urls": [
+        "https://archive.ics.uci.edu/static/public/165/data.csv"
+      ],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "pandas",
+        "scikit-learn",
+        "seaborn"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-09.4.5-Regularization-Diabetes.ipynb",
+      "ae_number": "9.4.5",
+      "chapter": 9,
+      "chapter_title": "Neural Networks and Deep Learning",
+      "title": "Predicting the Onset of Diabetes Based on Diagnostic Measures",
+      "method": "regularized neural-network classification",
+      "source_urls": [
+        "https://www.kaggle.com/datasets/mathchi/diabetes-data-set/data"
+      ],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "pandas",
+        "scikit-learn",
+        "tensorflow"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-09.5.2-CNN-NEU-DET.ipynb",
+      "ae_number": "9.5.2",
+      "chapter": 9,
+      "chapter_title": "Neural Networks and Deep Learning",
+      "title": "CNN for Surface Defect Detection",
+      "method": "convolutional neural networks",
+      "source_urls": [
+        "https://www.kaggle.com/datasets/kaustubhdikshit/neu-surface-defect-database"
+      ],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "tensorflow"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-09.5.5-LSTM-CMAPSS.ipynb",
+      "ae_number": "9.5.5",
+      "chapter": 9,
+      "chapter_title": "Neural Networks and Deep Learning",
+      "title": "LSTM for Predictive Maintenance Using Sensor Time Series",
+      "method": "long short-term memory networks",
+      "source_urls": [
+        "https://www.kaggle.com/datasets/palbha/cmapss-jet-engine-simulated-data"
+      ],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "pandas",
+        "scikit-learn",
+        "tensorflow"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-09.5.5-b-LSTM-AI4I-long.ipynb",
+      "ae_number": "9.5.5-b",
+      "chapter": 9,
+      "chapter_title": "Neural Networks and Deep Learning",
+      "title": "LSTM Comparison Using the AI4I 2020 Dataset",
+      "method": "long short-term memory networks",
+      "source_urls": [
+        "https://archive.ics.uci.edu/static/public/601/data.csv"
+      ],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "pandas",
+        "scikit-learn",
+        "tensorflow"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-10.2.2-Kmeans-AI4I.ipynb",
+      "ae_number": "10.2.2",
+      "chapter": 10,
+      "chapter_title": "Unsupervised Learning",
+      "title": "Clustering Hydraulic System Operating States with K-Means",
+      "method": "k-means clustering",
+      "source_urls": [
+        "https://archive.ics.uci.edu/static/public/601/data.csv"
+      ],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "pandas",
+        "scikit-learn",
+        "seaborn"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-10.2.4-H-Clustering-.ipynb",
+      "ae_number": "10.2.4",
+      "chapter": 10,
+      "chapter_title": "Unsupervised Learning",
+      "title": "Hierarchical Clustering for Anomaly Detection in Oil and Gas Chemical Plants",
+      "method": "hierarchical clustering",
+      "source_urls": [
+        "https://www.kaggle.com/datasets/programmer3/anomaly-detection-in-oil-and-gas-chemical-plants"
+      ],
+      "packages": [
+        "matplotlib",
+        "pandas",
+        "scikit-learn",
+        "scipy",
+        "seaborn"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-10.2.6-DBSCAN-GridSensor.ipynb",
+      "ae_number": "10.2.6",
+      "chapter": 10,
+      "chapter_title": "Unsupervised Learning",
+      "title": "DBSCAN for Fault Detection in a Power Grid Sensor Network",
+      "method": "density-based clustering",
+      "source_urls": [],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "pandas",
+        "scikit-learn",
+        "seaborn"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-10.3.2-PCA-CWRU-Bearing.ipynb",
+      "ae_number": "10.3.2",
+      "chapter": 10,
+      "chapter_title": "Unsupervised Learning",
+      "title": "PCA for Vibration-Based Fault Diagnosis",
+      "method": "principal component analysis",
+      "source_urls": [
+        "https://www.kaggle.com/datasets/brjapon/cwru-bearing-datasets"
+      ],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "pandas",
+        "scikit-learn"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-10.3.4-tSNE-UMAP-CWRU-Bearing.ipynb",
+      "ae_number": "10.3.4",
+      "chapter": 10,
+      "chapter_title": "Unsupervised Learning",
+      "title": "t-SNE/UMAP for Condition Monitoring of Industrial Bearings",
+      "method": "nonlinear dimensionality reduction",
+      "source_urls": [
+        "https://www.kaggle.com/datasets/brjapon/cwru-bearing-datasets"
+      ],
+      "packages": [
+        "matplotlib",
+        "pandas",
+        "scikit-learn",
+        "umap"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-10.3.6-UMAP-tSNE-SHM.ipynb",
+      "ae_number": "10.3.6",
+      "chapter": 10,
+      "chapter_title": "Unsupervised Learning",
+      "title": "Autoencoder for Structural Health Monitoring with Sensor Arrays",
+      "method": "autoencoders",
+      "source_urls": [
+        "https://www.kaggle.com/datasets/programmer3/aging-bridge-shm-time-series-dataset"
+      ],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "pandas",
+        "scikit-learn",
+        "tensorflow"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-10.4.2-GMM-SHM-Bridge.ipynb",
+      "ae_number": "10.4.2",
+      "chapter": 10,
+      "chapter_title": "Unsupervised Learning",
+      "title": "GMM for Industrial Process State Segmentation",
+      "method": "Gaussian mixture models",
+      "source_urls": [
+        "https://archive.ics.uci.edu/static/public/179/data.csv"
+      ],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "pandas",
+        "scikit-learn"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-10.4.4-EM-GMM-CMAPSS.ipynb",
+      "ae_number": "10.4.4",
+      "chapter": 10,
+      "chapter_title": "Unsupervised Learning",
+      "title": "EM for Fault Detection with GMMs",
+      "method": "expectation-maximization with Gaussian mixture models",
+      "source_urls": [
+        "https://www.kaggle.com/datasets/behrad3d/nasa-cmaps"
+      ],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "pandas",
+        "scikit-learn"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-10.4.6-KDE-SensorDrift.ipynb",
+      "ae_number": "10.4.6",
+      "chapter": 10,
+      "chapter_title": "Unsupervised Learning",
+      "title": "KDE for Sensor Drift Detection in Environmental Monitoring",
+      "method": "kernel density estimation",
+      "source_urls": [
+        "https://www.kaggle.com/datasets/adityakadiwal/water-potability"
+      ],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "pandas",
+        "scikit-learn"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-11.3.2-Qlearning-ACC.ipynb",
+      "ae_number": "11.3.2",
+      "chapter": 11,
+      "chapter_title": "Reinforcement Learning",
+      "title": "Q-Learning for Adaptive Cruise Control",
+      "method": "Q-learning",
+      "source_urls": [],
+      "packages": [
+        "matplotlib",
+        "numpy"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-11.3.4-SARSA-TrafficLightControl.ipynb",
+      "ae_number": "11.3.4",
+      "chapter": 11,
+      "chapter_title": "Reinforcement Learning",
+      "title": "SARSA for Adaptive Traffic Light Control",
+      "method": "SARSA",
+      "source_urls": [],
+      "packages": [
+        "matplotlib",
+        "numpy"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-11.4.2-REINFORCE-CartPole.ipynb",
+      "ae_number": "11.4.2",
+      "chapter": 11,
+      "chapter_title": "Reinforcement Learning",
+      "title": "REINFORCE for CartPole Control",
+      "method": "policy-gradient reinforcement learning",
+      "source_urls": [],
+      "packages": [
+        "gymnasium",
+        "matplotlib",
+        "numpy",
+        "torch"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-11.4.4-AC-RL-TempControl.ipynb",
+      "ae_number": "11.4.4",
+      "chapter": 11,
+      "chapter_title": "Reinforcement Learning",
+      "title": "Actor-Critic RL for Temperature Control in a Chemical Reactor",
+      "method": "actor-critic reinforcement learning",
+      "source_urls": [],
+      "packages": [
+        "matplotlib",
+        "numpy"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-11.5.2-DQN-BatteryMgt.ipynb",
+      "ae_number": "11.5.2",
+      "chapter": 11,
+      "chapter_title": "Reinforcement Learning",
+      "title": "Deep Q-Learning for Battery Management",
+      "method": "deep Q-learning",
+      "source_urls": [],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "torch"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-11.5.4-DDPG-RobotArm.ipynb",
+      "ae_number": "11.5.4",
+      "chapter": 11,
+      "chapter_title": "Reinforcement Learning",
+      "title": "DDPG for Robot Arm Control",
+      "method": "deep deterministic policy gradients",
+      "source_urls": [],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "torch"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-11.5.5-PPO-ACC.ipynb",
+      "ae_number": "11.5.5",
+      "chapter": 11,
+      "chapter_title": "Reinforcement Learning",
+      "title": "PPO for Adaptive Cruise Control under Stochastic Traffic",
+      "method": "proximal policy optimization",
+      "source_urls": [],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "torch"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-12.3.5-VAE-SensorAnomaly.ipynb",
+      "ae_number": "12.3.5",
+      "chapter": 12,
+      "chapter_title": "Generative Models",
+      "title": "VAE for Sensor Anomaly Detection",
+      "method": "variational autoencoders",
+      "source_urls": [],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "torch"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-12.4.5-DCGAN-TILDA-SurfaceDefect.ipynb",
+      "ae_number": "12.4.5",
+      "chapter": 12,
+      "chapter_title": "Generative Models",
+      "title": "GAN for Surface-Defect Augmentation",
+      "method": "generative adversarial networks",
+      "source_urls": [
+        "https://www.kaggle.com/datasets/angelolmg/tilda-400-64x64-patches"
+      ],
+      "packages": [
+        "gdown",
+        "matplotlib",
+        "Pillow",
+        "torch",
+        "torchvision"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-12.5.7-DDPM-HighcarbonMicroStructure.ipynb",
+      "ae_number": "12.5.7",
+      "chapter": 12,
+      "chapter_title": "Generative Models",
+      "title": "Diffusion Models for Microstructure Synthesis from Experimental Metallography",
+      "method": "denoising diffusion models",
+      "source_urls": [
+        "https://www.kaggle.com/datasets/safi842/highcarbon-micrographs"
+      ],
+      "packages": [
+        "gdown",
+        "matplotlib",
+        "numpy",
+        "Pillow",
+        "torch"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-12.6.10-LLM-RAG-Copilot-Cantilever-beam-sizing.ipynb",
+      "ae_number": "12.6.10",
+      "chapter": 12,
+      "chapter_title": "Generative Models",
+      "title": "An LLM Copilot for Cantilever Beam Sizing",
+      "method": "large language models and retrieval-augmented generation",
+      "source_urls": [],
+      "packages": [
+        "numpy",
+        "openai"
+      ],
+      "requires_openai_api_key": true,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-13.5.6-PhyConstrRegression-CapacitorDischarge.ipynb",
+      "ae_number": "13.5.6",
+      "chapter": 13,
+      "chapter_title": "Physics-Informed Machine Learning",
+      "title": "Physics-Constrained Regression for Discharge of a Capacitor",
+      "method": "physics-constrained regression",
+      "source_urls": [],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "torch"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-13.5.7-PhyConstrClassification-FaultDetection-MassSpring.ipynb",
+      "ae_number": "13.5.7",
+      "chapter": 13,
+      "chapter_title": "Physics-Informed Machine Learning",
+      "title": "Physics-Constrained Classification for Fault Detection in a Mass-Spring System",
+      "method": "physics-constrained classification",
+      "source_urls": [],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "scikit-learn",
+        "torch"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-13.5.8-PINN-1D-PDE.ipynb",
+      "ae_number": "13.5.8",
+      "chapter": 13,
+      "chapter_title": "Physics-Informed Machine Learning",
+      "title": "PINN for Solving a 1D PDE",
+      "method": "physics-informed neural networks",
+      "source_urls": [],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "torch"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-14.2.4-TL-Finetuning-NEU-DET.ipynb",
+      "ae_number": "14.2.4",
+      "chapter": 14,
+      "chapter_title": "Specialized ML Techniques and Emergent Topics",
+      "title": "Fine-Tuning for Defect Detection in Manufacturing",
+      "method": "transfer learning and fine-tuning",
+      "source_urls": [
+        "https://www.kaggle.com/datasets/kaustubhdikshit/neu-surface-defect-database"
+      ],
+      "packages": [
+        "gdown",
+        "matplotlib",
+        "numpy",
+        "scikit-learn",
+        "torch",
+        "torchvision"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-14.3.3-BayesRegression-StressStrain.ipynb",
+      "ae_number": "14.3.3",
+      "chapter": 14,
+      "chapter_title": "Specialized ML Techniques and Emergent Topics",
+      "title": "Uncertainty-Aware Stress-Strain Modeling",
+      "method": "Bayesian regression",
+      "source_urls": [],
+      "packages": [
+        "matplotlib",
+        "numpy"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-14.3.5-BayesRegressionViaMCMC-StressStrain.ipynb",
+      "ae_number": "14.3.5",
+      "chapter": 14,
+      "chapter_title": "Specialized ML Techniques and Emergent Topics",
+      "title": "Bayesian Linear Regression via MCMC",
+      "method": "Markov chain Monte Carlo",
+      "source_urls": [],
+      "packages": [
+        "arviz",
+        "matplotlib",
+        "numpy",
+        "pymc"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-14.3.7-BNN-Airfoil.ipynb",
+      "ae_number": "14.3.7",
+      "chapter": 14,
+      "chapter_title": "Specialized ML Techniques and Emergent Topics",
+      "title": "Uncertainty-Aware Prediction of Airfoil Self-Noise",
+      "method": "Bayesian neural networks",
+      "source_urls": [
+        "https://archive.ics.uci.edu/static/public/291/data.csv"
+      ],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "pandas",
+        "scikit-learn",
+        "torch"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-14.4.7-CF-GroupLens.ipynb",
+      "ae_number": "14.4.7",
+      "chapter": 14,
+      "chapter_title": "Specialized ML Techniques and Emergent Topics",
+      "title": "Collaborative Filtering for Design Preference Learning",
+      "method": "collaborative filtering",
+      "source_urls": [
+        "https://files.grouplens.org/datasets/movielens/ml-100k.zip"
+      ],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "pandas"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-14.5.3-AssocRule-CMAPSS.ipynb",
+      "ae_number": "14.5.3",
+      "chapter": 14,
+      "chapter_title": "Specialized ML Techniques and Emergent Topics",
+      "title": "Mining Association Rules in Aircraft Engine Maintenance and Failure Logs",
+      "method": "association-rule mining",
+      "source_urls": [],
+      "packages": [
+        "gdown",
+        "matplotlib",
+        "mlxtend",
+        "numpy",
+        "pandas"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-14.6.5-GCN-Cantilever-Stress.ipynb",
+      "ae_number": "14.6.5",
+      "chapter": 14,
+      "chapter_title": "Specialized ML Techniques and Emergent Topics",
+      "title": "GCN for Predicting Stress Distributions on a Mesh",
+      "method": "graph convolutional networks",
+      "source_urls": [],
+      "packages": [
+        "matplotlib",
+        "numpy",
+        "torch"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-14.6.6-GAT-SantaMonica.ipynb",
+      "ae_number": "14.6.6",
+      "chapter": 14,
+      "chapter_title": "Specialized ML Techniques and Emergent Topics",
+      "title": "GAT for Critical Node Identification in Transportation",
+      "method": "graph attention networks",
+      "source_urls": [],
+      "packages": [
+        "matplotlib",
+        "networkx",
+        "numpy",
+        "osmnx",
+        "scikit-learn",
+        "torch"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-14.7.3-SSL-PowerGrid.ipynb",
+      "ae_number": "14.7.3",
+      "chapter": 14,
+      "chapter_title": "Specialized ML Techniques and Emergent Topics",
+      "title": "Masked Modeling for Power Grid Prediction",
+      "method": "self-supervised masked modeling",
+      "source_urls": [
+        "https://www.kaggle.com/datasets/raminhuseyn/energy-consumption-dataset"
+      ],
+      "packages": [
+        "gdown",
+        "matplotlib",
+        "numpy",
+        "pandas",
+        "torch"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-14.7.4-ContrastiveLearning-IMS-Bearing.ipynb",
+      "ae_number": "14.7.4",
+      "chapter": 14,
+      "chapter_title": "Specialized ML Techniques and Emergent Topics",
+      "title": "Self-Supervised Contrastive Learning for Bearing Degradation Representation",
+      "method": "contrastive learning",
+      "source_urls": [
+        "https://www.kaggle.com/datasets/vinayak123tyagi/bearing-dataset"
+      ],
+      "packages": [
+        "gdown",
+        "matplotlib",
+        "numpy",
+        "torch"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-14.8.4-SymbolicRegression-Equation-fin.ipynb",
+      "ae_number": "14.8.4",
+      "chapter": 14,
+      "chapter_title": "Specialized ML Techniques and Emergent Topics",
+      "title": "Symbolic Regression for Discovering Governing Equations of a Nonlinear Mechanical System",
+      "method": "symbolic regression",
+      "source_urls": [],
+      "packages": [
+        "gplearn",
+        "matplotlib",
+        "numpy",
+        "scikit-learn"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-14.8.5-SymbolNeural-PJME-fin.ipynb",
+      "ae_number": "14.8.5",
+      "chapter": 14,
+      "chapter_title": "Specialized ML Techniques and Emergent Topics",
+      "title": "Hybrid Symbolic-Neural Modeling for Power System Load Prediction",
+      "method": "hybrid symbolic-neural modeling",
+      "source_urls": [],
+      "packages": [
+        "gdown",
+        "matplotlib",
+        "numpy",
+        "pandas",
+        "torch"
+      ],
+      "requires_openai_api_key": false,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    },
+    {
+      "filename": "Notebook-14.9.5-Agent-HybCarDesign-Fin.ipynb",
+      "ae_number": "14.9.5",
+      "chapter": 14,
+      "chapter_title": "Specialized ML Techniques and Emergent Topics",
+      "title": "An LLM-Based Agentic System for Early-Stage Engineering Design Support",
+      "method": "agentic large language models",
+      "source_urls": [],
+      "packages": [
+        "gdown",
+        "matplotlib",
+        "numpy",
+        "openai",
+        "pandas"
+      ],
+      "requires_openai_api_key": true,
+      "runtime": "To be validated",
+      "hardware": "To be validated",
+      "dataset_license": "To be validated",
+      "notebook_license": "MIT",
+      "notebook_version": "To be assigned",
+      "validation_status": "Draft metadata; notebook execution not yet validated"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+---
+import { BookOpen, Braces, Code2, Scale } from 'lucide-react';
+import ApplicationExampleExplorer from '../components/ApplicationExampleExplorer';
+import inventory from '../data/application-examples.json';
+import PageHero from '../components/PageHero.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Application Examples | ML4EA"
+  description="Explore 56 executable engineering machine learning notebooks from Machine Learning for Engineering Applications."
+>
+  <PageHero
+    eyebrow="Application Examples"
+    title="Engineering problems, worked in Python."
+    description="Explore executable companion notebooks that connect machine learning methods to engineering data, models, evaluation, and decisions."
+    accent="green"
+  />
+
+  <section class="ae-summary-band" aria-label="Application Example collection summary">
+    <div class="container ae-summary-grid">
+      <div><BookOpen aria-hidden="true" size={21} /><span><strong>{inventory.count}</strong> notebooks</span></div>
+      <div><Braces aria-hidden="true" size={21} /><span><strong>Chapters 6–14</strong> methods and applications</span></div>
+      <div><Code2 aria-hidden="true" size={21} /><span><strong>GitHub + Colab</strong> access</span></div>
+      <div><Scale aria-hidden="true" size={21} /><span><strong>MIT</strong> licensed</span></div>
+    </div>
+  </section>
+
+  <section class="content-section ae-catalog-section">
+    <div class="container">
+      <div class="ae-catalog-heading">
+        <div>
+          <p class="eyebrow">Notebook collection</p>
+          <h2>Application Examples by chapter</h2>
+        </div>
+        <p>Notebook execution, environment details, and third-party dataset licenses are being validated progressively. Each notebook includes its current status and engineering-use notice.</p>
+      </div>
+      <ApplicationExampleExplorer examples={inventory.notebooks} client:load />
+    </div>
+  </section>
+</BaseLayout>

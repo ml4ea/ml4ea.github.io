@@ -34,13 +34,21 @@ const examples: CatalogItem[] = chapters.flatMap((chapter) => chapter.applicatio
   title: example,
   description: `An engineering example catalogued in Chapter ${chapter.number}, ${chapter.title}.`,
   type: 'Application example' as const,
-  href: `/chapters/${chapter.slug}#application-examples`,
+  href: `/application-examples?chapter=${chapter.number}`,
   chapter: chapter.number,
   chapterTitle: chapter.title,
   tags: [...chapter.topics, 'Application Example'],
 })));
 
 const portalPages: CatalogItem[] = [
+  {
+    id: 'application-examples',
+    title: 'Application Example notebooks',
+    description: 'Browse 56 executable engineering machine learning notebooks with direct GitHub and Google Colab access.',
+    type: 'Portal page',
+    href: '/application-examples',
+    tags: ['Application Examples', 'Python', 'Notebooks', 'Google Colab'],
+  },
   {
     id: 'book-overview',
     title: 'About the book',
