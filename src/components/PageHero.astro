@@ -1,14 +1,14 @@
 ---
+import RandomHero from './RandomHero.astro';
+
 interface Props {
   eyebrow: string;
   title: string;
   description: string;
   accent?: 'cyan' | 'orange' | 'green' | 'magenta';
-  image: string;
-  imageAlt: string;
 }
 
-const { eyebrow, title, description, accent = 'cyan', image, imageAlt } = Astro.props;
+const { eyebrow, title, description, accent = 'cyan' } = Astro.props;
 ---
 
 <section class={`page-hero accent-${accent}`}>
@@ -19,7 +19,7 @@ const { eyebrow, title, description, accent = 'cyan', image, imageAlt } = Astro.
       <p>{description}</p>
     </div>
     <figure class="page-hero-visual">
-      <img src={image} alt={imageAlt} loading="eager" />
+      <RandomHero />
     </figure>
   </div>
 </section>

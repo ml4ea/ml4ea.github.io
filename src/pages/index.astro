@@ -1,6 +1,7 @@
 ---
 import { ArrowRight, BookOpen, Braces, GraduationCap, MessagesSquare, Wrench } from 'lucide-react';
 import AudiencePath from '../components/AudiencePath.astro';
+import RandomHero from '../components/RandomHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
@@ -21,7 +22,7 @@ const methods = [
 
 <BaseLayout>
   <section class="hero" aria-labelledby="hero-title">
-    <div class="hero-image" role="img" aria-label="A robotic inspection system measuring a turbine component in an engineering laboratory"></div>
+    <RandomHero mode="background" class="hero-image" />
     <div class="container hero-content">
       <p class="eyebrow">The official companion portal · Yan Jin</p>
       <h1 id="hero-title">Machine Learning for Engineering Applications</h1>

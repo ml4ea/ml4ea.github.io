@@ -1,6 +1,7 @@
 ---
 import { ArrowLeft, ArrowRight, BookOpen, Braces, CheckCircle2, Database, MessageSquareText } from 'lucide-react';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import RandomHero from '../../components/RandomHero.astro';
 import type { Chapter } from '../../data/chapters';
 import { chapters } from '../../data/chapters';
 import BaseLayout from '../../layouts/BaseLayout.astro';
@@ -29,7 +30,7 @@ const next = chapters[index + 1];
         <p>{chapter.summary}</p>
       </div>
       <figure class="chapter-hero-visual">
-        <img src={chapter.heroImage} alt={chapter.heroImageAlt} loading="eager" />
+        <RandomHero />
         <span class="chapter-hero-number" aria-hidden="true">{String(chapter.number).padStart(2, '0')}</span>
       </figure>
     </div>

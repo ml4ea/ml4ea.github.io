@@ -207,7 +207,6 @@ p {
 .hero-image {
   position: absolute;
   inset: 0;
-  background-image: url('/images/engineering-lab-hero.jpg');
   background-position: center;
   background-size: cover;
 }
@@ -679,8 +678,8 @@ p {
 .chapter-hero-visual img {
   width: 100%;
   height: 100%;
-  padding: clamp(14px, 2.3vw, 30px);
-  object-fit: contain;
+  object-fit: cover;
+  object-position: 60% center;
 }
 
 .content-section {
