@@ -58,6 +58,14 @@ const portalPages: CatalogItem[] = [
     tags: ['Book', 'Overview', 'Purchase'],
   },
   {
+    id: 'author-profile',
+    title: 'About the author: Yan Jin',
+    description: 'Biography, research interests, selected distinctions, and professional service of ML4EA author Yan Jin.',
+    type: 'Portal page',
+    href: '/author',
+    tags: ['Author', 'Yan Jin', 'USC', 'IMPACT Lab'],
+  },
+  {
     id: 'learning-pathways',
     title: 'Learning pathways',
     description: 'Navigate the book from mathematical foundations to complete engineering systems.',

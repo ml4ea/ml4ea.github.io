@@ -1,0 +1,81 @@
+---
+import { Award, ExternalLink, GraduationCap, Mail } from 'lucide-react';
+import PageHero from '../components/PageHero.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Yan Jin, Author | ML4EA"
+  description="Meet Yan Jin, author of Machine Learning for Engineering Applications and Professor of Aerospace and Mechanical Engineering at USC."
+>
+  <PageHero
+    eyebrow="About the author"
+    title="Yan Jin, Ph.D."
+    description="Professor, engineering researcher, and author of Machine Learning for Engineering Applications."
+    accent="orange"
+  />
+
+  <section class="content-section">
+    <div class="container author-profile">
+      <aside class="author-sidebar">
+        <figure class="author-portrait">
+          <img src="/images/author/yan-jin.png" alt="Portrait of Yan Jin" width="533" height="573" />
+        </figure>
+        <div class="author-contact">
+          <p><strong>Yan Jin, Ph.D.</strong><br />Professor of Aerospace and Mechanical Engineering<br />University of Southern California</p>
+          <a class="text-link" href="mailto:yjin@usc.edu"><Mail aria-hidden="true" size={17} /> yjin@usc.edu</a>
+          <a class="text-link" href="https://impact-usc.github.io/people/yan-jin/" target="_blank" rel="noreferrer">
+            <ExternalLink aria-hidden="true" size={17} /> USC IMPACT Lab profile
+          </a>
+        </div>
+      </aside>
+
+      <div class="author-biography prose">
+        <p class="lead">Dr. Yan Jin is Professor of Aerospace and Mechanical Engineering at the University of Southern California and Director of the USC IMPACT Laboratory.</p>
+        <p>He received his Ph.D. in Naval Engineering from the University of Tokyo and conducted postdoctoral research at Stanford University. Before joining the USC faculty, he worked as a Senior Research Scientist at Stanford.</p>
+        <p>His research spans artificial intelligence and machine learning in engineering design and manufacturing, design theory and methodology, multiagent and self-organizing systems, organization modeling and project management, and collaborative engineering. His current interests include AI and machine learning in systems engineering, design methods, and complex engineered systems.</p>
+        <p><em>Machine Learning for Engineering Applications</em> brings these perspectives together for students, practicing engineers, and instructors. The book connects mathematical and computational methods with physical knowledge, engineering constraints, validation, and system-level decision making.</p>
+
+        <div class="author-focus" aria-label="Research and teaching interests">
+          <span>AI and ML in engineering</span>
+          <span>Engineering design</span>
+          <span>Systems engineering</span>
+          <span>Complex systems</span>
+          <span>Design methodology</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section surface-soft">
+    <div class="container author-highlights">
+      <article>
+        <Award aria-hidden="true" size={25} />
+        <p class="eyebrow">Selected distinctions</p>
+        <h2>Awards and recognition</h2>
+        <p>His honors include the 2025 ASME Design Theory and Methodology Award, the NSF CAREER Award, the Northrop Grumman Excellence in Teaching Award, and multiple best-paper awards. He has been an ASME Fellow since 2010.</p>
+      </article>
+      <article>
+        <GraduationCap aria-hidden="true" size={25} />
+        <p class="eyebrow">Professional service</p>
+        <h2>Leadership in engineering design</h2>
+        <p>Dr. Jin served as Editor-in-Chief of <em>AIEDAM</em> and has held editorial roles with <em>Design Science</em>, the <em>Journal of Mechanical Design</em>, and other engineering design and informatics journals.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="content-section author-lab-band">
+    <div class="container two-column-copy">
+      <div>
+        <p class="eyebrow">USC IMPACT Laboratory</p>
+        <h2>Research at the intersection of intelligence and engineering.</h2>
+      </div>
+      <div>
+        <p>The IMPACT Lab develops intelligent machines and data-driven AI systems for engineering design, analysis, manufacturing, autonomous operations, and self-organizing engineered systems.</p>
+        <a class="button button-secondary" href="https://impact-usc.github.io/" target="_blank" rel="noreferrer">
+          Visit the IMPACT Lab <ExternalLink aria-hidden="true" size={17} />
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
