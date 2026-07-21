@@ -12,14 +12,12 @@ const { eyebrow, title, description, accent = 'cyan' } = Astro.props;
 ---
 
 <section class={`page-hero accent-${accent}`}>
+  <RandomHero mode="background" class="page-hero-image" />
   <div class="container page-hero-inner">
     <div class="page-hero-copy">
       <p class="eyebrow">{eyebrow}</p>
       <h1>{title}</h1>
       <p>{description}</p>
     </div>
-    <figure class="page-hero-visual">
-      <RandomHero />
-    </figure>
   </div>
 </section>

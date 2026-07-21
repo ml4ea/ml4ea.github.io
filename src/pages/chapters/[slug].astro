@@ -23,16 +23,14 @@ const next = chapters[index + 1];
 <BaseLayout title={`Chapter ${chapter.number}: ${chapter.title} | ML4EA`} description={chapter.summary}>
   <Breadcrumbs items={[{ label: 'Learn', href: '/learn' }, { label: `Chapter ${chapter.number}` }]} />
   <section class={`chapter-hero accent-${chapter.accent}`}>
+    <RandomHero mode="background" class="chapter-hero-image" />
     <div class="container chapter-hero-grid">
       <div>
         <p class="eyebrow">Part {chapter.part} · Chapter {chapter.number}</p>
         <h1>{chapter.title}</h1>
         <p>{chapter.summary}</p>
       </div>
-      <figure class="chapter-hero-visual">
-        <RandomHero />
-        <span class="chapter-hero-number" aria-hidden="true">{String(chapter.number).padStart(2, '0')}</span>
-      </figure>
+      <span class="chapter-hero-number" aria-hidden="true">{String(chapter.number).padStart(2, '0')}</span>
     </div>
   </section>
 
