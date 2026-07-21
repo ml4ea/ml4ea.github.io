@@ -1,10 +1,25 @@
 ---
-import { BookOpen, CheckCircle2, ExternalLink } from 'lucide-react';
+import { BookOpen, CheckCircle2, ExternalLink, ShoppingCart } from 'lucide-react';
 import ChapterList from '../components/ChapterList.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import { chaptersByPart } from '../data/chapters';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const retailers = [
+  { name: 'Bookshop.org', region: 'United States', url: 'https://bookshop.org/p/books/machine-learning-for-engineering-applications-yan-jin/30fa985552ea4b78?ean=9783032295118' },
+  { name: 'Bookshop.org', region: 'United Kingdom', url: 'https://uk.bookshop.org/p/books/machine-learning-for-engineering-applications-yan-jin/8954034a22b622a1?ean=9783032295118&next=t' },
+  { name: 'Leslibraires.ca', region: 'Canada', url: 'https://www.leslibraires.ca/livres/machine-learning-for-engineering-applications-9783032295118' },
+  { name: 'jpc', region: 'Germany', url: 'https://www.jpc.de/jpcng/books/detail/-/art/yan-jin-machine-learning-for-engineering-applications/hnum/12765647' },
+  { name: 'Michaelsbund', region: 'Germany', url: 'https://www.michaelsbund.de/product/9783032295118-machine-learning-for-engineering-applications.html' },
+  { name: 'WilliamDam', region: 'Denmark', url: 'https://www.williamdam.dk/machine-learning-for-engineering-applications__4486973' },
+  { name: 'Lernmedien-Shop', region: 'Switzerland', url: 'https://www.lernmedien-shop.ch/detail/ISBN-9783032295118/Jin-Yan/Machine-Learning-for-Engineering-Applications' },
+  { name: 'Bertrand', region: 'Portugal', url: 'https://www.bertrand.pt/autor/yan-jin/4914868' },
+  { name: 'Okian', region: 'Romania', url: 'https://okian.ro/machine-learning-for-engineering-applications-9783032295118.html' },
+  { name: 'Bokus', region: 'Sweden', url: 'https://www.bokus.com/cgi-bin/product_search.cgi?authors=Yan+Jin' },
+  { name: 'Norli', region: 'Norway', url: 'https://www.norli.no/boker/fagboker/matematikk-og-naturvitenskap?page=137' },
+  { name: 'iMusic', region: 'Brazil', url: 'https://imusic.br.com/books/9783032295118/yan-jin-2026-machine-learning-for-engineering-applications-hardcover-book' },
+];
 ---
 
 <BaseLayout
@@ -35,6 +50,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <h2>At a glance</h2>
         <dl>
           <div><dt>Author</dt><dd>Yan Jin</dd></div>
+          <div><dt>Publisher</dt><dd>Springer</dd></div>
+          <div><dt>Hardcover ISBN</dt><dd>978-3-032-29511-8</dd></div>
+          <div><dt>Publication date</dt><dd>August 12, 2026</dd></div>
           <div><dt>Structure</dt><dd>2 parts, 15 chapters</dd></div>
           <div><dt>Audience</dt><dd>Engineering students, practitioners, and instructors</dd></div>
           <div><dt>Practice</dt><dd>Python-based engineering examples</dd></div>
@@ -75,13 +93,46 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <section class="content-section purchase-section" id="purchase">
-    <div class="container purchase-inner">
-      <div>
-        <p class="eyebrow">Get the book</p>
-        <h2>Ordering information</h2>
-        <p>Publisher and retailer links will appear here as soon as the official ordering information is available.</p>
+    <div class="container">
+      <div class="purchase-inner">
+        <div>
+          <p class="eyebrow">Get the book</p>
+          <h2>Pre-order the hardcover edition.</h2>
+          <p><em>Machine Learning for Engineering Applications</em> is published by Springer and is scheduled for release on August 12, 2026. Availability, delivery dates, and pricing vary by retailer and destination.</p>
+          <div class="purchase-actions">
+            <a class="button button-primary" href="https://www.amazon.com/Machine-Learning-Engineering-Applications-Yan/dp/3032295114" target="_blank" rel="noreferrer">
+              <ShoppingCart aria-hidden="true" size={18} /> Pre-order on Amazon
+            </a>
+            <a class="button button-secondary" href="https://link.springer.com/book/9783032295118" target="_blank" rel="noreferrer">
+              <ExternalLink aria-hidden="true" size={18} /> View on Springer
+            </a>
+          </div>
+        </div>
+        <dl class="order-details" aria-label="Hardcover edition details">
+          <div><dt>Format</dt><dd>Hardcover</dd></div>
+          <div><dt>ISBN-10</dt><dd>3032295114</dd></div>
+          <div><dt>ISBN-13</dt><dd>9783032295118</dd></div>
+          <div><dt>Publisher</dt><dd>Springer</dd></div>
+        </dl>
       </div>
-      <span class="availability-note"><ExternalLink aria-hidden="true" size={18} /> Purchase links pending</span>
+
+      <div class="retailer-directory">
+        <div class="retailer-directory-heading">
+          <p class="eyebrow">International ordering</p>
+          <h3>Choose a bookseller in your region.</h3>
+        </div>
+        <ul class="retailer-list">
+          {retailers.map((retailer) => (
+            <li>
+              <a href={retailer.url} target="_blank" rel="noreferrer">
+                <span><strong>{retailer.name}</strong><small>{retailer.region}</small></span>
+                <ExternalLink aria-hidden="true" size={16} />
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p class="retailer-note">Retailer listings are provided for convenience. The seller's current terms, price, taxes, shipping, and availability apply.</p>
+      </div>
     </div>
   </section>
 </BaseLayout>
