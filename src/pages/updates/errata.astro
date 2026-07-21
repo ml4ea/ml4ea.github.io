@@ -1,0 +1,32 @@
+---
+import { CheckCircle2, FileSearch } from 'lucide-react';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import PageHero from '../../components/PageHero.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Errata | ML4EA" description="Verified corrections and clarifications for Machine Learning for Engineering Applications.">
+  <Breadcrumbs items={[{ label: 'Updates', href: '/updates' }, { label: 'Errata' }]} />
+  <PageHero
+    eyebrow="Book updates"
+    title="Errata and clarifications"
+    description="Verified corrections will be recorded with chapter, location, original text, correction, and status."
+    accent="green"
+  />
+
+  <section class="content-section">
+    <div class="container errata-layout">
+      <div class="empty-register">
+        <FileSearch aria-hidden="true" size={28} />
+        <h2>No verified errata have been published.</h2>
+        <p>The register is current as of <time datetime="2026-07-21">July 21, 2026</time>.</p>
+      </div>
+      <aside class="errata-method">
+        <h2>How entries are handled</h2>
+        <p><CheckCircle2 aria-hidden="true" size={18} /> Reports are checked against the finalized book.</p>
+        <p><CheckCircle2 aria-hidden="true" size={18} /> Verified entries identify the exact chapter and location.</p>
+        <p><CheckCircle2 aria-hidden="true" size={18} /> Corrections remain visible after later updates.</p>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

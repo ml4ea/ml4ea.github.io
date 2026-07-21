@@ -1,0 +1,20 @@
+---
+import CatalogExplorer from '../components/CatalogExplorer';
+import PageHero from '../components/PageHero.astro';
+import { resourceItems } from '../data/catalog';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Resources | ML4EA" description="Search ML4EA chapter guides and Application Examples by topic, type, and chapter.">
+  <PageHero
+    eyebrow="Resources"
+    title="Find the right chapter or engineering example."
+    description="Search the public catalog by topic, material type, or chapter. Validated Python notebooks and datasets will be added here as they are released."
+    accent="cyan"
+  />
+  <section class="content-section catalog-section">
+    <div class="container">
+      <CatalogExplorer items={resourceItems} initialQueryFromUrl={true} client:load />
+    </div>
+  </section>
+</BaseLayout>

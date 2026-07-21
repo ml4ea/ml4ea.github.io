@@ -1,0 +1,87 @@
+---
+import { ArrowLeft, ArrowRight, BookOpen, Braces, CheckCircle2, Database, MessageSquareText } from 'lucide-react';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import type { Chapter } from '../../data/chapters';
+import { chapters } from '../../data/chapters';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export function getStaticPaths() {
+  return chapters.map((chapter) => ({ params: { slug: chapter.slug }, props: { chapter } }));
+}
+
+interface Props {
+  chapter: Chapter;
+}
+
+const { chapter } = Astro.props;
+const index = chapters.findIndex((item) => item.number === chapter.number);
+const previous = chapters[index - 1];
+const next = chapters[index + 1];
+---
+
+<BaseLayout title={`Chapter ${chapter.number}: ${chapter.title} | ML4EA`} description={chapter.summary}>
+  <Breadcrumbs items={[{ label: 'Learn', href: '/learn' }, { label: `Chapter ${chapter.number}` }]} />
+  <section class={`chapter-hero accent-${chapter.accent}`}>
+    <div class="container chapter-hero-grid">
+      <div>
+        <p class="eyebrow">Part {chapter.part} · Chapter {chapter.number}</p>
+        <h1>{chapter.title}</h1>
+        <p>{chapter.summary}</p>
+      </div>
+      <span class="chapter-hero-number" aria-hidden="true">{String(chapter.number).padStart(2, '0')}</span>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container chapter-content-grid">
+      <article class="chapter-main">
+        <section>
+          <p class="eyebrow">Chapter map</p>
+          <h2>What this chapter develops</h2>
+          <ul class="topic-grid">
+            {chapter.topics.map((topic) => <li><CheckCircle2 aria-hidden="true" size={18} />{topic}</li>)}
+          </ul>
+        </section>
+
+        <section id="application-examples">
+          <p class="eyebrow">Engineering practice</p>
+          <h2>Application and Diamond Examples</h2>
+          <ol class="example-list">
+            {chapter.applicationExamples.map((example, exampleIndex) => (
+              <li><span>{String(exampleIndex + 1).padStart(2, '0')}</span><p>{example}</p></li>
+            ))}
+          </ol>
+        </section>
+
+        <section>
+          <p class="eyebrow">Companion materials</p>
+          <h2>Portal resources</h2>
+          <div class="chapter-resource-list">
+            <a href={`/resources?chapter=${chapter.number}`}><BookOpen aria-hidden="true" size={20} /><span><strong>Chapter catalog</strong>Find this chapter’s indexed examples and related topics.</span><ArrowRight aria-hidden="true" size={18} /></a>
+            <div><Braces aria-hidden="true" size={20} /><span><strong>Python materials</strong>Validated scripts and notebooks will be released here.</span><em>Preparing</em></div>
+            <div><Database aria-hidden="true" size={20} /><span><strong>Datasets</strong>Source and license information will accompany each released dataset.</span><em>Preparing</em></div>
+            <div><MessageSquareText aria-hidden="true" size={20} /><span><strong>Discussion</strong>Chapter-specific questions and contributions will open with participant accounts.</span><em>Planned</em></div>
+          </div>
+        </section>
+      </article>
+
+      <aside class="chapter-sidebar">
+        <div>
+          <p class="eyebrow">Recommended background</p>
+          <ul>{chapter.prerequisites.map((item) => <li>{item}</li>)}</ul>
+        </div>
+        <div>
+          <p class="eyebrow">Book position</p>
+          <p><strong>Part {chapter.part}</strong><br />{chapter.partTitle}</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <nav class="chapter-pagination" aria-label="Chapter navigation">
+    <div class="container">
+      {previous ? <a href={`/chapters/${previous.slug}`}><ArrowLeft aria-hidden="true" size={18} /><span><small>Previous</small>Chapter {previous.number}: {previous.title}</span></a> : <span></span>}
+      {next ? <a href={`/chapters/${next.slug}`}><span><small>Next</small>Chapter {next.number}: {next.title}</span><ArrowRight aria-hidden="true" size={18} /></a> : <a href="/learn"><span><small>Continue</small>Return to all chapters</span><ArrowRight aria-hidden="true" size={18} /></a>}
+    </div>
+  </nav>
+</BaseLayout>

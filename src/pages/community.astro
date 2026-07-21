@@ -1,0 +1,44 @@
+---
+import { BookOpenCheck, Lightbulb, MessageSquareText, Scale, ShieldCheck } from 'lucide-react';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Community | ML4EA" description="The public participation model for ML4EA discussions, engineering insights, errata, and contributed materials.">
+  <PageHero
+    eyebrow="Community"
+    title="A place to compare engineering reasoning."
+    description="The community will connect readers, students, practicing engineers, and instructors around chapters, Application Examples, and responsible use."
+    accent="magenta"
+  />
+
+  <section class="content-section">
+    <div class="container">
+      <SectionHeading eyebrow="Discussion spaces" title="Keep conversations close to the material." />
+      <div class="community-topics">
+        <article><BookOpenCheck aria-hidden="true" size={23} /><h3>Chapter discussions</h3><p>Ask about concepts, assumptions, derivations, and engineering interpretation.</p></article>
+        <article><MessageSquareText aria-hidden="true" size={23} /><h3>Application Examples</h3><p>Compare implementations, datasets, diagnostics, and alternative modeling choices.</p></article>
+        <article><Lightbulb aria-hidden="true" size={23} /><h3>Contributed insights</h3><p>Share reviewed examples, corrections, teaching ideas, and extensions.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section surface-soft">
+    <div class="container community-principles">
+      <div><p class="eyebrow">Participation principles</p><h2>Useful, attributable, and respectful.</h2></div>
+      <div>
+        <p><ShieldCheck aria-hidden="true" size={20} /><span><strong>Evidence over assertion.</strong> Explain assumptions, data sources, and validation choices.</span></p>
+        <p><Scale aria-hidden="true" size={20} /><span><strong>Engineering context matters.</strong> Include constraints, consequences, and limitations.</span></p>
+        <p><MessageSquareText aria-hidden="true" size={20} /><span><strong>Critique ideas constructively.</strong> Keep discussions focused on helping participants learn and improve.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="action-band">
+    <div class="container action-band-inner">
+      <div><p class="eyebrow">Participation accounts</p><h2>Discussion and submissions are opening soon.</h2><p>Public chapter and resource pages are available now. Account-based participation will follow after the secure data foundation is in place.</p></div>
+      <a class="button button-secondary" href="/learn">Explore chapters</a>
+    </div>
+  </section>
+</BaseLayout>

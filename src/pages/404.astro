@@ -1,0 +1,15 @@
+---
+import { ArrowLeft } from 'lucide-react';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page not found | ML4EA" description="The requested ML4EA portal page could not be found.">
+  <section class="not-found">
+    <div class="container">
+      <p class="eyebrow">404</p>
+      <h1>That page is not in the field guide.</h1>
+      <p>The address may have changed, or the material may not have been published yet.</p>
+      <a class="button button-primary" href="/"><ArrowLeft aria-hidden="true" size={18} /> Return home</a>
+    </div>
+  </section>
+</BaseLayout>

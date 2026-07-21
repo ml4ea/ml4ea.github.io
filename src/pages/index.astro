@@ -20,20 +20,20 @@ const methods = [
 ---
 
 <BaseLayout>
-  <section class="hero" id="book" aria-labelledby="hero-title">
+  <section class="hero" aria-labelledby="hero-title">
     <div class="hero-image" role="img" aria-label="A robotic inspection system measuring a turbine component in an engineering laboratory"></div>
     <div class="container hero-content">
       <p class="eyebrow">The official companion portal · Yan Jin</p>
       <h1 id="hero-title">Machine Learning for Engineering Applications</h1>
       <p class="hero-summary">Connect mathematical foundations, modern learning methods, and engineering judgment through practical examples and Python resources.</p>
       <div class="hero-actions">
-        <a class="button button-primary" href="#learn">Explore the book <ArrowRight aria-hidden="true" size={18} /></a>
-        <a class="button button-secondary" href="#resources"><Braces aria-hidden="true" size={18} /> Browse Python resources</a>
+        <a class="button button-primary" href="/learn">Explore the book <ArrowRight aria-hidden="true" size={18} /></a>
+        <a class="button button-secondary" href="/resources"><Braces aria-hidden="true" size={18} /> Browse resources</a>
       </div>
     </div>
   </section>
 
-  <section class="audience-band" id="learn">
+  <section class="audience-band">
     <div class="container">
       <SectionHeading
         eyebrow="Start where you are"
@@ -45,7 +45,7 @@ const methods = [
           eyebrow="Students and readers"
           title="Learn by building"
           description="Review background concepts, work through Application Examples, and explore Python scripts and datasets."
-          href="#resources"
+          href="/learn"
           linkLabel="Open learning resources"
           icon={BookOpen}
           tone="cyan"
@@ -54,17 +54,16 @@ const methods = [
           eyebrow="Verified instructors"
           title="Teach with context"
           description="Use course pathways, chapter notes, assessment guidance, and protected instructor materials."
-          href="#teach"
+          href="/teach"
           linkLabel="View instructor access"
           icon={GraduationCap}
           tone="orange"
         />
         <AudiencePath
-          id="community"
           eyebrow="Engineering community"
           title="Extend the field guide"
           description="Discuss engineering choices, report errata, and contribute insights, examples, and resources."
-          href="#community"
+          href="/community"
           linkLabel="Join the community"
           icon={MessagesSquare}
           tone="green"
@@ -73,7 +72,7 @@ const methods = [
     </div>
   </section>
 
-  <section class="book-map" id="resources">
+  <section class="book-map">
     <div class="container book-map-grid">
       <SectionHeading
         eyebrow="15 chapters"
@@ -95,7 +94,7 @@ const methods = [
     </div>
   </section>
 
-  <section class="principles-band" id="teach">
+  <section class="principles-band">
     <div class="container principles-grid">
       <div>
         <p class="eyebrow">Engineering emphasis</p>
@@ -109,14 +108,14 @@ const methods = [
     </div>
   </section>
 
-  <section class="coming-next" id="updates">
+  <section class="coming-next">
     <div class="container coming-next-inner">
       <div>
         <p class="eyebrow">A living companion</p>
         <h2>Stay current beyond the printed page.</h2>
         <p>Find corrections, new Application Examples, revised scripts, and additional engineering resources as they are published.</p>
       </div>
-      <a class="button button-secondary" href="#book">Return to top <ArrowRight aria-hidden="true" size={18} /></a>
+      <a class="button button-secondary" href="/updates">View updates <ArrowRight aria-hidden="true" size={18} /></a>
     </div>
   </section>
 </BaseLayout>

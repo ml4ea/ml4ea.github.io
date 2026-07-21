@@ -1,0 +1,207 @@
+export type Accent = 'cyan' | 'orange' | 'green' | 'magenta';
+
+export interface Chapter {
+  number: number;
+  slug: string;
+  title: string;
+  part: 1 | 2;
+  partTitle: string;
+  accent: Accent;
+  summary: string;
+  topics: string[];
+  prerequisites: string[];
+  applicationExamples: string[];
+}
+
+const foundations = 'Mathematical Foundations for Machine Learning';
+const methods = 'Machine Learning Concepts and Algorithms';
+
+export const chapters: Chapter[] = [
+  {
+    number: 1,
+    slug: 'introduction-ai-machine-learning-engineering',
+    title: 'Introduction to AI and Machine Learning in Engineering',
+    part: 1,
+    partTitle: foundations,
+    accent: 'cyan',
+    summary: 'Places AI and machine learning within engineering practice, contrasting data-driven and model-driven approaches while establishing the book\'s learning design.',
+    topics: ['AI and machine learning', 'History of AI', 'Modern engineering practice', 'Data-driven vs. model-driven engineering', 'Book learning design'],
+    prerequisites: ['General engineering problem solving'],
+    applicationExamples: ['Conceptual bridges between engineering systems and learning systems', 'Experimental laboratories used throughout the book'],
+  },
+  {
+    number: 2,
+    slug: 'linear-algebra-essentials',
+    title: 'Linear Algebra Essentials',
+    part: 1,
+    partTitle: foundations,
+    accent: 'orange',
+    summary: 'Develops the vector, matrix, geometric, and decomposition tools used to represent engineering data and understand machine learning algorithms.',
+    topics: ['Vectors and matrices', 'Vector spaces and basis', 'Norms and distance', 'Projections', 'Eigenvalues and eigenvectors', 'Singular value decomposition'],
+    prerequisites: ['College algebra', 'Basic calculus'],
+    applicationExamples: ['Diamond examples connect matrix structure to engineering and ML throughout the chapter'],
+  },
+  {
+    number: 3,
+    slug: 'probability-statistics-fundamentals',
+    title: 'Probability and Statistics Fundamentals',
+    part: 1,
+    partTitle: foundations,
+    accent: 'green',
+    summary: 'Builds the probabilistic language needed to describe uncertainty, summarize samples, perform inference, and evaluate relationships in engineering data.',
+    topics: ['Sampling and descriptive statistics', 'Probability', 'Random variables and distributions', 'Conditional probability', 'Statistical inference', 'Correlation and covariance'],
+    prerequisites: ['Basic calculus', 'Algebra'],
+    applicationExamples: ['Diamond examples connect probability and statistics to engineering measurements and ML decisions throughout the chapter'],
+  },
+  {
+    number: 4,
+    slug: 'optimization-basics',
+    title: 'Optimization Basics',
+    part: 1,
+    partTitle: foundations,
+    accent: 'magenta',
+    summary: 'Introduces objectives, constraints, convexity, and numerical algorithms as the mathematical engine behind model training and engineering design decisions.',
+    topics: ['Objectives and design variables', 'Unconstrained optimization', 'Constrained optimization', 'Convexity', 'Gradient-based algorithms', 'Practical numerical considerations'],
+    prerequisites: ['Calculus', 'Linear algebra fundamentals'],
+    applicationExamples: ['Diamond examples pair engineering optimization problems with machine learning objectives throughout the chapter'],
+  },
+  {
+    number: 5,
+    slug: 'introduction-machine-learning',
+    title: 'Introduction to Machine Learning',
+    part: 2,
+    partTitle: methods,
+    accent: 'cyan',
+    summary: 'Establishes the core machine learning vocabulary, learning paradigms, generalization concepts, evaluation practices, and practical Python environment.',
+    topics: ['Types of machine learning', 'Features, labels, and models', 'Empirical risk and generalization', 'Overfitting and regularization', 'Model selection and evaluation', 'Python environment and data handling'],
+    prerequisites: ['Chapters 2–4 or equivalent mathematical background', 'Basic Python'],
+    applicationExamples: ['Engineering examples illustrate learning types, evaluation choices, and generalization throughout the chapter'],
+  },
+  {
+    number: 6,
+    slug: 'supervised-learning-regression',
+    title: 'Supervised Learning: Regression',
+    part: 2,
+    partTitle: methods,
+    accent: 'orange',
+    summary: 'Develops regression from linear models through nonlinear basis functions and regularization, with attention to diagnostics and engineering interpretation.',
+    topics: ['Linear regression', 'Parameter estimation', 'Model diagnostics', 'Polynomial and basis regression', 'Ridge and lasso', 'Engineering interpretation'],
+    prerequisites: ['Linear algebra', 'Probability and statistics', 'Optimization basics'],
+    applicationExamples: ['Predicting tensile strength of steel', 'Estimating building heat-loss parameters', 'Battery lifetime model evaluation', 'Cantilever beam deflection', 'Automobile MPG with regularized regression'],
+  },
+  {
+    number: 7,
+    slug: 'supervised-learning-classification',
+    title: 'Supervised Learning: Classification',
+    part: 2,
+    partTitle: methods,
+    accent: 'green',
+    summary: 'Frames categorical prediction and compares interpretable, geometric, and instance-based classifiers for engineering decisions.',
+    topics: ['Classification formulation', 'Logistic regression', 'Decision trees', 'Support vector machines', 'K-nearest neighbors', 'Evaluation metrics'],
+    prerequisites: ['Chapter 5', 'Probability and statistics', 'Linear algebra'],
+    applicationExamples: ['Mechanical failure status with logistic regression', 'Concrete strength classes with decision trees', 'Rotating equipment fault classification with SVM', 'Air quality monitoring with K-NN'],
+  },
+  {
+    number: 8,
+    slug: 'ensemble-methods',
+    title: 'Ensemble Methods',
+    part: 2,
+    partTitle: methods,
+    accent: 'magenta',
+    summary: 'Explains how bagging, random forests, and boosting combine models to improve predictive performance, robustness, and interpretability.',
+    topics: ['Bias and variance', 'Bagging', 'Random forests', 'Boosting', 'Out-of-bag evaluation', 'Feature importance and interpretation'],
+    prerequisites: ['Regression and classification fundamentals'],
+    applicationExamples: ['Bagging for steel plate quality control', 'Random forest for equipment failure prediction', 'Gradient boosting for fault detection', 'Evaluating and interpreting a random forest'],
+  },
+  {
+    number: 9,
+    slug: 'neural-networks-deep-learning',
+    title: 'Neural Networks and Deep Learning',
+    part: 2,
+    partTitle: methods,
+    accent: 'cyan',
+    summary: 'Moves from artificial neurons and multilayer perceptrons to modern deep architectures, training practices, evaluation, and engineering deployment.',
+    topics: ['Perceptrons and MLPs', 'Activation functions', 'Backpropagation', 'Regularization', 'CNNs and sequence models', 'Interpretability and deployment'],
+    prerequisites: ['Linear algebra', 'Optimization', 'Regression and classification', 'Python'],
+    applicationExamples: ['Manufacturing quality classification with MLP', 'Concrete strength prediction', 'CNN surface-defect detection', 'LSTM predictive maintenance from sensor time series'],
+  },
+  {
+    number: 10,
+    slug: 'unsupervised-learning',
+    title: 'Unsupervised Learning',
+    part: 2,
+    partTitle: methods,
+    accent: 'orange',
+    summary: 'Introduces methods for discovering structure without labels, including clustering, dimensionality reduction, density estimation, and anomaly detection.',
+    topics: ['K-means and hierarchical clustering', 'DBSCAN', 'PCA', 't-SNE and UMAP', 'Autoencoders', 'Density estimation and anomaly detection'],
+    prerequisites: ['Linear algebra', 'Probability and statistics', 'Chapter 5'],
+    applicationExamples: ['Hydraulic operating-state clustering', 'Power-grid sensor fault detection with DBSCAN', 'Vibration fault diagnosis with PCA', 'Structural health monitoring with autoencoders'],
+  },
+  {
+    number: 11,
+    slug: 'reinforcement-learning',
+    title: 'Reinforcement Learning',
+    part: 2,
+    partTitle: methods,
+    accent: 'green',
+    summary: 'Develops sequential decision-making from Markov decision processes through value, policy, actor-critic, and deep reinforcement learning methods.',
+    topics: ['Markov decision processes', 'Value functions', 'Q-learning and SARSA', 'Policy gradients', 'Actor-critic methods', 'Deep reinforcement learning'],
+    prerequisites: ['Probability', 'Optimization', 'Neural network fundamentals'],
+    applicationExamples: ['Q-learning for adaptive cruise control', 'SARSA traffic-light control', 'Actor-critic chemical reactor control', 'DDPG robot-arm control'],
+  },
+  {
+    number: 12,
+    slug: 'generative-models',
+    title: 'Generative Models',
+    part: 2,
+    partTitle: methods,
+    accent: 'magenta',
+    summary: 'Surveys probabilistic and neural approaches that generate data, designs, and engineering assistance, including VAEs, GANs, diffusion models, and LLMs.',
+    topics: ['Generative modeling concepts', 'Variational autoencoders', 'Generative adversarial networks', 'Diffusion models', 'Large language models', 'Engineering validation'],
+    prerequisites: ['Probability', 'Neural networks', 'Optimization'],
+    applicationExamples: ['VAE sensor anomaly detection', 'GAN surface-defect augmentation', 'Diffusion-based microstructure synthesis', 'LLM copilot for cantilever beam sizing'],
+  },
+  {
+    number: 13,
+    slug: 'physics-informed-machine-learning',
+    title: 'Physics-Informed Machine Learning',
+    part: 2,
+    partTitle: methods,
+    accent: 'cyan',
+    summary: 'Combines governing equations, constraints, data, and learning algorithms to build models that respect engineering knowledge and limited-data conditions.',
+    topics: ['Governing equations and constraints', 'Physics-augmented losses', 'Physics-informed neural networks', 'Hybrid and grey-box models', 'Operator learning', 'Validation and deployment'],
+    prerequisites: ['Differential equations', 'Optimization', 'Neural networks'],
+    applicationExamples: ['Physics-constrained capacitor discharge regression', 'Mass-spring fault classification', 'PINN solution of a one-dimensional PDE'],
+  },
+  {
+    number: 14,
+    slug: 'specialized-techniques-emergent-topics',
+    title: 'Specialized ML Techniques and Emergent Topics',
+    part: 2,
+    partTitle: methods,
+    accent: 'orange',
+    summary: 'Connects a broad set of specialized methods to engineering practice, from transfer and Bayesian learning to graphs, symbolic methods, agentic AI, and MLOps.',
+    topics: ['Transfer and Bayesian learning', 'Recommendation and association rules', 'Graph learning', 'Self-supervised learning', 'Symbolic and hybrid methods', 'Agentic AI and MLOps'],
+    prerequisites: ['Core supervised and unsupervised learning', 'Neural networks'],
+    applicationExamples: ['Transfer learning for manufacturing defect detection', 'Graph convolution for mesh stress prediction', 'Self-supervised bearing degradation representations', 'Symbolic discovery of nonlinear mechanical equations', 'Agentic support for early-stage engineering design'],
+  },
+  {
+    number: 15,
+    slug: 'integrating-ml-engineering-systems',
+    title: 'Integrating Machine Learning into Engineering Systems',
+    part: 2,
+    partTitle: methods,
+    accent: 'green',
+    summary: 'Brings the methods together at system level, emphasizing paradigm selection, data-versus-physics tradeoffs, validation, deployment, trust, and human oversight.',
+    topics: ['Algorithms to engineering decisions', 'Paradigm selection', 'Data-versus-physics design matrix', 'Reliability and trust', 'System deployment', 'Autonomous and adaptive systems'],
+    prerequisites: ['Working knowledge of the book\'s core learning paradigms'],
+    applicationExamples: ['System-level design cases connect learning components to validation, deployment, digital twins, and governance'],
+  },
+];
+
+export const chapterBySlug = new Map(chapters.map((chapter) => [chapter.slug, chapter]));
+
+export const chaptersByPart = {
+  1: chapters.filter((chapter) => chapter.part === 1),
+  2: chapters.filter((chapter) => chapter.part === 2),
+};

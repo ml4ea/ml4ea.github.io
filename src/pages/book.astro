@@ -1,0 +1,87 @@
+---
+import { BookOpen, CheckCircle2, ExternalLink } from 'lucide-react';
+import ChapterList from '../components/ChapterList.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { chaptersByPart } from '../data/chapters';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="About the Book | ML4EA"
+  description="About Machine Learning for Engineering Applications by Yan Jin: audience, learning design, contents, and ordering information."
+>
+  <PageHero
+    eyebrow="The book"
+    title="Machine Learning for Engineering Applications"
+    description="A foundations-to-systems introduction that connects machine learning methods to engineering models, data, constraints, validation, and decisions."
+    accent="cyan"
+  />
+
+  <section class="content-section">
+    <div class="container editorial-grid">
+      <div class="editorial-main prose">
+        <p class="lead">Written by Yan Jin, the book is designed for engineers who need more than an algorithm catalog. It develops the mathematical foundations, practical learning methods, and system-level judgment required to use machine learning responsibly in engineering work.</p>
+        <h2>Designed around engineering judgment</h2>
+        <p>The treatment combines data-driven learning with the physical knowledge, constraints, verification practices, and lifecycle considerations that distinguish engineering applications. Concepts move from mathematical formulation to implementation and then to interpretation in context.</p>
+        <div class="feature-lines">
+          <div><CheckCircle2 aria-hidden="true" size={20} /><p><strong>Diamond Examples</strong> create short conceptual bridges between mathematics, machine learning, and engineering systems.</p></div>
+          <div><CheckCircle2 aria-hidden="true" size={20} /><p><strong>Application Examples</strong> develop complete engineering problems with data, Python implementation, results, and takeaways.</p></div>
+          <div><CheckCircle2 aria-hidden="true" size={20} /><p><strong>Engineering Takeaways</strong> emphasize assumptions, limitations, interpretation, and deployment consequences.</p></div>
+        </div>
+      </div>
+      <aside class="fact-panel" aria-label="Book at a glance">
+        <BookOpen aria-hidden="true" size={26} />
+        <h2>At a glance</h2>
+        <dl>
+          <div><dt>Author</dt><dd>Yan Jin</dd></div>
+          <div><dt>Structure</dt><dd>2 parts, 15 chapters</dd></div>
+          <div><dt>Audience</dt><dd>Engineering students, practitioners, and instructors</dd></div>
+          <div><dt>Practice</dt><dd>Python-based engineering examples</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <section class="content-section surface-soft" id="for-instructors">
+    <div class="container two-column-copy">
+      <div>
+        <p class="eyebrow">For learners</p>
+        <h2>Build from the background you have.</h2>
+        <p>Foundation chapters support readers who need to refresh linear algebra, probability, statistics, or optimization before moving into machine learning methods.</p>
+        <a class="text-link" href="/learn">Explore learning pathways</a>
+      </div>
+      <div>
+        <p class="eyebrow">For instructors</p>
+        <h2>Adapt the book to the course you teach.</h2>
+        <p>The companion manual supports semester, quarter, selective advanced-topic, and project-based course designs. Protected materials will be available to verified instructors.</p>
+        <a class="text-link" href="/teach">Review teaching support</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container">
+      <SectionHeading eyebrow="Part I" title="Mathematical Foundations for Machine Learning" description="The mathematical language used throughout the book." />
+      <ChapterList chapters={chaptersByPart[1]} />
+    </div>
+  </section>
+
+  <section class="content-section surface-soft">
+    <div class="container">
+      <SectionHeading eyebrow="Part II" title="Machine Learning Concepts and Algorithms" description="From core learning paradigms to integrated engineering systems." />
+      <ChapterList chapters={chaptersByPart[2]} />
+    </div>
+  </section>
+
+  <section class="content-section purchase-section" id="purchase">
+    <div class="container purchase-inner">
+      <div>
+        <p class="eyebrow">Get the book</p>
+        <h2>Ordering information</h2>
+        <p>Publisher and retailer links will appear here as soon as the official ordering information is available.</p>
+      </div>
+      <span class="availability-note"><ExternalLink aria-hidden="true" size={18} /> Purchase links pending</span>
+    </div>
+  </section>
+</BaseLayout>

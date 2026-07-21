@@ -1,5 +1,8 @@
 ---
-import { Menu, X } from 'lucide-react';
+import { BookOpen, Menu, Search, X } from 'lucide-react';
+
+const pathname = Astro.url.pathname;
+const isActive = (href: string) => href === '/' ? pathname === '/' : pathname.startsWith(href);
 ---
 
 <header class="site-header">
@@ -15,11 +18,13 @@ import { Menu, X } from 'lucide-react';
     </button>
 
     <nav id="primary-navigation" class="primary-navigation" aria-label="Primary navigation">
-      <a href="#book">Book</a>
-      <a href="#learn">Learn</a>
-      <a href="#teach">Teach</a>
-      <a href="#community">Community</a>
-      <a href="#updates">Updates</a>
+      <a href="/book" aria-current={isActive('/book') ? 'page' : undefined}>Book</a>
+      <a href="/learn" aria-current={isActive('/learn') || isActive('/chapters') || isActive('/resources') ? 'page' : undefined}>Learn</a>
+      <a href="/teach" aria-current={isActive('/teach') ? 'page' : undefined}>Teach</a>
+      <a href="/community" aria-current={isActive('/community') ? 'page' : undefined}>Community</a>
+      <a href="/updates" aria-current={isActive('/updates') ? 'page' : undefined}>Updates</a>
+      <a class="nav-icon" href="/search" aria-label="Search the portal"><Search aria-hidden="true" size={18} /></a>
+      <a class="nav-book" href="/book#purchase"><BookOpen aria-hidden="true" size={17} /> Get the book</a>
     </nav>
   </div>
 </header>

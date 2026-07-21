@@ -1,0 +1,28 @@
+---
+import { ArrowRight } from 'lucide-react';
+import type { Chapter } from '../data/chapters';
+
+interface Props {
+  chapters: Chapter[];
+}
+
+const { chapters } = Astro.props;
+---
+
+<ol class="chapter-list">
+  {chapters.map((chapter) => (
+    <li class={`chapter-row accent-${chapter.accent}`}>
+      <span class="chapter-index">{String(chapter.number).padStart(2, '0')}</span>
+      <div>
+        <h3><a href={`/chapters/${chapter.slug}`}>{chapter.title}</a></h3>
+        <p>{chapter.summary}</p>
+        <ul class="topic-line" aria-label={`Topics in Chapter ${chapter.number}`}>
+          {chapter.topics.slice(0, 3).map((topic) => <li>{topic}</li>)}
+        </ul>
+      </div>
+      <a class="icon-link" href={`/chapters/${chapter.slug}`} aria-label={`Open Chapter ${chapter.number}: ${chapter.title}`}>
+        <ArrowRight aria-hidden="true" size={20} />
+      </a>
+    </li>
+  ))}
+</ol>

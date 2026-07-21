@@ -1,0 +1,50 @@
+---
+import { ArrowRight, Braces, Calculator, ChartNoAxesCombined, Cog } from 'lucide-react';
+import ChapterList from '../components/ChapterList.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { chaptersByPart } from '../data/chapters';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Learn | ML4EA" description="Explore all 15 chapters, background pathways, Application Examples, and public learning resources for ML4EA.">
+  <PageHero
+    eyebrow="Learn"
+    title="Move from foundations to engineering decisions."
+    description="Use the chapters in sequence or enter through the mathematical and computational background most relevant to your work."
+    accent="orange"
+  />
+
+  <section class="content-section">
+    <div class="container">
+      <SectionHeading eyebrow="Choose a starting point" title="Four useful entry paths" />
+      <div class="pathway-grid">
+        <a href="/chapters/linear-algebra-essentials"><Calculator aria-hidden="true" size={22} /><span><strong>Refresh the mathematics</strong>Linear algebra, probability, statistics, and optimization.</span><ArrowRight aria-hidden="true" size={18} /></a>
+        <a href="/chapters/introduction-machine-learning"><ChartNoAxesCombined aria-hidden="true" size={22} /><span><strong>Start machine learning</strong>Learning types, generalization, evaluation, and data handling.</span><ArrowRight aria-hidden="true" size={18} /></a>
+        <a href="/chapters/supervised-learning-regression"><Braces aria-hidden="true" size={22} /><span><strong>Learn through methods</strong>Regression, classification, ensembles, neural networks, and beyond.</span><ArrowRight aria-hidden="true" size={18} /></a>
+        <a href="/chapters/integrating-ml-engineering-systems"><Cog aria-hidden="true" size={22} /><span><strong>Think at system level</strong>Validation, reliability, deployment, autonomy, and governance.</span><ArrowRight aria-hidden="true" size={18} /></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section surface-soft">
+    <div class="container">
+      <SectionHeading eyebrow="Part I · Chapters 1–4" title="Mathematical foundations" description="Build or refresh the concepts that make later algorithms interpretable." />
+      <ChapterList chapters={chaptersByPart[1]} />
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container">
+      <SectionHeading eyebrow="Part II · Chapters 5–15" title="Concepts and algorithms" description="Study individual learning paradigms, then connect them into complete engineering systems." />
+      <ChapterList chapters={chaptersByPart[2]} />
+    </div>
+  </section>
+
+  <section class="action-band">
+    <div class="container action-band-inner">
+      <div><p class="eyebrow">Find a specific example</p><h2>Search the public resource catalog.</h2></div>
+      <a class="button button-secondary" href="/resources">Browse resources <ArrowRight aria-hidden="true" size={18} /></a>
+    </div>
+  </section>
+</BaseLayout>

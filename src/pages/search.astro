@@ -1,0 +1,20 @@
+---
+import CatalogExplorer from '../components/CatalogExplorer';
+import PageHero from '../components/PageHero.astro';
+import { catalogItems } from '../data/catalog';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Search | ML4EA" description="Search chapters, Application Examples, public portal pages, updates, and errata on ML4EA.">
+  <PageHero
+    eyebrow="Search"
+    title="Search the public portal."
+    description="Find chapters, engineering examples, learning pathways, teaching information, and updates."
+    accent="green"
+  />
+  <section class="content-section catalog-section">
+    <div class="container">
+      <CatalogExplorer items={catalogItems} initialQueryFromUrl={true} client:load />
+    </div>
+  </section>
+</BaseLayout>
