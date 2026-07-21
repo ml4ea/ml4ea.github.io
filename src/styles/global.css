@@ -607,7 +607,7 @@ p {
 
 .page-hero {
   position: relative;
-  padding-block: clamp(72px, 10vw, 126px);
+  padding-block: clamp(54px, 7vw, 92px);
   overflow: hidden;
   border-bottom: 1px solid var(--line);
   background: var(--paper-soft);
@@ -633,14 +633,17 @@ p {
 
 .page-hero-inner {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
-  align-items: end;
-  gap: clamp(32px, 7vw, 100px);
+  grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
+  align-items: center;
+  gap: clamp(38px, 6vw, 84px);
+}
+
+.page-hero-copy {
+  min-width: 0;
 }
 
 .page-hero .eyebrow {
-  grid-column: 1 / -1;
-  margin-bottom: -10px;
+  margin-bottom: 16px;
 }
 
 .page-hero h1 {
@@ -648,10 +651,36 @@ p {
   font-size: clamp(2.6rem, 5.5vw, 5rem);
 }
 
-.page-hero-inner > p:last-child {
-  margin: 0 0 8px;
+.page-hero-copy > p:last-child {
+  max-width: 58ch;
+  margin: 20px 0 0;
   color: var(--ink-soft);
   font-size: 1.14rem;
+}
+
+.page-hero-visual,
+.chapter-hero-visual {
+  position: relative;
+  display: grid;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #fff;
+}
+
+.page-hero-visual {
+  aspect-ratio: 16 / 10;
+  box-shadow: 16px 16px 0 color-mix(in srgb, var(--line) 55%, transparent);
+}
+
+.page-hero-visual img,
+.chapter-hero-visual img {
+  width: 100%;
+  height: 100%;
+  padding: clamp(14px, 2.3vw, 30px);
+  object-fit: contain;
 }
 
 .content-section {
@@ -1362,9 +1391,9 @@ p {
 
 .chapter-hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 50px;
-  align-items: end;
+  grid-template-columns: minmax(0, 1.08fr) minmax(330px, 0.72fr);
+  gap: clamp(42px, 6vw, 84px);
+  align-items: center;
 }
 
 .chapter-hero h1 {
@@ -1381,10 +1410,18 @@ p {
 }
 
 .chapter-hero-number {
+  position: absolute;
+  right: 12px;
+  bottom: 0;
   color: var(--cyan);
-  font-size: clamp(5rem, 15vw, 11rem);
-  line-height: 0.75;
-  opacity: 0.18;
+  font-size: clamp(4.5rem, 9vw, 8.5rem);
+  font-weight: 700;
+  line-height: 0.78;
+  opacity: 0.13;
+}
+
+.chapter-hero-visual {
+  aspect-ratio: 16 / 10;
 }
 
 .chapter-hero.accent-orange .chapter-hero-number { color: var(--orange); }
@@ -1619,8 +1656,12 @@ p {
     margin-bottom: 0;
   }
 
-  .page-hero-inner > p:last-child {
+  .page-hero-copy > p:last-child {
     max-width: 65ch;
+  }
+
+  .page-hero-visual {
+    max-width: 680px;
   }
 
   .chapter-sidebar {

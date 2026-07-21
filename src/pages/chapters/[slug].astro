@@ -28,7 +28,10 @@ const next = chapters[index + 1];
         <h1>{chapter.title}</h1>
         <p>{chapter.summary}</p>
       </div>
-      <span class="chapter-hero-number" aria-hidden="true">{String(chapter.number).padStart(2, '0')}</span>
+      <figure class="chapter-hero-visual">
+        <img src={chapter.heroImage} alt={chapter.heroImageAlt} loading="eager" />
+        <span class="chapter-hero-number" aria-hidden="true">{String(chapter.number).padStart(2, '0')}</span>
+      </figure>
     </div>
   </section>
 

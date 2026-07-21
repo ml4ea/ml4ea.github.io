@@ -4,15 +4,22 @@ interface Props {
   title: string;
   description: string;
   accent?: 'cyan' | 'orange' | 'green' | 'magenta';
+  image: string;
+  imageAlt: string;
 }
 
-const { eyebrow, title, description, accent = 'cyan' } = Astro.props;
+const { eyebrow, title, description, accent = 'cyan', image, imageAlt } = Astro.props;
 ---
 
 <section class={`page-hero accent-${accent}`}>
   <div class="container page-hero-inner">
-    <p class="eyebrow">{eyebrow}</p>
-    <h1>{title}</h1>
-    <p>{description}</p>
+    <div class="page-hero-copy">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1>{title}</h1>
+      <p>{description}</p>
+    </div>
+    <figure class="page-hero-visual">
+      <img src={image} alt={imageAlt} loading="eager" />
+    </figure>
   </div>
 </section>
