@@ -3778,7 +3778,7 @@ p {
 .admin-delegate-current > svg { color: var(--green); }
 .admin-delegate-current h2,
 .admin-delegate-current p { margin: 0; }
-.admin-delegate-current h2 { margin-top: 5px; }
+.admin-delegate-current h2 { margin-top: 5px; font-size: clamp(1.65rem, 3vw, 2.35rem); }
 .admin-delegate-current p:last-child { margin-top: 5px; color: var(--ink-soft); }
 
 .admin-delegate-form {
@@ -3800,7 +3800,7 @@ p {
 .admin-delegate-form > div > svg { margin-top: 3px; color: var(--orange); }
 .admin-delegate-form h2,
 .admin-delegate-form p { margin: 0; }
-.admin-delegate-form h2 { margin-top: 4px; }
+.admin-delegate-form h2 { margin-top: 4px; font-size: 1.65rem; }
 .admin-delegate-form p:last-child { margin-top: 6px; color: var(--ink-soft); }
 .admin-delegate-form label { display: grid; gap: 7px; font-weight: 650; }
 
