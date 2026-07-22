@@ -154,7 +154,7 @@ export default function InstructorPortal() {
   if (loading) return <p className="account-loading" aria-live="polite">Checking instructor access…</p>;
 
   if (!session) {
-    return <div className="account-state"><GraduationCap aria-hidden="true" size={28} /><div><h2>Sign in or request instructor access.</h2><p>Use the email address associated with your institution. Email verification is required before an application can be submitted.</p><a className="button button-primary" href="/account?next=/instructor">Sign in or create an account</a></div></div>;
+    return <div className="account-state"><GraduationCap aria-hidden="true" size={28} /><div><h2>Sign in or request instructor access.</h2><p>Use the email address associated with your institution. Email verification is required for new requests.</p><a className="button button-primary" href="/account?next=/instructor">Sign in or create an account</a></div></div>;
   }
 
   if (application?.status === 'approved' && application.email.toLowerCase() !== session.user.email?.toLowerCase()) {
