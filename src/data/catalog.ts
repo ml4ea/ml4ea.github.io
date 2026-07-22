@@ -82,6 +82,14 @@ const portalPages: CatalogItem[] = [
     tags: ['Instructors', 'Teaching', 'Course design'],
   },
   {
+    id: 'instructor-workspace',
+    title: 'Instructor workspace',
+    description: 'Apply for verified instructor access and securely obtain protected ML4EA teaching resources.',
+    type: 'Portal page',
+    href: '/instructor',
+    tags: ['Instructors', 'Verification', 'Protected resources', 'Account'],
+  },
+  {
     id: 'community-overview',
     title: 'ML4EA community',
     description: 'How readers, students, engineers, and instructors will discuss and contribute to the portal.',

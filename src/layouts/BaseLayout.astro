@@ -9,11 +9,13 @@ import Header from '../components/Header.astro';
 interface Props {
   title?: string;
   description?: string;
+  noindex?: boolean;
 }
 
 const {
   title = 'Machine Learning for Engineering Applications',
   description = 'The companion portal for Machine Learning for Engineering Applications: chapter resources, Python materials, updates, and teaching support.',
+  noindex = false,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -26,6 +28,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <meta name="theme-color" content="#ffffff" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
@@ -65,6 +68,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
           <a href="/learn">Learn</a>
           <a href="/resources">Resources</a>
           <a href="/contribute">Contribute</a>
+          <a href="/account">Account</a>
+          <a href="/privacy">Privacy</a>
           <a href="/updates/errata">Errata</a>
         </nav>
       </div>

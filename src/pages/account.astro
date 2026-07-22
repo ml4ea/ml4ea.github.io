@@ -1,0 +1,14 @@
+---
+import AccountAccess from '../components/AccountAccess';
+import PageHero from '../components/PageHero.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Account | ML4EA" description="Sign in to ML4EA and manage access to verified instructor resources.">
+  <PageHero eyebrow="Account" title="Your place in the ML4EA portal." description="Verify your email, manage your session, and request instructor access when your teaching role requires protected materials." accent="cyan" />
+  <section class="content-section">
+    <div class="container account-container">
+      <AccountAccess client:load />
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,14 @@
+---
+import InstructorPortal from '../components/InstructorPortal';
+import PageHero from '../components/PageHero.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Instructor Workspace | ML4EA" description="Apply for verified instructor access and securely obtain protected ML4EA teaching resources.">
+  <PageHero eyebrow="Instructor workspace" title="Teaching resources, with responsible access." description="Use a verified institutional identity and reviewed teaching role to access protected instructor materials." accent="green" />
+  <section class="content-section">
+    <div class="container account-container">
+      <InstructorPortal client:load />
+    </div>
+  </section>
+</BaseLayout>

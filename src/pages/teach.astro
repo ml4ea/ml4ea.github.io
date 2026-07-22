@@ -41,18 +41,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <section class="content-section">
     <div class="container">
-      <SectionHeading eyebrow="Verified resources" title="A protected workspace for instructors" description="Instructor materials will be released through verified accounts rather than the public repository." />
+      <SectionHeading eyebrow="Verified resources" title="A protected workspace for instructors" description="Instructor materials are delivered through reviewed accounts rather than the public repository." />
       <div class="protected-resource-list">
         <div><BookMarked aria-hidden="true" size={22} /><span><strong>Instructor’s manual</strong>Course design, general advice, and chapter-by-chapter notes.</span><LockKeyhole aria-label="Protected" size={18} /></div>
         <div><FileCheck2 aria-hidden="true" size={22} /><span><strong>Assessment guidance</strong>Assignments, projects, rubrics, and AI-aware assessment practices.</span><LockKeyhole aria-label="Protected" size={18} /></div>
         <div><GraduationCap aria-hidden="true" size={22} /><span><strong>Teaching contributions</strong>A future collection of reviewed instructor insights and materials.</span><LockKeyhole aria-label="Protected" size={18} /></div>
       </div>
+      <div class="protected-resource-action"><a class="button button-primary" href="/instructor"><GraduationCap aria-hidden="true" size={18} /> Open instructor workspace</a></div>
     </div>
   </section>
 
   <section class="verification-band">
     <div class="container verification-grid">
-      <div><p class="eyebrow">Instructor verification</p><h2>Access will require a verified teaching role.</h2></div>
+      <div><p class="eyebrow">Instructor verification</p><h2>Access requires a verified teaching role.</h2></div>
       <ol>
         <li><span>1</span>Confirm ownership of an institutional email.</li>
         <li><span>2</span>Submit institution, position, and faculty-profile information.</li>

@@ -1,5 +1,5 @@
 ---
-import { BookOpen, Menu, Search, X } from 'lucide-react';
+import { BookOpen, Menu, Search, UserRound, X } from 'lucide-react';
 
 const pathname = Astro.url.pathname;
 const isActive = (href: string) => href === '/' ? pathname === '/' : pathname.startsWith(href);
@@ -26,6 +26,7 @@ const isActive = (href: string) => href === '/' ? pathname === '/' : pathname.st
       <a href="/community" aria-current={isActive('/community') ? 'page' : undefined}>Community</a>
       <a href="/contribute" aria-current={isActive('/contribute') ? 'page' : undefined}>Contribute</a>
       <a href="/updates" aria-current={isActive('/updates') ? 'page' : undefined}>Updates</a>
+      <a class="nav-icon" href="/account" aria-label="Your account" aria-current={isActive('/account') || isActive('/instructor') ? 'page' : undefined}><UserRound aria-hidden="true" size={18} /></a>
       <a class="nav-icon" href="/search" aria-label="Search the portal"><Search aria-hidden="true" size={18} /></a>
       <a class="nav-book" href="/book#purchase"><BookOpen aria-hidden="true" size={17} /> Get the book</a>
     </nav>

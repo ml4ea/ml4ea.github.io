@@ -1,0 +1,14 @@
+---
+import InstructorAdmin from '../../components/InstructorAdmin';
+import PageHero from '../../components/PageHero.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Instructor Reviews | ML4EA" description="Administrative instructor verification workspace." noindex>
+  <PageHero eyebrow="Administration" title="Instructor access reviews." description="Review institutional identity and teaching-role evidence before granting protected access." accent="orange" />
+  <section class="content-section">
+    <div class="container account-container">
+      <InstructorAdmin client:load />
+    </div>
+  </section>
+</BaseLayout>

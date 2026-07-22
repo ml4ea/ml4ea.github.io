@@ -1,0 +1,37 @@
+---
+import PageHero from '../components/PageHero.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Privacy | ML4EA" description="How the ML4EA companion portal handles account and instructor-verification information.">
+  <PageHero eyebrow="Privacy" title="A limited record for responsible access." description="The portal collects only the account and professional information needed to provide secure participation and verify instructor access." accent="cyan" />
+
+  <section class="content-section">
+    <div class="container privacy-layout">
+      <aside>
+        <p class="eyebrow">Effective</p>
+        <p>July 21, 2026</p>
+        <a class="text-link" href="mailto:yjin@usc.edu">Privacy questions</a>
+      </aside>
+      <div class="prose">
+        <h2>Information collected</h2>
+        <p>Email-link authentication stores your email address, account identifier, and session information through Supabase. An instructor application additionally collects institution, department, position, institutional-profile URL, optional course context, review status, and administrative decision information.</p>
+
+        <h2>How information is used</h2>
+        <p>Account information is used to authenticate you. Instructor-application information is used only to evaluate eligibility for protected teaching resources, administer that access, prevent misuse, and communicate about the application when necessary.</p>
+
+        <h2>Visibility and sharing</h2>
+        <p>Applications are not public. Database policies restrict each application to its applicant and authorized portal administrators. Information is processed through Supabase as the portal’s authentication, database, and private-file service. It is not sold or used for advertising.</p>
+
+        <h2>Protected materials</h2>
+        <p>Instructor resources are kept in a private storage bucket. Approved accounts receive short-lived signed download links. Approval does not transfer copyright or permit redistribution.</p>
+
+        <h2>Retention and requests</h2>
+        <p>Application records are retained while needed to administer instructor access and maintain review history. To request correction or deletion of your account or application information, contact <a href="mailto:yjin@usc.edu">yjin@usc.edu</a>. Some limited records may be retained when necessary for security, legal obligations, or misuse prevention.</p>
+
+        <h2>Security and changes</h2>
+        <p>The portal uses verified email sign-in, Row Level Security, private storage, and expiring links. No internet service can guarantee absolute security. Material changes to this notice will be recorded on this page and may also be announced through portal updates.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

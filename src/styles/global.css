@@ -1583,6 +1583,315 @@ p {
   gap: clamp(44px, 8vw, 110px);
 }
 
+.account-container {
+  max-width: 1080px;
+}
+
+.account-loading {
+  min-height: 180px;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+}
+
+.account-state {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  gap: 22px;
+  padding: clamp(28px, 5vw, 50px);
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--cyan);
+  background: var(--paper-soft);
+}
+
+.account-state > svg {
+  color: var(--cyan);
+}
+
+.account-state h2 {
+  margin: 0 0 10px;
+  font-size: clamp(1.55rem, 2.5vw, 2.2rem);
+}
+
+.account-state p:not(.eyebrow) {
+  max-width: 64ch;
+  color: var(--ink-soft);
+}
+
+.account-unconfigured {
+  border-left-color: var(--orange);
+}
+
+.account-unconfigured > svg {
+  color: var(--orange);
+}
+
+.account-signed-in {
+  border-left-color: var(--green);
+}
+
+.account-signed-in > svg {
+  color: var(--green);
+}
+
+.auth-grid,
+.instructor-application-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+  gap: clamp(46px, 8vw, 100px);
+  align-items: start;
+}
+
+.auth-form,
+.instructor-form {
+  display: grid;
+  gap: 18px;
+}
+
+.auth-form > svg,
+.application-status > svg {
+  color: var(--green);
+}
+
+.auth-form h2,
+.instructor-form h2,
+.auth-explanation h2,
+.application-status h2 {
+  margin: 0;
+  font-size: clamp(1.65rem, 2.6vw, 2.3rem);
+}
+
+.auth-form label,
+.instructor-form label,
+.admin-review-controls label {
+  display: grid;
+  gap: 7px;
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+}
+
+.auth-form input,
+.instructor-form input,
+.instructor-form select,
+.instructor-form textarea,
+.admin-review-controls textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+}
+
+.auth-form input,
+.instructor-form input,
+.instructor-form select {
+  min-height: 48px;
+  padding: 9px 12px;
+}
+
+.instructor-form textarea,
+.admin-review-controls textarea {
+  padding: 11px 12px;
+  resize: vertical;
+}
+
+.auth-form .button,
+.instructor-form > .button {
+  justify-self: start;
+}
+
+.auth-explanation,
+.application-status {
+  padding-top: 20px;
+  border-top: 4px solid var(--cyan);
+}
+
+.auth-explanation > p:not(.eyebrow),
+.application-status > p:not(.eyebrow) {
+  color: var(--ink-soft);
+}
+
+.form-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  max-width: 68ch;
+  margin: 2px 0 0;
+  padding: 11px 13px;
+  border-left: 4px solid var(--green);
+  background: var(--paper-soft);
+  color: var(--ink-soft);
+}
+
+.form-privacy {
+  max-width: 64ch;
+  margin: -2px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+}
+
+.form-privacy a {
+  text-underline-offset: 3px;
+}
+
+.form-error {
+  border-left-color: #b13b33;
+  color: #812b26;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.form-span {
+  grid-column: 1 / -1;
+}
+
+.form-span small {
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+}
+
+.verified-email {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.verified-email svg {
+  color: var(--green);
+}
+
+.verified-email strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.protected-resource-action {
+  margin-top: 30px;
+}
+
+.instructor-approved {
+  display: grid;
+  gap: 34px;
+}
+
+.access-status {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 18px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+.access-status > svg {
+  color: var(--green);
+}
+
+.access-status h2 {
+  margin: 3px 0 6px;
+}
+
+.access-status p:last-child,
+.resource-empty {
+  color: var(--ink-soft);
+}
+
+.instructor-resource-list {
+  border-top: 1px solid var(--ink);
+}
+
+.instructor-resource-list article {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 30px;
+  align-items: center;
+  padding-block: 22px;
+  border-bottom: 1px solid var(--line);
+}
+
+.instructor-resource-list span {
+  color: var(--green);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.instructor-resource-list h3 {
+  margin: 5px 0;
+}
+
+.instructor-resource-list p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.admin-review > ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.admin-review > ol > li {
+  border-bottom: 1px solid var(--line);
+}
+
+.admin-review article {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.65fr);
+  gap: clamp(34px, 6vw, 76px);
+  padding-block: 28px;
+}
+
+.admin-application-copy h2 {
+  margin: 8px 0;
+  font-family: 'Source Sans 3', Arial, sans-serif;
+  font-size: 1.35rem;
+}
+
+.admin-application-copy p {
+  color: var(--ink-soft);
+}
+
+.admin-review-controls,
+.admin-review-controls > div {
+  display: grid;
+  gap: 10px;
+}
+
+.admin-review-controls > div {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.admin-review-controls .button {
+  width: 100%;
+}
+
+.privacy-layout {
+  display: grid;
+  grid-template-columns: minmax(170px, 0.35fr) minmax(0, 1fr);
+  gap: clamp(44px, 9vw, 130px);
+  align-items: start;
+}
+
+.privacy-layout aside {
+  padding-top: 18px;
+  border-top: 4px solid var(--cyan);
+}
+
+.privacy-layout aside > p:not(.eyebrow) {
+  color: var(--ink-soft);
+}
+
+.privacy-layout .prose {
+  max-width: 760px;
+}
+
 .catalog-controls label:not(.search-field) {
   display: grid;
   gap: 6px;
@@ -2131,6 +2440,9 @@ p {
   .ae-start-grid,
   .contribution-intro,
   .contribution-guidelines,
+  .auth-grid,
+  .instructor-application-grid,
+  .privacy-layout,
   .verification-grid {
     grid-template-columns: 1fr;
   }
@@ -2268,6 +2580,10 @@ p {
     flex: 1 1 190px;
   }
 
+  .admin-review article {
+    grid-template-columns: 1fr;
+  }
+
   .search-field {
     grid-column: auto;
   }
@@ -2365,7 +2681,28 @@ p {
     grid-template-columns: 1fr;
   }
 
+  .form-grid,
+  .instructor-resource-list article {
+    grid-template-columns: 1fr;
+  }
+
+  .form-span {
+    grid-column: auto;
+  }
+
+  .instructor-resource-list article {
+    align-items: start;
+  }
+
   .button-row .button {
     width: 100%;
+  }
+
+  .account-state {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-review-controls > div {
+    grid-template-columns: 1fr;
   }
 }
