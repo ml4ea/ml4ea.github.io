@@ -2104,6 +2104,10 @@ p {
   color: var(--orange);
 }
 
+.ae-resource-meta span.validation-complete {
+  color: var(--green);
+}
+
 .ae-resource-meta a {
   color: var(--ink-soft);
   text-underline-offset: 3px;

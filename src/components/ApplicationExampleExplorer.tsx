@@ -1,4 +1,4 @@
-import { CircleAlert, Database, ExternalLink, KeyRound, Play, Search, X } from 'lucide-react';
+import { CheckCircle2, Database, ExternalLink, KeyRound, Play, Search, X } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 
 export interface ApplicationExample {
@@ -108,7 +108,7 @@ export default function ApplicationExampleExplorer({ examples }: Props) {
                     <h2>{example.title}</h2>
                     <p>{example.method} · {example.chapter_title}</p>
                     <div className="ae-resource-meta">
-                      <span><CircleAlert aria-hidden="true" size={14} /> Validation pending</span>
+                      <span className="validation-complete"><CheckCircle2 aria-hidden="true" size={14} /> Validated in Google Colab</span>
                       {example.source_urls.length > 0 && (
                         <a href={example.source_urls[0]} target="_blank" rel="noreferrer">
                           <Database aria-hidden="true" size={14} /> Data or source

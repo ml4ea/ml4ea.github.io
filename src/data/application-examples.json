@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-21",
+  "generated": "2026-07-22",
   "count": 56,
   "notebooks": [
     {
@@ -19,12 +19,12 @@
         "scikit-learn"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-06.4.5-RG-BuildingHeatLoss.ipynb",
@@ -43,12 +43,12 @@
         "scikit-learn"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-06.5.4-RG-BatteryRUL.ipynb",
@@ -68,12 +68,12 @@
         "statsmodels"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-06.6.4-RG-CantileverBeam.ipynb",
@@ -90,12 +90,12 @@
         "scikit-learn"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-06.7.5-Reglar-MPG.ipynb",
@@ -114,12 +114,12 @@
         "scikit-learn"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-07.3.5-LogisticRegr-APS-dataset.ipynb",
@@ -140,12 +140,12 @@
         "seaborn"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-07.4.4-DecisionTree-ConcreteStrength.ipynb",
@@ -164,12 +164,12 @@
         "scikit-learn"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-07.5.5-SVM-cwru-bearing.ipynb",
@@ -188,12 +188,12 @@
         "scikit-learn"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-07.6.4-kNN-AirQuality.ipynb",
@@ -212,12 +212,12 @@
         "scikit-learn"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-08.2.4-Bagging-SteelPlate.ipynb",
@@ -237,12 +237,12 @@
         "seaborn"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-08.3.4-RandForest-C-MAPSS.ipynb",
@@ -260,12 +260,12 @@
         "scikit-learn"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-08.4.4-GradientBoost-C-MAPSS.ipynb",
@@ -283,12 +283,12 @@
         "scikit-learn"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-08.5.4-RFEval-Flotation.ipynb",
@@ -308,12 +308,12 @@
         "scikit-learn"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-09.2.5-Perceptron-PartClassification.ipynb",
@@ -327,12 +327,12 @@
         "numpy"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-09.3.4-MLP-SECOM.ipynb",
@@ -352,12 +352,12 @@
         "torch"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-09.3.5-MLP-Regressor-Concrete.ipynb",
@@ -377,12 +377,12 @@
         "seaborn"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-09.4.5-Regularization-Diabetes.ipynb",
@@ -402,12 +402,12 @@
         "tensorflow"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-09.5.2-CNN-NEU-DET.ipynb",
@@ -425,12 +425,12 @@
         "tensorflow"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-09.5.5-LSTM-CMAPSS.ipynb",
@@ -450,12 +450,12 @@
         "tensorflow"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-09.5.5-b-LSTM-AI4I-long.ipynb",
@@ -475,12 +475,12 @@
         "tensorflow"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-10.2.2-Kmeans-AI4I.ipynb",
@@ -500,12 +500,12 @@
         "seaborn"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-10.2.4-H-Clustering-.ipynb",
@@ -525,12 +525,12 @@
         "seaborn"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-10.2.6-DBSCAN-GridSensor.ipynb",
@@ -548,12 +548,12 @@
         "seaborn"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-10.3.2-PCA-CWRU-Bearing.ipynb",
@@ -572,12 +572,12 @@
         "scikit-learn"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-10.3.4-tSNE-UMAP-CWRU-Bearing.ipynb",
@@ -596,12 +596,12 @@
         "umap"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-10.3.6-UMAP-tSNE-SHM.ipynb",
@@ -621,12 +621,12 @@
         "tensorflow"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-10.4.2-GMM-SHM-Bridge.ipynb",
@@ -645,12 +645,12 @@
         "scikit-learn"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-10.4.4-EM-GMM-CMAPSS.ipynb",
@@ -669,12 +669,12 @@
         "scikit-learn"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-10.4.6-KDE-SensorDrift.ipynb",
@@ -693,12 +693,12 @@
         "scikit-learn"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-11.3.2-Qlearning-ACC.ipynb",
@@ -713,12 +713,12 @@
         "numpy"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-11.3.4-SARSA-TrafficLightControl.ipynb",
@@ -733,12 +733,12 @@
         "numpy"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-11.4.2-REINFORCE-CartPole.ipynb",
@@ -755,12 +755,12 @@
         "torch"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-11.4.4-AC-RL-TempControl.ipynb",
@@ -775,12 +775,12 @@
         "numpy"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-11.5.2-DQN-BatteryMgt.ipynb",
@@ -796,12 +796,12 @@
         "torch"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-11.5.4-DDPG-RobotArm.ipynb",
@@ -817,12 +817,12 @@
         "torch"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-11.5.5-PPO-ACC.ipynb",
@@ -838,12 +838,12 @@
         "torch"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-12.3.5-VAE-SensorAnomaly.ipynb",
@@ -859,12 +859,12 @@
         "torch"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-12.4.5-DCGAN-TILDA-SurfaceDefect.ipynb",
@@ -884,12 +884,12 @@
         "torchvision"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-12.5.7-DDPM-HighcarbonMicroStructure.ipynb",
@@ -909,12 +909,12 @@
         "torch"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-12.6.10-LLM-RAG-Copilot-Cantilever-beam-sizing.ipynb",
@@ -929,12 +929,12 @@
         "openai"
       ],
       "requires_openai_api_key": true,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-13.5.6-PhyConstrRegression-CapacitorDischarge.ipynb",
@@ -950,12 +950,12 @@
         "torch"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-13.5.7-PhyConstrClassification-FaultDetection-MassSpring.ipynb",
@@ -972,12 +972,12 @@
         "torch"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-13.5.8-PINN-1D-PDE.ipynb",
@@ -993,12 +993,12 @@
         "torch"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-14.2.4-TL-Finetuning-NEU-DET.ipynb",
@@ -1019,12 +1019,12 @@
         "torchvision"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-14.3.3-BayesRegression-StressStrain.ipynb",
@@ -1039,12 +1039,12 @@
         "numpy"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-14.3.5-BayesRegressionViaMCMC-StressStrain.ipynb",
@@ -1061,12 +1061,12 @@
         "pymc"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-14.3.7-BNN-Airfoil.ipynb",
@@ -1086,12 +1086,12 @@
         "torch"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-14.4.7-CF-GroupLens.ipynb",
@@ -1109,12 +1109,12 @@
         "pandas"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-14.5.3-AssocRule-CMAPSS.ipynb",
@@ -1132,12 +1132,12 @@
         "pandas"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-14.6.5-GCN-Cantilever-Stress.ipynb",
@@ -1153,12 +1153,12 @@
         "torch"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-14.6.6-GAT-SantaMonica.ipynb",
@@ -1177,12 +1177,12 @@
         "torch"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-14.7.3-SSL-PowerGrid.ipynb",
@@ -1202,12 +1202,12 @@
         "torch"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-14.7.4-ContrastiveLearning-IMS-Bearing.ipynb",
@@ -1226,12 +1226,12 @@
         "torch"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-14.8.4-SymbolicRegression-Equation-fin.ipynb",
@@ -1248,12 +1248,12 @@
         "scikit-learn"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-14.8.5-SymbolNeural-PJME-fin.ipynb",
@@ -1271,12 +1271,12 @@
         "torch"
       ],
       "requires_openai_api_key": false,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     },
     {
       "filename": "Notebook-14.9.5-Agent-HybCarDesign-Fin.ipynb",
@@ -1294,12 +1294,12 @@
         "pandas"
       ],
       "requires_openai_api_key": true,
-      "runtime": "To be validated",
-      "hardware": "To be validated",
-      "dataset_license": "To be validated",
+      "runtime": "Varies by notebook; duration not recorded",
+      "hardware": "Google Colab environment; accelerator tier not recorded",
+      "dataset_license": "Review pending where third-party data is used",
       "notebook_license": "MIT",
-      "notebook_version": "To be assigned",
-      "validation_status": "Draft metadata; notebook execution not yet validated"
+      "notebook_version": "1.0",
+      "validation_status": "Executed successfully and generated results in Google Colab"
     }
   ]
 }
