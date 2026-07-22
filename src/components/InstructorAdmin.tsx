@@ -1,4 +1,4 @@
-import { Check, ShieldCheck, X } from 'lucide-react';
+import { Check, Mail, ShieldCheck, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { getSupabaseClient, isSupabaseConfigured } from '../lib/supabase';
@@ -12,6 +12,8 @@ interface ReviewApplication {
   faculty_url: string;
   course_context: string | null;
   status: 'pending' | 'approved' | 'rejected';
+  decision_note: string | null;
+  reviewed_at: string | null;
   created_at: string;
 }
 
@@ -22,6 +24,7 @@ export default function InstructorAdmin() {
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(isSupabaseConfigured);
   const [reviewingId, setReviewingId] = useState<string | null>(null);
+  const [notifyingId, setNotifyingId] = useState<string | null>(null);
   const [notice, setNotice] = useState('');
   const [error, setError] = useState('');
 
@@ -42,10 +45,12 @@ export default function InstructorAdmin() {
     setIsAdmin(true);
     const { data, error: listError } = await supabase
       .from('instructor_applications')
-      .select('id,email,institution,department,position_title,faculty_url,course_context,status,created_at')
+      .select('id,email,institution,department,position_title,faculty_url,course_context,status,decision_note,reviewed_at,created_at')
       .order('created_at', { ascending: true });
     if (listError) setError(listError.message);
-    setApplications((data ?? []) as ReviewApplication[]);
+    const nextApplications = (data ?? []) as ReviewApplication[];
+    setApplications(nextApplications);
+    setNotes(Object.fromEntries(nextApplications.map((application) => [application.id, application.decision_note ?? ''])));
     setLoading(false);
   };
 
@@ -57,6 +62,17 @@ export default function InstructorAdmin() {
       void loadApplications(data.session);
     });
   }, []);
+
+  const sendDecisionNotification = async (id: string) => {
+    const supabase = getSupabaseClient();
+    if (!supabase) return false;
+    setNotifyingId(id);
+    const { error: notificationError } = await supabase.functions.invoke('notify-instructor-decision', {
+      body: { applicationId: id },
+    });
+    setNotifyingId(null);
+    return !notificationError;
+  };
 
   const review = async (id: string, status: 'approved' | 'rejected') => {
     const supabase = getSupabaseClient();
@@ -77,6 +93,17 @@ export default function InstructorAdmin() {
     await loadApplications(session);
     setReviewingId(null);
     setNotice(`Application ${status}.`);
+    const notified = await sendDecisionNotification(id);
+    if (notified) setNotice(`Application ${status}; notification email sent.`);
+    else setError(`Application ${status}, but the notification email could not be sent.`);
+  };
+
+  const resendNotification = async (id: string) => {
+    setNotice('');
+    setError('');
+    const notified = await sendDecisionNotification(id);
+    if (notified) setNotice('Decision notification email sent.');
+    else setError('The notification email could not be sent. The review decision is unchanged.');
   };
 
   if (!isSupabaseConfigured) return <p className="account-loading">Supabase is not configured.</p>;
@@ -86,7 +113,7 @@ export default function InstructorAdmin() {
 
   return (
     <div className="admin-review">
-      <div className="catalog-status"><p>{applications.length} applications</p></div>
+      <div className="catalog-status"><p>{applications.length} {applications.length === 1 ? 'application' : 'applications'}</p></div>
       {notice && <p className="form-message form-success" role="status">{notice}</p>}
       {applications.length === 0 ? <p>No instructor applications have been submitted.</p> : (
         <ol>
@@ -101,10 +128,11 @@ export default function InstructorAdmin() {
                   <a className="text-link" href={application.faculty_url} target="_blank" rel="noreferrer">Verify institutional profile</a>
                 </div>
                 <div className="admin-review-controls">
-                  <label><span>Decision note</span><textarea rows={3} value={notes[application.id] ?? ''} onChange={(event) => setNotes({ ...notes, [application.id]: event.target.value })} /></label>
+                  <label><span>Decision note</span><textarea rows={3} value={notes[application.id] ?? ''} readOnly={application.status !== 'pending'} onChange={(event) => setNotes({ ...notes, [application.id]: event.target.value })} /></label>
                   <div>
-                    <button className="button button-primary" type="button" disabled={reviewingId === application.id || application.status === 'approved'} onClick={() => review(application.id, 'approved')}><Check aria-hidden="true" size={17} /> {reviewingId === application.id ? 'Saving…' : application.status === 'approved' ? 'Approved' : 'Approve'}</button>
-                    <button className="button button-secondary" type="button" disabled={reviewingId === application.id || application.status === 'rejected'} onClick={() => review(application.id, 'rejected')}><X aria-hidden="true" size={17} /> {reviewingId === application.id ? 'Saving…' : application.status === 'rejected' ? 'Rejected' : 'Reject'}</button>
+                    <button className="button button-primary" type="button" disabled={reviewingId === application.id || application.status !== 'pending'} onClick={() => review(application.id, 'approved')}><Check aria-hidden="true" size={17} /> {reviewingId === application.id ? 'Saving…' : application.status === 'approved' ? 'Approved' : 'Approve'}</button>
+                    <button className="button button-secondary" type="button" disabled={reviewingId === application.id || application.status !== 'pending'} onClick={() => review(application.id, 'rejected')}><X aria-hidden="true" size={17} /> {reviewingId === application.id ? 'Saving…' : application.status === 'rejected' ? 'Rejected' : 'Reject'}</button>
+                    {application.status !== 'pending' && <button className="button button-secondary" type="button" disabled={notifyingId === application.id} onClick={() => resendNotification(application.id)}><Mail aria-hidden="true" size={17} /> {notifyingId === application.id ? 'Sending…' : 'Email decision'}</button>}
                   </div>
                 </div>
               </article>

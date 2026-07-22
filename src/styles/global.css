@@ -1695,6 +1695,13 @@ p {
   resize: vertical;
 }
 
+.admin-review-controls textarea[readonly] {
+  background: var(--paper-soft);
+  color: var(--ink-soft);
+  cursor: default;
+  resize: none;
+}
+
 .auth-form .button,
 .instructor-form > .button {
   justify-self: start;
