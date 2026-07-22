@@ -3,6 +3,8 @@ import { type SubmitEvent, useEffect, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { getSupabaseClient, isSupabaseConfigured } from '../lib/supabase';
 
+const EMAIL_OTP_LENGTH = 8;
+
 const getReturnPath = () => {
   if (typeof window === 'undefined') return null;
   const next = new URLSearchParams(window.location.search).get('next');
@@ -66,7 +68,7 @@ export default function AccountAccess() {
 
     setPendingEmail(email.trim());
     setCode('');
-    setNotice('Enter the six-digit code from your email. The code expires automatically.');
+    setNotice('Enter the eight-digit code from the newest email. Requesting another code replaces the previous one.');
   };
 
   const verifyCode = async (event: SubmitEvent<HTMLFormElement>) => {
@@ -144,20 +146,20 @@ export default function AccountAccess() {
           <h2>Enter the code from your email.</h2>
           <p>Code sent to <strong>{pendingEmail}</strong>.</p>
           <label>
-            <span>Six-digit code</span>
+            <span>Eight-digit code</span>
             <input
               type="text"
               value={code}
-              onChange={(event) => setCode(event.target.value.replace(/\D/g, '').slice(0, 6))}
+              onChange={(event) => setCode(event.target.value.replace(/\D/g, '').slice(0, EMAIL_OTP_LENGTH))}
               inputMode="numeric"
               autoComplete="one-time-code"
-              pattern="[0-9]{6}"
-              maxLength={6}
+              pattern={`[0-9]{${EMAIL_OTP_LENGTH}}`}
+              maxLength={EMAIL_OTP_LENGTH}
               required
-              placeholder="000000"
+              placeholder="00000000"
             />
           </label>
-          <button className="button button-primary" type="submit" disabled={verifying || code.length !== 6}>
+          <button className="button button-primary" type="submit" disabled={verifying || code.length !== EMAIL_OTP_LENGTH}>
             <CheckCircle2 aria-hidden="true" size={17} /> {verifying ? 'Verifying…' : 'Verify and sign in'}
           </button>
           <button className="button button-secondary" type="button" onClick={() => { setPendingEmail(''); setCode(''); setNotice(''); setError(''); }}>
@@ -188,7 +190,7 @@ export default function AccountAccess() {
         <button className="button button-primary" type="submit" disabled={submitting}>
           <Mail aria-hidden="true" size={17} /> {submitting ? 'Sending…' : 'Email me a sign-in code'}
         </button>
-        <p className="form-privacy">By requesting a link, you acknowledge the <a href="/privacy">privacy notice</a>.</p>
+        <p className="form-privacy">By requesting a code, you acknowledge the <a href="/privacy">privacy notice</a>.</p>
         {notice && <p className="form-message form-success" role="status"><CheckCircle2 aria-hidden="true" size={17} /> {notice}</p>}
         {error && <p className="form-message form-error" role="alert">{error}</p>}
       </form>
