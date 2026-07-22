@@ -48,8 +48,10 @@ instructor-access migration. It removes any other administrator assignments,
 assigns `yjin@usc.edu`, limits the administrator table to one row, and makes the
 administrator check require that exact verified account email.
 
-The review workspace is `/admin/instructors`. Administrator membership cannot
-be assigned through the public client.
+The administrator dashboard is `/admin/`. It summarizes pending instructor
+requests and open discussion reports, then links to the protected review
+workspaces. Administrator membership cannot be assigned through the public
+client.
 
 Deploy the `notify-instructor-decision` Edge Function with the existing SMTP
 secrets. Set `ML4EA_ADMIN_EMAIL` to `ml4ea.book@gmail.com`; the function also

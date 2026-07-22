@@ -1,0 +1,14 @@
+---
+import AdminHub from '../../components/AdminHub';
+import PageHero from '../../components/PageHero.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Administrator Dashboard | ML4EA" description="Administrator tasks and protected ML4EA management pages." noindex>
+  <PageHero eyebrow="Administration" title="Portal administration." description="Review pending work and open protected management pages from one place." accent="orange" />
+  <section class="content-section">
+    <div class="container account-container">
+      <AdminHub client:load />
+    </div>
+  </section>
+</BaseLayout>

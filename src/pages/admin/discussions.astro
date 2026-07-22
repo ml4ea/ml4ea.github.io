@@ -1,0 +1,14 @@
+---
+import DiscussionAdmin from '../../components/DiscussionAdmin';
+import PageHero from '../../components/PageHero.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Discussion Reports | ML4EA" description="Administrative discussion-report review workspace." noindex>
+  <PageHero eyebrow="Administration" title="Discussion moderation." description="Review participant reports and act on content that requires attention." accent="magenta" />
+  <section class="content-section">
+    <div class="container account-container">
+      <DiscussionAdmin client:load />
+    </div>
+  </section>
+</BaseLayout>

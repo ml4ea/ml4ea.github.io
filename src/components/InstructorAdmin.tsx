@@ -113,7 +113,7 @@ export default function InstructorAdmin() {
 
   return (
     <div className="admin-review">
-      <div className="catalog-status"><p>{applications.length} {applications.length === 1 ? 'application' : 'applications'}</p></div>
+      <div className="catalog-status"><p>{applications.length} {applications.length === 1 ? 'application' : 'applications'}</p><a className="text-link" href="/admin/">Administrator dashboard</a></div>
       {notice && <p className="form-message form-success" role="status">{notice}</p>}
       {applications.length === 0 ? <p>No instructor applications have been submitted.</p> : (
         <ol>
