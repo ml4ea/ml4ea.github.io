@@ -12,8 +12,11 @@ const getReturnPath = () => {
 export default function AccountAccess() {
   const [session, setSession] = useState<Session | null>(null);
   const [email, setEmail] = useState('');
+  const [pendingEmail, setPendingEmail] = useState('');
+  const [code, setCode] = useState('');
   const [loading, setLoading] = useState(isSupabaseConfigured);
   const [submitting, setSubmitting] = useState(false);
+  const [verifying, setVerifying] = useState(false);
   const [notice, setNotice] = useState('');
   const [error, setError] = useState('');
 
@@ -38,7 +41,7 @@ export default function AccountAccess() {
     return () => listener.subscription.unsubscribe();
   }, []);
 
-  const requestLink = async (event: SubmitEvent<HTMLFormElement>) => {
+  const requestCode = async (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     const supabase = getSupabaseClient();
     if (!supabase) return;
@@ -61,7 +64,33 @@ export default function AccountAccess() {
       return;
     }
 
-    setNotice('Check your email and open the secure sign-in link in this browser. The link expires automatically.');
+    setPendingEmail(email.trim());
+    setCode('');
+    setNotice('Enter the six-digit code from your email. The code expires automatically.');
+  };
+
+  const verifyCode = async (event: SubmitEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const supabase = getSupabaseClient();
+    if (!supabase) return;
+
+    setVerifying(true);
+    setError('');
+    const { data, error: verifyError } = await supabase.auth.verifyOtp({
+      email: pendingEmail,
+      token: code.trim(),
+      type: 'email',
+    });
+    setVerifying(false);
+
+    if (verifyError) {
+      setError(verifyError.message);
+      return;
+    }
+
+    setSession(data.session);
+    const returnPath = getReturnPath();
+    if (data.session && returnPath) window.location.replace(returnPath);
   };
 
   const signOut = async () => {
@@ -106,18 +135,58 @@ export default function AccountAccess() {
     );
   }
 
+  if (pendingEmail) {
+    return (
+      <div className="auth-grid">
+        <form className="auth-form" onSubmit={verifyCode}>
+          <ShieldCheck aria-hidden="true" size={27} />
+          <p className="eyebrow">Verification code</p>
+          <h2>Enter the code from your email.</h2>
+          <p>Code sent to <strong>{pendingEmail}</strong>.</p>
+          <label>
+            <span>Six-digit code</span>
+            <input
+              type="text"
+              value={code}
+              onChange={(event) => setCode(event.target.value.replace(/\D/g, '').slice(0, 6))}
+              inputMode="numeric"
+              autoComplete="one-time-code"
+              pattern="[0-9]{6}"
+              maxLength={6}
+              required
+              placeholder="000000"
+            />
+          </label>
+          <button className="button button-primary" type="submit" disabled={verifying || code.length !== 6}>
+            <CheckCircle2 aria-hidden="true" size={17} /> {verifying ? 'Verifying…' : 'Verify and sign in'}
+          </button>
+          <button className="button button-secondary" type="button" onClick={() => { setPendingEmail(''); setCode(''); setNotice(''); setError(''); }}>
+            Use another email
+          </button>
+          {notice && <p className="form-message form-success" role="status"><CheckCircle2 aria-hidden="true" size={17} /> {notice}</p>}
+          {error && <p className="form-message form-error" role="alert">{error}</p>}
+        </form>
+        <div className="auth-explanation">
+          <p className="eyebrow">Institutional email</p>
+          <h2>No email link required.</h2>
+          <p>Enter the code shown in the newest ML4EA email. This avoids interference from institutional link-scanning systems.</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="auth-grid">
-      <form className="auth-form" onSubmit={requestLink}>
+      <form className="auth-form" onSubmit={requestCode}>
         <Mail aria-hidden="true" size={27} />
         <p className="eyebrow">Email sign-in</p>
-        <h2>Receive a secure sign-in link.</h2>
+        <h2>Receive a secure sign-in code.</h2>
         <label>
           <span>Email address</span>
           <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="email" required placeholder="name@university.edu" />
         </label>
         <button className="button button-primary" type="submit" disabled={submitting}>
-          <Mail aria-hidden="true" size={17} /> {submitting ? 'Sending…' : 'Email me a sign-in link'}
+          <Mail aria-hidden="true" size={17} /> {submitting ? 'Sending…' : 'Email me a sign-in code'}
         </button>
         <p className="form-privacy">By requesting a link, you acknowledge the <a href="/privacy">privacy notice</a>.</p>
         {notice && <p className="form-message form-success" role="status"><CheckCircle2 aria-hidden="true" size={17} /> {notice}</p>}
@@ -126,7 +195,7 @@ export default function AccountAccess() {
       <div className="auth-explanation">
         <p className="eyebrow">Why email verification?</p>
         <h2>One account, with access based on role.</h2>
-        <p>Email-link sign-in verifies ownership without requiring another password. Public resources remain open to everyone; protected teaching materials require an approved instructor application.</p>
+        <p>Email-code sign-in verifies ownership without requiring another password. Public resources remain open to everyone; protected teaching materials require an approved instructor application.</p>
         <a className="text-link" href="/teach">Review instructor access <ExternalLink aria-hidden="true" size={16} /></a>
       </div>
     </div>
