@@ -74,7 +74,7 @@ export default function InstructorAdmin() {
 
   if (!isSupabaseConfigured) return <p className="account-loading">Supabase is not configured.</p>;
   if (loading) return <p className="account-loading">Checking administrator access…</p>;
-  if (!session) return <div className="account-state"><ShieldCheck aria-hidden="true" size={28} /><div><h2>Administrator sign-in required.</h2><a className="button button-primary" href="/account">Sign in</a></div></div>;
+  if (!session) return <div className="account-state"><ShieldCheck aria-hidden="true" size={28} /><div><h2>Administrator sign-in required.</h2><p>Sign in from this browser to continue directly to instructor reviews.</p><a className="button button-primary" href="/account?next=/admin/instructors/">Sign in</a></div></div>;
   if (!isAdmin) return <div className="account-state"><ShieldCheck aria-hidden="true" size={28} /><div><h2>This account is not a portal administrator.</h2><p>Administrator status is assigned directly in the protected database.</p></div></div>;
 
   return (

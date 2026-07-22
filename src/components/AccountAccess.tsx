@@ -3,6 +3,12 @@ import { type SubmitEvent, useEffect, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { getSupabaseClient, isSupabaseConfigured } from '../lib/supabase';
 
+const getReturnPath = () => {
+  if (typeof window === 'undefined') return null;
+  const next = new URLSearchParams(window.location.search).get('next');
+  return next?.startsWith('/') && !next.startsWith('//') ? next : null;
+};
+
 export default function AccountAccess() {
   const [session, setSession] = useState<Session | null>(null);
   const [email, setEmail] = useState('');
@@ -18,11 +24,15 @@ export default function AccountAccess() {
     supabase.auth.getSession().then(({ data }) => {
       setSession(data.session);
       setLoading(false);
+      const returnPath = getReturnPath();
+      if (data.session && returnPath) window.location.replace(returnPath);
     });
 
     const { data: listener } = supabase.auth.onAuthStateChange((_event, nextSession) => {
       setSession(nextSession);
       setLoading(false);
+      const returnPath = getReturnPath();
+      if (nextSession && returnPath) window.location.replace(returnPath);
     });
 
     return () => listener.subscription.unsubscribe();
@@ -37,10 +47,12 @@ export default function AccountAccess() {
     setNotice('');
     setError('');
 
-    const redirectTo = new URL('/account/', window.location.origin).toString();
+    const returnPath = getReturnPath();
+    const callbackUrl = new URL('/account/', window.location.origin);
+    if (returnPath) callbackUrl.searchParams.set('next', returnPath);
     const { error: authError } = await supabase.auth.signInWithOtp({
       email: email.trim(),
-      options: { emailRedirectTo: redirectTo, shouldCreateUser: true },
+      options: { emailRedirectTo: callbackUrl.toString(), shouldCreateUser: true },
     });
 
     setSubmitting(false);
@@ -49,7 +61,7 @@ export default function AccountAccess() {
       return;
     }
 
-    setNotice('Check your email for a secure sign-in link. The link expires automatically.');
+    setNotice('Check your email and open the secure sign-in link in this browser. The link expires automatically.');
   };
 
   const signOut = async () => {
