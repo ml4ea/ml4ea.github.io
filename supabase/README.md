@@ -103,6 +103,17 @@ artifacts ignored by Git. The public portal contains only the reader shell;
 section content is fetched after Supabase verifies the signed-in account as an
 approved instructor.
 
+## 7. Enable community discussions
+
+Apply `migrations/202607220002_discussions.sql` after the instructor-access
+migration. It creates public discussion categories, threads, replies, reports,
+posting RPCs, rate limits, and Row Level Security policies.
+
+Public discussions are readable without an account. A verified email account
+is required to post or report content. The Teaching Practice category is
+visible only to approved instructors and portal administrators. Posts are
+stored as plain text; HTML from participants is never rendered.
+
 ## Security boundaries
 
 - Public pages and Application Example notebooks do not require an account.
@@ -115,3 +126,7 @@ approved instructor.
 - Signed download URLs expire after 60 seconds.
 - Manual edition rows, section HTML, search results, and the PDF are all
   restricted by approved-instructor RLS checks.
+- Public discussion reads expose display names but not account email addresses
+  or authentication user IDs.
+- Instructor-only discussion categories are enforced by RLS rather than by
+  client-side hiding.

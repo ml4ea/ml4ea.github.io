@@ -1,5 +1,5 @@
 ---
-import { BookOpenCheck, ExternalLink, FileCode2, Lightbulb, UsersRound } from 'lucide-react';
+import { ArrowRight, BookOpenCheck, ExternalLink, FileCode2, Lightbulb, MessageSquareText, UsersRound } from 'lucide-react';
 import PageHero from '../components/PageHero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
@@ -21,7 +21,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p class="eyebrow">Choose a route</p>
         <h2>Send each contribution to the right place.</h2>
       </div>
-      <p>GitHub provides the public contribution workflow during this phase of the portal. You will need a free GitHub account to submit an issue or pull request. Account-based discussions inside ML4EA will arrive in a later pass.</p>
+      <p>Contributions propose a correction, code change, or reusable resource for review. GitHub keeps that process attributable and reviewable; a free GitHub account is required.</p>
     </div>
 
     <div class="container contribution-routes">
@@ -64,6 +64,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           Propose a contribution <ExternalLink aria-hidden="true" size={17} />
         </a>
       </article>
+    </div>
+  </section>
+
+  <section class="contribution-discussion-band">
+    <div class="container contribution-discussion-inner">
+      <MessageSquareText aria-hidden="true" size={25} />
+      <div><p class="eyebrow">Looking for conversation?</p><h2>Questions and exchanges belong in Discussions.</h2><p>Use the community board to ask about a chapter, compare AE results, explore engineering applications, or respond to another participant.</p></div>
+      <a class="button button-secondary" href="/community">Open Discussions <ArrowRight aria-hidden="true" size={17} /></a>
     </div>
   </section>
 

@@ -1,7 +1,7 @@
 ---
-import { BookOpenCheck, Lightbulb, MessageSquareText, Scale, ShieldCheck } from 'lucide-react';
+import { ArrowRight, FileCheck2, MessageSquareText, Scale, ShieldCheck } from 'lucide-react';
+import DiscussionBoard from '../components/DiscussionBoard';
 import PageHero from '../components/PageHero.astro';
-import SectionHeading from '../components/SectionHeading.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
@@ -13,14 +13,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     accent="magenta"
   />
 
-  <section class="content-section">
-    <div class="container">
-      <SectionHeading eyebrow="Discussion spaces" title="Keep conversations close to the material." />
-      <div class="community-topics">
-        <article><BookOpenCheck aria-hidden="true" size={23} /><h3>Chapter discussions</h3><p>Ask about concepts, assumptions, derivations, and engineering interpretation.</p></article>
-        <article><MessageSquareText aria-hidden="true" size={23} /><h3>Application Examples</h3><p>Compare implementations, datasets, diagnostics, and alternative modeling choices.</p></article>
-        <article><Lightbulb aria-hidden="true" size={23} /><h3>Contributed insights</h3><p>Share reviewed examples, corrections, teaching ideas, and extensions.</p></article>
-      </div>
+  <section class="community-purpose-band">
+    <div class="container community-purpose-grid">
+      <div><MessageSquareText aria-hidden="true" size={24} /><p class="eyebrow">Discuss</p><h2>Have a conversation.</h2><p>Ask questions, compare reasoning, respond to others, and share experience. Public discussions can be read by everyone; posting requires a signed-in account.</p></div>
+      <a href="/contribute"><FileCheck2 aria-hidden="true" size={24} /><p class="eyebrow">Contribute</p><h2>Propose a lasting addition.</h2><p>Use the contribution workflow for corrections, notebook changes, new examples, and reusable teaching materials.</p><span>Go to Contributions <ArrowRight aria-hidden="true" size={17} /></span></a>
+    </div>
+  </section>
+
+  <section class="content-section community-board-section">
+    <div class="container community-board-container">
+      <DiscussionBoard client:load />
     </div>
   </section>
 
@@ -35,10 +37,4 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <section class="action-band">
-    <div class="container action-band-inner">
-      <div><p class="eyebrow">Contribute now</p><h2>Corrections and contributions are open.</h2><p>Use the structured GitHub routes now for book corrections, notebook problems, and proposed examples. Account-based discussions will follow after the secure data foundation is in place.</p></div>
-      <a class="button button-secondary" href="/contribute">Choose a contribution route</a>
-    </div>
-  </section>
 </BaseLayout>
