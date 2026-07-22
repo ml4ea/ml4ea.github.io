@@ -132,7 +132,7 @@ export default function InstructorAdmin() {
                   <div>
                     <button className="button button-primary" type="button" disabled={reviewingId === application.id || application.status !== 'pending'} onClick={() => review(application.id, 'approved')}><Check aria-hidden="true" size={17} /> {reviewingId === application.id ? 'Saving…' : application.status === 'approved' ? 'Approved' : 'Approve'}</button>
                     <button className="button button-secondary" type="button" disabled={reviewingId === application.id || application.status !== 'pending'} onClick={() => review(application.id, 'rejected')}><X aria-hidden="true" size={17} /> {reviewingId === application.id ? 'Saving…' : application.status === 'rejected' ? 'Rejected' : 'Reject'}</button>
-                    {application.status !== 'pending' && <button className="button button-secondary" type="button" disabled={notifyingId === application.id} onClick={() => resendNotification(application.id)}><Mail aria-hidden="true" size={17} /> {notifyingId === application.id ? 'Sending…' : 'Email decision'}</button>}
+                    {application.status !== 'pending' && <button className="button button-secondary" type="button" disabled={notifyingId === application.id} onClick={() => resendNotification(application.id)}><Mail aria-hidden="true" size={17} /> {notifyingId === application.id ? 'Sending…' : 'Resend decision email'}</button>}
                   </div>
                 </div>
               </article>
