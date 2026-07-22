@@ -1,0 +1,46 @@
+name: Portal feedback
+description: Suggest an improvement or report a technical problem with the companion portal.
+title: "[Portal] "
+labels:
+  - portal
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Feedback type
+      options:
+        - Broken link or missing resource
+        - Accessibility or usability problem
+        - Content suggestion
+        - Technical problem
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: page
+    attributes:
+      label: Page URL
+      placeholder: https://ml4ea.github.io/application-examples/
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Explain what happened, what you expected, and why the change would help.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Browser or device details
+      description: Include these details for visual or technical problems.
+    validations:
+      required: false
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Sensitive information
+      options:
+        - label: I removed credentials, private data, and other sensitive information.
+          required: true

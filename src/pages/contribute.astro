@@ -1,0 +1,87 @@
+---
+import { BookOpenCheck, ExternalLink, FileCode2, Lightbulb } from 'lucide-react';
+import PageHero from '../components/PageHero.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contribute | ML4EA"
+  description="Report corrections, improve Application Example notebooks, and propose engineering insights for the ML4EA companion portal."
+>
+  <PageHero
+    eyebrow="Contribute"
+    title="Help make ML4EA more useful."
+    description="Report a correction, improve a notebook, or propose an engineering example through a public, reviewable process."
+    accent="green"
+  />
+
+  <section class="content-section">
+    <div class="container contribution-intro">
+      <div>
+        <p class="eyebrow">Choose a route</p>
+        <h2>Send each contribution to the right place.</h2>
+      </div>
+      <p>GitHub provides the public contribution workflow during this phase of the portal. You will need a free GitHub account to submit an issue or pull request. Account-based discussions inside ML4EA will arrive in a later pass.</p>
+    </div>
+
+    <div class="container contribution-routes">
+      <article>
+        <BookOpenCheck aria-hidden="true" size={25} />
+        <p class="eyebrow">Book and portal</p>
+        <h2>Report a correction</h2>
+        <p>Identify the chapter, section, page or portal location; explain the issue; and suggest a correction when possible.</p>
+        <a class="button button-primary" href="https://github.com/ml4ea/ml4ea.github.io/issues/new?template=book-correction.yml" target="_blank" rel="noreferrer">
+          Submit a correction <ExternalLink aria-hidden="true" size={17} />
+        </a>
+      </article>
+
+      <article>
+        <FileCode2 aria-hidden="true" size={25} />
+        <p class="eyebrow">Application Examples</p>
+        <h2>Improve a notebook</h2>
+        <p>Report reproducible failures, incorrect results, broken data links, unclear explanations, or metadata problems.</p>
+        <a class="button button-primary" href="https://github.com/ml4ea/ae-notebooks/issues/new?template=notebook-problem.yml" target="_blank" rel="noreferrer">
+          Report a notebook problem <ExternalLink aria-hidden="true" size={17} />
+        </a>
+      </article>
+
+      <article>
+        <Lightbulb aria-hidden="true" size={25} />
+        <p class="eyebrow">New material</p>
+        <h2>Propose an example or extension</h2>
+        <p>Describe the engineering problem, learning value, data rights, method, and relationship to the book before developing a full contribution.</p>
+        <a class="button button-primary" href="https://github.com/ml4ea/ae-notebooks/issues/new?template=contribution-proposal.yml" target="_blank" rel="noreferrer">
+          Propose a contribution <ExternalLink aria-hidden="true" size={17} />
+        </a>
+      </article>
+    </div>
+  </section>
+
+  <section class="content-section surface-soft">
+    <div class="container contribution-guidelines">
+      <div>
+        <p class="eyebrow">Before submitting</p>
+        <h2>Make the contribution reviewable.</h2>
+      </div>
+      <ol>
+        <li><span>01</span><p><strong>Locate it precisely.</strong> Include the AE number, notebook filename, chapter, section, or page.</p></li>
+        <li><span>02</span><p><strong>Show the evidence.</strong> Provide reproduction steps, assumptions, sources, and relevant environment details.</p></li>
+        <li><span>03</span><p><strong>Protect sensitive material.</strong> Remove credentials, API keys, private data, personal paths, and copyrighted uploads.</p></li>
+        <li><span>04</span><p><strong>State the engineering impact.</strong> Explain whether results, interpretation, safety, or learning outcomes change.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="action-band">
+    <div class="container action-band-inner">
+      <div>
+        <p class="eyebrow">Contribution guide</p>
+        <h2>Planning a code or notebook change?</h2>
+        <p>Review the repository guidelines before opening a pull request. Contributions must be yours to provide and will be reviewed before inclusion.</p>
+      </div>
+      <a class="button button-secondary" href="https://github.com/ml4ea/ae-notebooks/blob/main/CONTRIBUTING.md" target="_blank" rel="noreferrer">
+        Read the guide <ExternalLink aria-hidden="true" size={17} />
+      </a>
+    </div>
+  </section>
+</BaseLayout>

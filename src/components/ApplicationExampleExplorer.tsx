@@ -1,4 +1,4 @@
-import { ExternalLink, KeyRound, Play, Search, X } from 'lucide-react';
+import { CircleAlert, Database, ExternalLink, KeyRound, Play, Search, X } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 
 export interface ApplicationExample {
@@ -107,6 +107,14 @@ export default function ApplicationExampleExplorer({ examples }: Props) {
                     </div>
                     <h2>{example.title}</h2>
                     <p>{example.method} · {example.chapter_title}</p>
+                    <div className="ae-resource-meta">
+                      <span><CircleAlert aria-hidden="true" size={14} /> Validation pending</span>
+                      {example.source_urls.length > 0 && (
+                        <a href={example.source_urls[0]} target="_blank" rel="noreferrer">
+                          <Database aria-hidden="true" size={14} /> Data or source
+                        </a>
+                      )}
+                    </div>
                     <ul className="package-list" aria-label="Key Python packages">
                       {example.packages.slice(0, 5).map((item) => <li key={item}>{item}</li>)}
                       {example.packages.length > 5 && <li>+{example.packages.length - 5}</li>}

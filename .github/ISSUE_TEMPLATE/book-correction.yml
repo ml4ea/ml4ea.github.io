@@ -1,0 +1,53 @@
+name: Book or portal correction
+description: Report a possible error, ambiguity, broken link, or presentation problem.
+title: "[Correction] "
+labels:
+  - correction
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Material
+      options:
+        - Book
+        - Companion portal
+        - Chapter guide
+        - Other public material
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: Give the chapter, section, page, equation, figure, table, or portal URL.
+      placeholder: Chapter 7, Section 7.3, page 214
+    validations:
+      required: true
+  - type: textarea
+    id: issue
+    attributes:
+      label: What appears to be incorrect or unclear?
+      description: Describe the issue without uploading copyrighted pages or lengthy book excerpts.
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: Suggested correction
+      description: Provide corrected wording, mathematics, code, or a replacement link when possible.
+    validations:
+      required: false
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Supporting evidence
+      description: Include a derivation, reproducible result, or authoritative source that helps verify the report.
+    validations:
+      required: false
+  - type: checkboxes
+    id: rights
+    attributes:
+      label: Submission check
+      options:
+        - label: I have removed credentials, private data, and copyrighted page images or lengthy excerpts.
+          required: true

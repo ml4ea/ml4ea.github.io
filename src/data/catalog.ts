@@ -90,6 +90,14 @@ const portalPages: CatalogItem[] = [
     tags: ['Community', 'Contributions', 'Discussion'],
   },
   {
+    id: 'contribute',
+    title: 'Contribute to ML4EA',
+    description: 'Report corrections, improve Application Example notebooks, and propose new engineering examples or extensions.',
+    type: 'Portal page',
+    href: '/contribute',
+    tags: ['Contribute', 'Corrections', 'GitHub', 'Application Examples'],
+  },
+  {
     id: 'errata',
     title: 'Book errata',
     description: 'Verified corrections and clarifications organized by chapter and location.',
@@ -100,6 +108,14 @@ const portalPages: CatalogItem[] = [
 ];
 
 const updates: CatalogItem[] = [
+  {
+    id: 'update-public-resources',
+    title: 'Application Example resources and contribution routes opened',
+    description: 'All 56 notebooks are indexed with GitHub and Colab access, alongside public correction and contribution forms.',
+    type: 'Update',
+    href: '/updates#public-resources-release',
+    tags: ['Application Examples', 'Notebooks', 'Contributions', 'GitHub'],
+  },
   {
     id: 'update-public-portal',
     title: 'Public companion portal launched',

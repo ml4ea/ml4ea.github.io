@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Application Example notebook problem
+    url: https://github.com/ml4ea/ae-notebooks/issues/new?template=notebook-problem.yml
+    about: Report a runtime failure, incorrect result, broken data link, or notebook documentation problem.
+  - name: Propose an Application Example contribution
+    url: https://github.com/ml4ea/ae-notebooks/issues/new?template=contribution-proposal.yml
+    about: Propose a new engineering example, alternative implementation, or notebook extension.
