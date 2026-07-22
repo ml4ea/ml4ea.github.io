@@ -21,6 +21,8 @@ export default function InstructorAdmin() {
   const [applications, setApplications] = useState<ReviewApplication[]>([]);
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(isSupabaseConfigured);
+  const [reviewingId, setReviewingId] = useState<string | null>(null);
+  const [notice, setNotice] = useState('');
   const [error, setError] = useState('');
 
   const loadApplications = async (activeSession: Session | null) => {
@@ -59,6 +61,8 @@ export default function InstructorAdmin() {
   const review = async (id: string, status: 'approved' | 'rejected') => {
     const supabase = getSupabaseClient();
     if (!supabase) return;
+    setReviewingId(id);
+    setNotice('');
     setError('');
     const { error: reviewError } = await supabase.rpc('review_instructor_application', {
       p_application_id: id,
@@ -67,9 +71,12 @@ export default function InstructorAdmin() {
     });
     if (reviewError) {
       setError(reviewError.message);
+      setReviewingId(null);
       return;
     }
     await loadApplications(session);
+    setReviewingId(null);
+    setNotice(`Application ${status}.`);
   };
 
   if (!isSupabaseConfigured) return <p className="account-loading">Supabase is not configured.</p>;
@@ -80,6 +87,7 @@ export default function InstructorAdmin() {
   return (
     <div className="admin-review">
       <div className="catalog-status"><p>{applications.length} applications</p></div>
+      {notice && <p className="form-message form-success" role="status">{notice}</p>}
       {applications.length === 0 ? <p>No instructor applications have been submitted.</p> : (
         <ol>
           {applications.map((application) => (
@@ -95,8 +103,8 @@ export default function InstructorAdmin() {
                 <div className="admin-review-controls">
                   <label><span>Decision note</span><textarea rows={3} value={notes[application.id] ?? ''} onChange={(event) => setNotes({ ...notes, [application.id]: event.target.value })} /></label>
                   <div>
-                    <button className="button button-primary" type="button" onClick={() => review(application.id, 'approved')}><Check aria-hidden="true" size={17} /> Approve</button>
-                    <button className="button button-secondary" type="button" onClick={() => review(application.id, 'rejected')}><X aria-hidden="true" size={17} /> Reject</button>
+                    <button className="button button-primary" type="button" disabled={reviewingId === application.id || application.status === 'approved'} onClick={() => review(application.id, 'approved')}><Check aria-hidden="true" size={17} /> {reviewingId === application.id ? 'Saving…' : application.status === 'approved' ? 'Approved' : 'Approve'}</button>
+                    <button className="button button-secondary" type="button" disabled={reviewingId === application.id || application.status === 'rejected'} onClick={() => review(application.id, 'rejected')}><X aria-hidden="true" size={17} /> {reviewingId === application.id ? 'Saving…' : application.status === 'rejected' ? 'Rejected' : 'Reject'}</button>
                   </div>
                 </div>
               </article>
