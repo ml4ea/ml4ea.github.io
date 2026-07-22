@@ -5,5 +5,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://ml4ea.github.io',
   output: 'static',
-  integrations: [react(), sitemap({ filter: (page) => !page.includes('/admin/') })],
+  integrations: [react(), sitemap({
+    filter: (page) => !page.includes('/admin/') && !page.includes('/instructor/manual/') && !page.includes('/instructor/toolkit/'),
+  })],
 });
