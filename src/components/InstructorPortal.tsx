@@ -1,4 +1,4 @@
-import { CheckCircle2, Clock3, Download, ExternalLink, GraduationCap, LockKeyhole, Send, ShieldAlert } from 'lucide-react';
+import { BookOpen, CheckCircle2, Clock3, Download, ExternalLink, GraduationCap, LockKeyhole, Send, ShieldAlert } from 'lucide-react';
 import { type SubmitEvent, useEffect, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { getSupabaseClient, isSupabaseConfigured } from '../lib/supabase';
@@ -165,6 +165,11 @@ export default function InstructorPortal() {
     return (
       <div className="instructor-approved">
         <div className="access-status access-approved"><CheckCircle2 aria-hidden="true" size={24} /><div><p className="eyebrow">Approved instructor</p><h2>Protected teaching resources</h2><p>Signed downloads expire after 60 seconds and require your approved account.</p></div></div>
+        <div className="online-manual-action">
+          <BookOpen aria-hidden="true" size={27} />
+          <div><p className="eyebrow">Online edition</p><h3>Instructor’s Manual</h3><p>Browse teaching guidance, chapter notes, assessment ideas, and course-planning resources online.</p></div>
+          <a className="button button-primary" href="/instructor/manual/">Open manual <ExternalLink aria-hidden="true" size={16} /></a>
+        </div>
         {resources.length > 0 ? (
           <div className="instructor-resource-list">
             {resources.map((resource) => (

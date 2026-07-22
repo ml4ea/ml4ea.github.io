@@ -76,6 +76,33 @@ values
 Approved instructors receive a short-lived signed URL. The bucket remains
 private, and direct public object URLs do not work.
 
+## 6. Publish the protected online manual
+
+Apply `migrations/202607220001_online_instructor_manual.sql` after the base
+instructor-access migration. It creates the protected edition and section
+tables, full-text search RPC, and RLS policies.
+
+Generate the online edition from the finalized sibling `Manual` directory:
+
+```bash
+python3 tools/build_manual_web.py \
+  --source ../Manual \
+  --output .private-build/manual.json \
+  --sql-output .private-build/manual-content.sql
+```
+
+Run `.private-build/manual-content.sql` in the Supabase SQL Editor, then upload
+the current PDF to the private `instructor-materials` bucket at:
+
+```text
+manual/ML4EA-Instructors-Manual-2026-07.pdf
+```
+
+The generated JSON, ingestion SQL, and manual PDF are private deployment
+artifacts ignored by Git. The public portal contains only the reader shell;
+section content is fetched after Supabase verifies the signed-in account as an
+approved instructor.
+
 ## Security boundaries
 
 - Public pages and Application Example notebooks do not require an account.
@@ -86,3 +113,5 @@ private, and direct public object URLs do not work.
 - Only approved instructors and portal administrators can read published
   resource metadata or download objects.
 - Signed download URLs expire after 60 seconds.
+- Manual edition rows, section HTML, search results, and the PDF are all
+  restricted by approved-instructor RLS checks.

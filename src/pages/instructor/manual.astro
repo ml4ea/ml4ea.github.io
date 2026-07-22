@@ -1,0 +1,19 @@
+---
+import InstructorManual from '../../components/InstructorManual';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Instructor’s Manual | ML4EA" description="Protected online instructor’s manual for Machine Learning for Engineering Applications." noindex={true}>
+  <section class="manual-masthead">
+    <div class="container">
+      <p class="eyebrow">Verified instructor edition</p>
+      <h1>Instructor’s Manual</h1>
+      <p>Machine Learning for Engineering Applications</p>
+    </div>
+  </section>
+  <section class="manual-reader-section">
+    <div class="container manual-container">
+      <InstructorManual client:load />
+    </div>
+  </section>
+</BaseLayout>

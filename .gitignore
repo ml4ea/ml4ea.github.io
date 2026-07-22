@@ -6,3 +6,5 @@ dist/
 !.env.example
 .DS_Store
 AE-notebooks/
+.private-build/
+ML4EA-Instructors_Manual*.pdf
