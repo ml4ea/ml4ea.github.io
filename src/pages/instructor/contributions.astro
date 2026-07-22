@@ -1,0 +1,17 @@
+---
+import CuratedTeachingContributions from '../../components/CuratedTeachingContributions';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Curated Teaching Contributions | ML4EA" description="Reviewed community-contributed teaching materials for verified ML4EA instructors." noindex={true}>
+  <section class="toolkit-masthead curated-masthead">
+    <div class="container">
+      <p class="eyebrow">Verified instructor resources</p>
+      <h1>Curated Teaching Contributions</h1>
+      <p>Reviewed teaching materials shared by the ML4EA instructor community.</p>
+    </div>
+  </section>
+  <main class="container toolkit-container curated-container">
+    <CuratedTeachingContributions client:load />
+  </main>
+</BaseLayout>

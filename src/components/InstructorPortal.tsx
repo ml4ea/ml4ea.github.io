@@ -1,4 +1,4 @@
-import { BookOpen, CheckCircle2, Clock3, Download, ExternalLink, GraduationCap, Library, LockKeyhole, Send, ShieldAlert } from 'lucide-react';
+import { BookOpen, CheckCircle2, Clock3, Download, ExternalLink, GraduationCap, Library, LockKeyhole, MessageSquareText, Send, ShieldAlert, UsersRound } from 'lucide-react';
 import { type SubmitEvent, useEffect, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { getSupabaseClient, isSupabaseConfigured } from '../lib/supabase';
@@ -83,6 +83,7 @@ export default function InstructorPortal() {
         .from('instructor_resources')
         .select('id,title,description,category,storage_path')
         .eq('published', true)
+        .neq('category', 'Community contribution')
         .order('sort_order');
       if (resourceError) setError(resourceError.message);
       setResources((resourceData ?? []) as InstructorResource[]);
@@ -174,6 +175,16 @@ export default function InstructorPortal() {
           <Library aria-hidden="true" size={27} />
           <div><p className="eyebrow">Planning and assessment</p><h3>Teaching Toolkit</h3><p>Build a course plan, select AEs, and download editable syllabus, assignment, rubric, policy, and setup templates.</p></div>
           <a className="button button-primary" href="/instructor/toolkit/">Open toolkit <ExternalLink aria-hidden="true" size={16} /></a>
+        </div>
+        <div className="instructor-community-actions">
+          <a href="/community/?category=teaching-practice">
+            <MessageSquareText aria-hidden="true" size={26} />
+            <div><p className="eyebrow">Closed instructor space</p><h3>Discussion Forum</h3><p>Exchange teaching experience, course structures, assessment approaches, and classroom questions with verified instructors.</p><span>Open forum <ExternalLink aria-hidden="true" size={15} /></span></div>
+          </a>
+          <a href="/instructor/contributions/">
+            <UsersRound aria-hidden="true" size={26} />
+            <div><p className="eyebrow">Reviewed collection</p><h3>Curated Teaching Contributions</h3><p>Browse community-contributed syllabi, activities, rubrics, assignments, and teaching notes after review.</p><span>Browse collection <ExternalLink aria-hidden="true" size={15} /></span></div>
+          </a>
         </div>
         {resources.length > 0 ? (
           <div className="instructor-resource-list">

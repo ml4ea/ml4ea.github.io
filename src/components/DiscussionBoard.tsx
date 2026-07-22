@@ -93,7 +93,10 @@ export default function DiscussionBoard() {
       .select('id,slug,name,description,visibility,posting_enabled,sort_order')
       .order('sort_order');
     if (categoryError) { setError(categoryError.message); return; }
-    setCategories((data ?? []) as Category[]);
+    const availableCategories = (data ?? []) as Category[];
+    setCategories(availableCategories);
+    const requestedCategory = new URLSearchParams(window.location.search).get('category');
+    setSelectedCategory(requestedCategory && availableCategories.some((category) => category.slug === requestedCategory) ? requestedCategory : 'all');
   };
 
   const loadThreads = async (categorySlug = selectedCategory) => {
@@ -150,7 +153,11 @@ export default function DiscussionBoard() {
     };
     supabase.auth.getSession().then(({ data }) => void initialize(data.session));
     const { data: listener } = supabase.auth.onAuthStateChange((_event, nextSession) => window.setTimeout(() => void initialize(nextSession), 0));
-    const onPopState = () => void loadThread(new URLSearchParams(window.location.search).get('thread'));
+    const onPopState = () => {
+      const parameters = new URLSearchParams(window.location.search);
+      setSelectedCategory(parameters.get('category') ?? 'all');
+      void loadThread(parameters.get('thread'));
+    };
     window.addEventListener('popstate', onPopState);
     return () => { listener.subscription.unsubscribe(); window.removeEventListener('popstate', onPopState); };
   }, []);
@@ -168,6 +175,8 @@ export default function DiscussionBoard() {
   const chooseCategory = (slug: string) => {
     const url = new URL(window.location.href);
     url.searchParams.delete('thread');
+    if (slug === 'all') url.searchParams.delete('category');
+    else url.searchParams.set('category', slug);
     window.history.pushState({}, '', url);
     setSelectedThread(null);
     setReplies([]);

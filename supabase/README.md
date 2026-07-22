@@ -76,6 +76,10 @@ values
 Approved instructors receive a short-lived signed URL. The bucket remains
 private, and direct public object URLs do not work.
 
+For a reviewed community teaching resource, use the category
+`Community contribution`. Published records in that category appear in the
+protected `/instructor/contributions/` collection.
+
 ## 6. Publish the protected online manual
 
 Apply `migrations/202607220001_online_instructor_manual.sql` after the base
