@@ -1,4 +1,4 @@
-import { BookOpen, CheckCircle2, Clock3, Download, ExternalLink, GraduationCap, LockKeyhole, Send, ShieldAlert } from 'lucide-react';
+import { BookOpen, CheckCircle2, Clock3, Download, ExternalLink, GraduationCap, Library, LockKeyhole, Send, ShieldAlert } from 'lucide-react';
 import { type SubmitEvent, useEffect, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { getSupabaseClient, isSupabaseConfigured } from '../lib/supabase';
@@ -169,6 +169,11 @@ export default function InstructorPortal() {
           <BookOpen aria-hidden="true" size={27} />
           <div><p className="eyebrow">Online edition</p><h3>Instructor’s Manual</h3><p>Browse teaching guidance, chapter notes, assessment ideas, and course-planning resources online.</p></div>
           <a className="button button-primary" href="/instructor/manual/">Open manual <ExternalLink aria-hidden="true" size={16} /></a>
+        </div>
+        <div className="online-manual-action toolkit-workspace-action">
+          <Library aria-hidden="true" size={27} />
+          <div><p className="eyebrow">Planning and assessment</p><h3>Teaching Toolkit</h3><p>Build a course plan, select AEs, and download editable syllabus, assignment, rubric, policy, and setup templates.</p></div>
+          <a className="button button-primary" href="/instructor/toolkit/">Open toolkit <ExternalLink aria-hidden="true" size={16} /></a>
         </div>
         {resources.length > 0 ? (
           <div className="instructor-resource-list">

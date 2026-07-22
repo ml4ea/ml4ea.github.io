@@ -1,0 +1,56 @@
+name: Propose a teaching resource
+description: Suggest a syllabus, assignment, activity, rubric, or other instructor contribution.
+title: "[Teaching resource]: "
+labels: ["teaching resource", "review needed"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for contributing to the ML4EA teaching community. Do not include student records, answer keys in active use, copyrighted materials you cannot share, or confidential institutional information.
+  - type: dropdown
+    id: resource_type
+    attributes:
+      label: Resource type
+      options:
+        - Syllabus or course plan
+        - Assignment or lab
+        - Rubric or assessment method
+        - Classroom activity or discussion prompt
+        - Application Example extension
+        - Technical setup guidance
+        - Other teaching insight
+    validations:
+      required: true
+  - type: input
+    id: book_connection
+    attributes:
+      label: Book chapter or Application Example
+      placeholder: "Chapter 7, AE 7.3.5, or course-wide"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description and learning value
+      description: Explain the resource, intended students, teaching context, and what it helps students learn.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Classroom experience or evidence
+      description: Describe how it was used, what worked, and what an adopting instructor should know.
+  - type: textarea
+    id: rights
+    attributes:
+      label: Rights, attribution, and data
+      description: Identify the creator, license or sharing permission, sources, and any data restrictions.
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Contribution confirmation
+      options:
+        - label: I have the right to share this material and have removed student, confidential, and restricted information.
+          required: true

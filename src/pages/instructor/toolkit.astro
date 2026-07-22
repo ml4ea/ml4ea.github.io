@@ -1,0 +1,18 @@
+---
+import InstructorToolkit from '../../components/InstructorToolkit';
+import inventory from '../../data/application-examples.json';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Teaching Toolkit | ML4EA" description="Protected course-planning, Application Example, assessment, and setup resources for verified ML4EA instructors." noindex={true}>
+  <section class="toolkit-masthead">
+    <div class="container">
+      <p class="eyebrow">Verified instructor resources</p>
+      <h1>Teaching Toolkit</h1>
+      <p>Plan the course, select Application Examples, adapt assessments, and prepare the computing environment.</p>
+    </div>
+  </section>
+  <main class="container toolkit-container">
+    <InstructorToolkit examples={inventory.notebooks} client:load />
+  </main>
+</BaseLayout>

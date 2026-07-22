@@ -1,5 +1,5 @@
 ---
-import { BookOpenCheck, ExternalLink, FileCode2, Lightbulb } from 'lucide-react';
+import { BookOpenCheck, ExternalLink, FileCode2, Lightbulb, UsersRound } from 'lucide-react';
 import PageHero from '../components/PageHero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
@@ -32,6 +32,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p>Identify the chapter, section, page or portal location; explain the issue; and suggest a correction when possible.</p>
         <a class="button button-primary" href="https://github.com/ml4ea/ml4ea.github.io/issues/new?template=book-correction.yml" target="_blank" rel="noreferrer">
           Submit a correction <ExternalLink aria-hidden="true" size={17} />
+        </a>
+      </article>
+
+      <article>
+        <UsersRound aria-hidden="true" size={25} />
+        <p class="eyebrow">Teaching community</p>
+        <h2>Share a teaching resource</h2>
+        <p>Propose a syllabus variation, assignment, rubric, classroom activity, AE extension, or practical teaching insight.</p>
+        <a class="button button-primary" href="https://github.com/ml4ea/ml4ea.github.io/issues/new?template=teaching-resource.yml" target="_blank" rel="noreferrer">
+          Propose a resource <ExternalLink aria-hidden="true" size={17} />
         </a>
       </article>
 

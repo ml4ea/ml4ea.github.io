@@ -1,5 +1,5 @@
 ---
-import { BookMarked, CheckCircle2, FileCheck2, GraduationCap, LockKeyhole } from 'lucide-react';
+import { BookMarked, CalendarRange, CheckCircle2, ClipboardCheck, FileCheck2, FlaskConical, GraduationCap, Library, LockKeyhole, Settings2, UsersRound } from 'lucide-react';
 import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -41,13 +41,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <section class="content-section">
     <div class="container">
-      <SectionHeading eyebrow="Verified resources" title="A protected workspace for instructors" description="Instructor materials are delivered through reviewed accounts rather than the public repository." />
+      <SectionHeading eyebrow="Verified resources" title="From guidance to a working course." description="Approved instructors receive an online manual plus editable planning, activity, assessment, and setup resources." />
       <div class="protected-resource-list">
-        <div><BookMarked aria-hidden="true" size={22} /><span><strong>Instructor’s manual</strong>Course design, general advice, and chapter-by-chapter notes.</span><LockKeyhole aria-label="Protected" size={18} /></div>
-        <div><FileCheck2 aria-hidden="true" size={22} /><span><strong>Assessment guidance</strong>Assignments, projects, rubrics, and AI-aware assessment practices.</span><LockKeyhole aria-label="Protected" size={18} /></div>
-        <div><GraduationCap aria-hidden="true" size={22} /><span><strong>Teaching contributions</strong>A future collection of reviewed instructor insights and materials.</span><LockKeyhole aria-label="Protected" size={18} /></div>
+        <div><BookMarked aria-hidden="true" size={22} /><span><strong>Online instructor’s manual</strong>Searchable course design, pedagogical advice, chapter notes, assessment guidance, and practical resources.</span><LockKeyhole aria-label="Protected" size={18} /></div>
+        <div><CalendarRange aria-hidden="true" size={22} /><span><strong>Course-planning kit</strong>Editable semester, quarter, advanced-topic, and project-based syllabus templates.</span><LockKeyhole aria-label="Protected" size={18} /></div>
+        <div><FlaskConical aria-hidden="true" size={22} /><span><strong>AE teaching planner</strong>Filter all 56 notebooks and plan minimal, standard, or extended classroom use.</span><LockKeyhole aria-label="Protected" size={18} /></div>
+        <div><ClipboardCheck aria-hidden="true" size={22} /><span><strong>Assessment toolkit</strong>Assignment and project templates, editable rubrics, and AI-use policy language.</span><LockKeyhole aria-label="Protected" size={18} /></div>
+        <div><Library aria-hidden="true" size={22} /><span><strong>Chapter and lecture support</strong>Direct access to teaching emphasis, common challenges, activities, and AE suggestions for every chapter.</span><LockKeyhole aria-label="Protected" size={18} /></div>
+        <div><Settings2 aria-hidden="true" size={22} /><span><strong>Course-startup resources</strong>Computing guidance, reproducibility expectations, and an editable pre-term checklist.</span><LockKeyhole aria-label="Protected" size={18} /></div>
+        <div><UsersRound aria-hidden="true" size={22} /><span><strong>Instructor contributions</strong>A reviewed route for sharing course plans, assignments, rubrics, activities, and teaching insights.</span><LockKeyhole aria-label="Protected" size={18} /></div>
       </div>
-      <div class="protected-resource-action"><a class="button button-primary" href="/instructor"><GraduationCap aria-hidden="true" size={18} /> Open instructor workspace</a></div>
+      <div class="protected-resource-action">
+        <a class="button button-primary" href="/instructor"><GraduationCap aria-hidden="true" size={18} /> Open instructor workspace</a>
+        <a class="button button-secondary" href="/application-examples"><FileCheck2 aria-hidden="true" size={18} /> Browse public AEs</a>
+      </div>
     </div>
   </section>
 
