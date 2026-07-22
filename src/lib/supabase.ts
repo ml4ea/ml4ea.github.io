@@ -14,7 +14,7 @@ export function getSupabaseClient() {
     client = createClient(supabaseUrl, supabasePublishableKey, {
       auth: {
         detectSessionInUrl: true,
-        flowType: 'pkce',
+        flowType: 'implicit',
         persistSession: true,
       },
     });
