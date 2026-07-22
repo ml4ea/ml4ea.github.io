@@ -117,20 +117,29 @@ export default function InstructorPortal() {
     setSubmitting(true);
     setError('');
     setNotice('');
-    const { error: submitError } = await supabase.rpc('submit_instructor_application', {
+    const { data: submittedApplication, error: submitError } = await supabase.rpc('submit_instructor_application', {
       p_institution: form.institution.trim(),
       p_department: form.department.trim(),
       p_position_title: form.positionTitle,
       p_faculty_url: form.facultyUrl.trim(),
       p_course_context: form.courseContext.trim() || null,
     });
-    setSubmitting(false);
-
     if (submitError) {
+      setSubmitting(false);
       setError(submitError.message);
       return;
     }
-    setNotice('Your application was submitted for review.');
+    const applicationId = (submittedApplication as Application | null)?.id;
+    const { error: notificationError } = applicationId ? await supabase.functions.invoke('notify-instructor-decision', {
+      body: { applicationId, notificationType: 'submission' },
+    }) : { error: new Error('The submitted application ID was not returned.') };
+    setSubmitting(false);
+    if (notificationError) {
+      setNotice('Your application was submitted for review.');
+      setError('The application was saved, but the administrator notification email could not be sent.');
+    } else {
+      setNotice('Your application was submitted and the administrator was notified.');
+    }
     await loadWorkspace(session);
   };
 

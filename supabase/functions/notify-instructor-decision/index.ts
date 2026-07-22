@@ -39,15 +39,65 @@ Deno.serve(async (request) => {
   const { data: { user }, error: userError } = await supabase.auth.getUser();
   if (userError || !user) return jsonResponse({ error: 'Your session is not valid.' }, 401);
 
+  const { applicationId, notificationType = 'decision' } = await request.json() as {
+    applicationId?: string;
+    notificationType?: 'submission' | 'decision';
+  };
+  if (!applicationId) return jsonResponse({ error: 'Application ID is required.' }, 400);
+
+  const transporter = mailer.transporter({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: { type: 'password', user: smtpUser, pass: smtpPass },
+  });
+
+  if (notificationType === 'submission') {
+    const { data: application, error: applicationError } = await supabase
+      .from('instructor_applications')
+      .select('id,user_id,email,institution,department,position_title,faculty_url,course_context,status')
+      .eq('id', applicationId)
+      .eq('user_id', user.id)
+      .maybeSingle();
+    if (applicationError || !application) return jsonResponse({ error: 'Instructor application not found.' }, 404);
+    if (application.status !== 'pending') return jsonResponse({ error: 'Only pending applications generate submission notifications.' }, 409);
+
+    const adminEmail = Deno.env.get('ML4EA_ADMIN_EMAIL') ?? 'ml4ea.book@gmail.com';
+    const reviewUrl = 'https://ml4ea.github.io/admin/instructors/';
+    const text = [
+      'A new ML4EA instructor access request is ready for review.',
+      `Applicant: ${application.email}`,
+      `Institution: ${application.institution}`,
+      `Department: ${application.department}`,
+      `Position: ${application.position_title}`,
+      `Institutional profile: ${application.faculty_url}`,
+      application.course_context ? `Course context: ${application.course_context}` : null,
+      `Review the request: ${reviewUrl}`,
+    ].filter((line) => line !== null).join('\n\n');
+
+    try {
+      await transporter.send({
+        from: `"ML4EA Book" <${smtpUser}>`,
+        to: adminEmail,
+        subject: `New ML4EA instructor access request: ${application.email}`,
+        text,
+        html: `<p>A new ML4EA instructor access request is ready for review.</p><ul><li><strong>Applicant:</strong> ${escapeHtml(application.email)}</li><li><strong>Institution:</strong> ${escapeHtml(application.institution)}</li><li><strong>Department:</strong> ${escapeHtml(application.department)}</li><li><strong>Position:</strong> ${escapeHtml(application.position_title)}</li><li><strong>Institutional profile:</strong> <a href="${escapeHtml(application.faculty_url)}">${escapeHtml(application.faculty_url)}</a></li>${application.course_context ? `<li><strong>Course context:</strong> ${escapeHtml(application.course_context)}</li>` : ''}</ul><p><a href="${reviewUrl}">Review the instructor request</a>.</p>`,
+      });
+      return jsonResponse({ delivered: true });
+    } catch (error) {
+      console.error('Instructor submission email failed:', error);
+      return jsonResponse({ error: 'The application was saved, but its administrator notification could not be sent.' }, 502);
+    }
+  }
+
+  if (notificationType !== 'decision') return jsonResponse({ error: 'Unsupported notification type.' }, 400);
+
   const { data: admin } = await supabase
     .from('portal_admins')
     .select('user_id')
     .eq('user_id', user.id)
     .maybeSingle();
   if (!admin) return jsonResponse({ error: 'Portal administrator access is required.' }, 403);
-
-  const { applicationId } = await request.json() as { applicationId?: string };
-  if (!applicationId) return jsonResponse({ error: 'Application ID is required.' }, 400);
 
   const { data: application, error: applicationError } = await supabase
     .from('instructor_applications')
@@ -70,13 +120,6 @@ Deno.serve(async (request) => {
     '',
     'ML4EA Book',
   ].filter((line) => line !== null).join('\n\n');
-
-  const transporter = mailer.transporter({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
-    auth: { type: 'password', user: smtpUser, pass: smtpPass },
-  });
 
   try {
     await transporter.send({

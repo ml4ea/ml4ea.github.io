@@ -41,19 +41,20 @@ variables > Actions > Variables:
 Never add a Supabase secret key or service-role key to the portal, GitHub Pages,
 client JavaScript, or a `PUBLIC_` environment variable.
 
-## 4. Assign the first portal administrator
+## 4. Assign the portal administrator
 
-Sign in once through `/account`, then run this statement in the SQL Editor with
-your verified account email:
-
-```sql
-insert into public.portal_admins (user_id)
-select id from auth.users where lower(email) = lower('YOUR_EMAIL_HERE')
-on conflict (user_id) do nothing;
-```
+Apply `migrations/202607220003_single_portal_administrator.sql` after the base
+instructor-access migration. It removes any other administrator assignments,
+assigns `yjin@usc.edu`, limits the administrator table to one row, and makes the
+administrator check require that exact verified account email.
 
 The review workspace is `/admin/instructors`. Administrator membership cannot
 be assigned through the public client.
+
+Deploy the `notify-instructor-decision` Edge Function with the existing SMTP
+secrets. Set `ML4EA_ADMIN_EMAIL` to `ml4ea.book@gmail.com`; the function also
+uses that address as its built-in fallback. New submissions notify the
+administrator, while approval and rejection decisions notify the applicant.
 
 ## 5. Publish a protected resource
 
@@ -125,6 +126,8 @@ stored as plain text; HTML from participants is never rendered.
 - Institutional email is necessary but not sufficient; an administrator must
   verify the public institutional profile and teaching role.
 - Applicants cannot set or change approval fields directly.
+- Only the sole `yjin@usc.edu` portal administrator can approve or reject an
+  instructor request.
 - Only approved instructors and portal administrators can read published
   resource metadata or download objects.
 - Signed download URLs expire after 60 seconds.
