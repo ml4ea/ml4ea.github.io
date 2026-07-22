@@ -1,4 +1,4 @@
-import { BellRing, CheckCircle2, ExternalLink, GraduationCap, LockKeyhole, Megaphone, MessageSquareWarning, ShieldCheck } from 'lucide-react';
+import { BellRing, CheckCircle2, ExternalLink, GraduationCap, KeyRound, LockKeyhole, Megaphone, MessageSquareWarning, ShieldCheck } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { getSupabaseClient, isSupabaseConfigured } from '../lib/supabase';
@@ -13,6 +13,7 @@ const emptyCounts: TaskCounts = { instructorRequests: 0, discussionReports: 0 };
 export default function AdminHub() {
   const [session, setSession] = useState<Session | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isOwner, setIsOwner] = useState(false);
   const [counts, setCounts] = useState(emptyCounts);
   const [loading, setLoading] = useState(isSupabaseConfigured);
   const [error, setError] = useState('');
@@ -23,17 +24,22 @@ export default function AdminHub() {
     const loadDashboard = async (activeSession: Session | null) => {
       setSession(activeSession);
       setCounts(emptyCounts);
-      if (!activeSession) { setIsAdmin(false); setLoading(false); return; }
+      if (!activeSession) { setIsAdmin(false); setIsOwner(false); setLoading(false); return; }
       setLoading(true);
       setError('');
-      const { data: admin, error: adminError } = await supabase.rpc('is_portal_admin');
+      const [{ data: admin, error: adminError }, { data: owner }] = await Promise.all([
+        supabase.rpc('is_portal_admin'),
+        supabase.rpc('is_portal_owner'),
+      ]);
       if (adminError || !admin) {
         setIsAdmin(false);
+        setIsOwner(false);
         setError(adminError?.message ?? 'Administrator access is required.');
         setLoading(false);
         return;
       }
       setIsAdmin(true);
+      setIsOwner(Boolean(owner));
       const [applications, reports] = await Promise.all([
         supabase.from('instructor_applications').select('id', { count: 'exact', head: true }).eq('status', 'pending'),
         supabase.from('discussion_reports').select('id', { count: 'exact', head: true }).eq('status', 'open'),
@@ -49,8 +55,8 @@ export default function AdminHub() {
 
   if (!isSupabaseConfigured) return <div className="account-state"><LockKeyhole aria-hidden="true" size={28} /><div><h2>Administration is being connected.</h2><p>The dashboard will appear after the account service is configured.</p></div></div>;
   if (loading) return <p className="account-loading" aria-live="polite">Checking administrator tasks...</p>;
-  if (!session) return <div className="account-state"><ShieldCheck aria-hidden="true" size={28} /><div><h2>Administrator sign-in required.</h2><p>Sign in with the sole portal administrator account to continue.</p><a className="button button-primary" href="/account?next=/admin/">Sign in</a></div></div>;
-  if (!isAdmin) return <div className="account-state account-unconfigured"><LockKeyhole aria-hidden="true" size={28} /><div><h2>This account is not the portal administrator.</h2><p>ML4EA administration is restricted to the verified administrator account.</p>{error && <p className="form-message form-error" role="alert">{error}</p>}</div></div>;
+  if (!session) return <div className="account-state"><ShieldCheck aria-hidden="true" size={28} /><div><h2>Administrator sign-in required.</h2><p>Sign in with the owner or delegated administrator account to continue.</p><a className="button button-primary" href="/account?next=/admin/">Sign in</a></div></div>;
+  if (!isAdmin) return <div className="account-state account-unconfigured"><LockKeyhole aria-hidden="true" size={28} /><div><h2>This account is not a portal administrator.</h2><p>ML4EA administration is restricted to verified owner and delegated administrator accounts.</p>{error && <p className="form-message form-error" role="alert">{error}</p>}</div></div>;
 
   const totalPending = counts.instructorRequests + counts.discussionReports;
   return <div className="admin-hub">
@@ -71,6 +77,7 @@ export default function AdminHub() {
         <a href="/admin/instructors/"><GraduationCap aria-hidden="true" size={19} /><span><strong>Instructor Reviews</strong><small>Access decisions and decision emails</small></span><ExternalLink aria-hidden="true" size={15} /></a>
         <a href="/admin/discussions/"><MessageSquareWarning aria-hidden="true" size={19} /><span><strong>Discussion Moderation</strong><small>Reports and content review</small></span><ExternalLink aria-hidden="true" size={15} /></a>
         <a href="/community/?category=announcements"><Megaphone aria-hidden="true" size={19} /><span><strong>Portal Announcements</strong><small>Publish community notices as administrator</small></span><ExternalLink aria-hidden="true" size={15} /></a>
+        {isOwner && <a href="/admin/delegation/"><KeyRound aria-hidden="true" size={19} /><span><strong>Administrator Delegation</strong><small>Appoint or revoke one alternate administrator</small></span><ExternalLink aria-hidden="true" size={15} /></a>}
       </nav>
     </section>
 

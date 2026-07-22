@@ -3761,6 +3761,71 @@ p {
 .admin-empty p { margin: 0; }
 .admin-empty p { margin-top: 5px; color: var(--ink-soft); }
 
+.admin-delegation {
+  display: grid;
+  gap: 30px;
+}
+
+.admin-delegate-current {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  padding: 26px 0;
+  border-block: 1px solid var(--ink);
+}
+
+.admin-delegate-current > svg { color: var(--green); }
+.admin-delegate-current h2,
+.admin-delegate-current p { margin: 0; }
+.admin-delegate-current h2 { margin-top: 5px; }
+.admin-delegate-current p:last-child { margin-top: 5px; color: var(--ink-soft); }
+
+.admin-delegate-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.65fr) auto;
+  gap: 28px;
+  align-items: end;
+  padding: 28px;
+  border-left: 5px solid var(--orange);
+  background: var(--paper-soft);
+}
+
+.admin-delegate-form > div {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 15px;
+}
+
+.admin-delegate-form > div > svg { margin-top: 3px; color: var(--orange); }
+.admin-delegate-form h2,
+.admin-delegate-form p { margin: 0; }
+.admin-delegate-form h2 { margin-top: 4px; }
+.admin-delegate-form p:last-child { margin-top: 6px; color: var(--ink-soft); }
+.admin-delegate-form label { display: grid; gap: 7px; font-weight: 650; }
+
+.admin-delegate-form input {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 12px;
+  border: 1px solid var(--line-strong);
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+}
+
+.admin-delegate-boundary {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 13px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft);
+}
+
+.admin-delegate-boundary svg { color: var(--cyan); }
+.admin-delegate-boundary p { margin: 0; }
+
 .privacy-layout {
   display: grid;
   grid-template-columns: minmax(170px, 0.35fr) minmax(0, 1fr);
@@ -4592,6 +4657,15 @@ p {
     gap: 24px;
   }
 
+  .admin-delegate-form {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .admin-delegate-form .button {
+    justify-self: start;
+  }
+
   .discussion-admin article {
     grid-template-columns: 1fr;
     gap: 22px;
@@ -4853,6 +4927,16 @@ p {
 
   .admin-task-grid > a + a {
     border-top: 1px solid var(--line);
+  }
+
+  .admin-delegate-current {
+    grid-template-columns: 30px minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .admin-delegate-current .button {
+    grid-column: 2;
+    justify-self: start;
   }
 
   .manual-container {

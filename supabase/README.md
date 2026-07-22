@@ -53,6 +53,13 @@ requests and open discussion reports, then links to the protected review
 workspaces. Administrator membership cannot be assigned through the public
 client.
 
+Apply `migrations/202607220004_delegated_portal_administrator.sql` to allow the
+permanent owner to appoint one alternate administrator from
+`/admin/delegation/`. The delegate must sign in and verify the account email
+before appointment. Delegates can complete operational reviews and moderation,
+but only `yjin@usc.edu` can appoint, replace, or revoke a delegate. Appointment
+and revocation events are recorded in the protected administrator audit log.
+
 Deploy the `notify-instructor-decision` Edge Function with the existing SMTP
 secrets. Set `ML4EA_ADMIN_EMAIL` to `ml4ea.book@gmail.com`; the function also
 uses that address as its built-in fallback. New submissions notify the
@@ -128,8 +135,8 @@ stored as plain text; HTML from participants is never rendered.
 - Institutional email is necessary but not sufficient; an administrator must
   verify the public institutional profile and teaching role.
 - Applicants cannot set or change approval fields directly.
-- Only the sole `yjin@usc.edu` portal administrator can approve or reject an
-  instructor request.
+- Only `yjin@usc.edu` or the single owner-appointed delegate can approve or
+  reject an instructor request. Only `yjin@usc.edu` can manage delegation.
 - Only approved instructors and portal administrators can read published
   resource metadata or download objects.
 - Signed download URLs expire after 60 seconds.

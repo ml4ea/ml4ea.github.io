@@ -35,7 +35,7 @@ export default function InstructorAdmin() {
       return;
     }
 
-    const { data: adminRecord } = await supabase.from('portal_admins').select('user_id').eq('user_id', activeSession.user.id).maybeSingle();
+    const { data: adminRecord } = await supabase.rpc('is_portal_admin');
     if (!adminRecord) {
       setIsAdmin(false);
       setLoading(false);

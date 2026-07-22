@@ -1,0 +1,15 @@
+---
+import AdminDelegation from '../../components/AdminDelegation';
+import PageHero from '../../components/PageHero.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Administrator Delegation | ML4EA" description="Owner-only ML4EA delegated administrator management." noindex>
+  <PageHero eyebrow="Owner administration" title="Administrator delegation." description="Appoint or revoke one alternate administrator while retaining permanent owner authority." accent="orange" />
+  <section class="content-section">
+    <div class="container account-container">
+      <AdminDelegation client:load />
+    </div>
+  </section>
+</BaseLayout>
+

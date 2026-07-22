@@ -92,11 +92,7 @@ Deno.serve(async (request) => {
 
   if (notificationType !== 'decision') return jsonResponse({ error: 'Unsupported notification type.' }, 400);
 
-  const { data: admin } = await supabase
-    .from('portal_admins')
-    .select('user_id')
-    .eq('user_id', user.id)
-    .maybeSingle();
+  const { data: admin } = await supabase.rpc('is_portal_admin');
   if (!admin) return jsonResponse({ error: 'Portal administrator access is required.' }, 403);
 
   const { data: application, error: applicationError } = await supabase
