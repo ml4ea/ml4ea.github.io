@@ -249,7 +249,7 @@ export default function InstructorToolkit({ examples }: Props) {
         </div>
         <div className="toolkit-mode-note"><strong>{modeGuidance[mode].label}</strong><span>{modeGuidance[mode].time}</span><p>{modeGuidance[mode].activity}</p></div>
         <div className="toolkit-table-wrap">
-          <table className="toolkit-ae-table"><thead><tr><th>AE</th><th>Engineering application</th><th>Method</th><th>Level</th><th><span className="sr-only">Notebook</span></th></tr></thead><tbody>{filteredExamples.map((example) => <tr key={example.filename}><td><strong>{example.ae_number}</strong><small>Ch. {example.chapter}</small></td><td>{example.title}</td><td>{example.method}</td><td>{suggestedDifficulty(example)}</td><td><a className="icon-link" href={`https://github.com/ml4ea/ae-notebooks/blob/main/${example.filename}`} target="_blank" rel="noreferrer" aria-label={`Open ${example.title} notebook`}><ExternalLink aria-hidden="true" size={17} /></a></td></tr>)}</tbody></table>
+          <table className="toolkit-ae-table"><thead><tr><th>AE</th><th>Engineering application</th><th>Method</th><th>Level</th><th>Status</th></tr></thead><tbody>{filteredExamples.map((example) => <tr key={example.filename}><td><strong>{example.ae_number}</strong><small>Ch. {example.chapter}</small></td><td>{example.title}</td><td>{example.method}</td><td>{suggestedDifficulty(example)}</td><td><span className="toolkit-review-status"><LockKeyhole aria-hidden="true" size={15} /> Review</span></td></tr>)}</tbody></table>
         </div>
         {filteredExamples.length === 0 && <p className="resource-empty">No Application Examples match these filters.</p>}
       </section>

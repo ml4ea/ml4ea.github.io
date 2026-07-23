@@ -1,17 +1,17 @@
 ---
-import { ArrowRight, BookOpenCheck, ExternalLink, FileCode2, Lightbulb, MessageSquareText, UsersRound } from 'lucide-react';
+import { ArrowRight, BookOpenCheck, ExternalLink, FileCode2, Lightbulb, LockKeyhole, MessageSquareText, UsersRound } from 'lucide-react';
 import PageHero from '../components/PageHero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
   title="Contribute | ML4EA"
-  description="Report corrections, improve Application Example notebooks, and propose engineering insights for the ML4EA companion portal."
+  description="Report corrections and propose engineering or teaching insights for the ML4EA companion portal."
 >
   <PageHero
     eyebrow="Contribute"
     title="Help make ML4EA more useful."
-    description="Report a correction, improve a notebook, or propose an engineering example through a public, reviewable process."
+    description="Report a correction or propose a teaching resource through a reviewable process. Notebook contributions are paused during prelaunch."
     accent="green"
   />
 
@@ -21,7 +21,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p class="eyebrow">Choose a route</p>
         <h2>Send each contribution to the right place.</h2>
       </div>
-      <p>Contributions propose a correction, code change, or reusable resource for review. GitHub keeps that process attributable and reviewable; a free GitHub account is required.</p>
+      <p>Book corrections and teaching-resource proposals use GitHub so the review history remains attributable. Application Example code submissions will open after publisher review.</p>
     </div>
 
     <div class="container contribution-routes">
@@ -50,9 +50,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p class="eyebrow">Application Examples</p>
         <h2>Improve a notebook</h2>
         <p>Report reproducible failures, incorrect results, broken data links, unclear explanations, or metadata problems.</p>
-        <a class="button button-primary" href="https://github.com/ml4ea/ae-notebooks/issues/new?template=notebook-problem.yml" target="_blank" rel="noreferrer">
-          Report a notebook problem <ExternalLink aria-hidden="true" size={17} />
-        </a>
+        <span class="route-status"><LockKeyhole aria-hidden="true" size={17} /> Intake opens after publisher review</span>
       </article>
 
       <article>
@@ -60,9 +58,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p class="eyebrow">New material</p>
         <h2>Propose an example or extension</h2>
         <p>Describe the engineering problem, learning value, data rights, method, and relationship to the book before developing a full contribution.</p>
-        <a class="button button-primary" href="https://github.com/ml4ea/ae-notebooks/issues/new?template=contribution-proposal.yml" target="_blank" rel="noreferrer">
-          Propose a contribution <ExternalLink aria-hidden="true" size={17} />
-        </a>
+        <span class="route-status"><LockKeyhole aria-hidden="true" size={17} /> Intake opens after publisher review</span>
       </article>
     </div>
   </section>
@@ -93,12 +89,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="action-band">
     <div class="container action-band-inner">
       <div>
-        <p class="eyebrow">Contribution guide</p>
-        <h2>Planning a code or notebook change?</h2>
-        <p>Review the repository guidelines before opening a pull request. Contributions must be yours to provide and will be reviewed before inclusion.</p>
+        <p class="eyebrow">Application Examples</p>
+        <h2>Notebook distribution is under review.</h2>
+        <p>The public catalog remains available for reference, while repository access and notebook contribution routes are held during prelaunch.</p>
       </div>
-      <a class="button button-secondary" href="https://github.com/ml4ea/ae-notebooks/blob/main/CONTRIBUTING.md" target="_blank" rel="noreferrer">
-        Read the guide <ExternalLink aria-hidden="true" size={17} />
+      <a class="button button-secondary" href="/application-examples">
+        Browse the AE catalog <ArrowRight aria-hidden="true" size={17} />
       </a>
     </div>
   </section>

@@ -1,5 +1,5 @@
 ---
-import { Archive, BookOpen, Braces, Code2, ExternalLink, GitFork, Play, Scale } from 'lucide-react';
+import { BookOpen, Braces, CheckCircle2, Code2, LockKeyhole } from 'lucide-react';
 import ApplicationExampleExplorer from '../components/ApplicationExampleExplorer';
 import inventory from '../data/application-examples.json';
 import PageHero from '../components/PageHero.astro';
@@ -12,8 +12,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 >
   <PageHero
     eyebrow="Application Examples"
-    title="Engineering problems, worked in Python."
-    description="Explore executable companion notebooks that connect machine learning methods to engineering data, models, evaluation, and decisions."
+    title="Engineering problems, mapped to Python."
+    description="Preview the catalog of companion notebooks connecting machine learning methods to engineering data, models, evaluation, and decisions."
     accent="green"
   />
 
@@ -21,8 +21,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="container ae-summary-grid">
       <div><BookOpen aria-hidden="true" size={21} /><span><strong>{inventory.count}</strong> notebooks</span></div>
       <div><Braces aria-hidden="true" size={21} /><span><strong>Chapters 6–14</strong> methods and applications</span></div>
-      <div><Code2 aria-hidden="true" size={21} /><span><strong>GitHub + Colab</strong> access</span></div>
-      <div><Scale aria-hidden="true" size={21} /><span><strong>MIT</strong> licensed</span></div>
+      <div><Code2 aria-hidden="true" size={21} /><span><strong>Prelaunch</strong> distribution review</span></div>
+      <div><CheckCircle2 aria-hidden="true" size={21} /><span><strong>Validated</strong> in Google Colab</span></div>
     </div>
   </section>
 
@@ -30,18 +30,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="container ae-start-grid">
       <div>
         <p class="eyebrow">Start here</p>
-        <h2>Run one example or take the full collection.</h2>
-        <p>Open any notebook in Google Colab for the quickest start. To work locally, download or clone the repository and review each notebook's setup cell and data-source notes before running it.</p>
+        <h2>Explore the collection before release.</h2>
+        <p>The searchable catalog is available during prelaunch review. Notebook files and executable access are being held while distribution terms are confirmed with the publisher.</p>
         <div class="button-row">
-          <a class="button button-primary" href="#notebooks"><Play aria-hidden="true" size={17} /> Browse notebooks</a>
-          <a class="button button-secondary" href="https://github.com/ml4ea/ae-notebooks" target="_blank" rel="noreferrer"><GitFork aria-hidden="true" size={17} /> View repository</a>
-          <a class="button button-secondary" href="https://github.com/ml4ea/ae-notebooks/archive/refs/heads/main.zip"><Archive aria-hidden="true" size={17} /> Download ZIP</a>
+          <a class="button button-primary" href="#notebooks"><BookOpen aria-hidden="true" size={17} /> Browse the catalog</a>
         </div>
       </div>
       <ol class="ae-start-steps">
         <li><span>01</span><p><strong>Select an AE.</strong> Search by engineering problem, method, package, or chapter.</p></li>
-        <li><span>02</span><p><strong>Review its header.</strong> Check prerequisites, data sources, status, and any credential requirements.</p></li>
-        <li><span>03</span><p><strong>Run from the beginning.</strong> Use a fresh runtime and interpret results in the stated engineering context.</p></li>
+        <li><span>02</span><p><strong>Review its scope.</strong> Check the method, application, key packages, and validation status.</p></li>
+        <li><span>03</span><p><strong>Return after review.</strong> Distribution and access instructions will be posted once publisher review is complete.</p></li>
       </ol>
     </div>
   </section>
@@ -50,10 +48,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="container">
       <div class="ae-catalog-heading">
         <div>
-          <p class="eyebrow">Notebook collection</p>
+          <p class="eyebrow">Prelaunch catalog</p>
           <h2>Application Examples by chapter</h2>
         </div>
-        <p>All notebooks have executed successfully and generated results in Google Colab. Runtime duration, accelerator tier, dependencies, and third-party dataset-license details are documented separately as they are confirmed.</p>
+        <p>All notebooks have executed successfully and generated results in Google Colab. The files are not being distributed during prelaunch review; access details will follow after publisher guidance is confirmed.</p>
       </div>
       <ApplicationExampleExplorer examples={inventory.notebooks} client:load />
     </div>
@@ -62,13 +60,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="content-section ae-contribute-band">
     <div class="container two-column-copy">
       <div>
-        <p class="eyebrow">Improve the collection</p>
-        <h2>Found a problem or developed a useful extension?</h2>
-        <p>Reports and proposed contributions are reviewed publicly on GitHub. Include the AE number, environment, reproduction steps, sources, and engineering impact.</p>
+        <p class="eyebrow">Contribution planning</p>
+        <h2>Notebook contribution intake will open after review.</h2>
+        <p>The catalog can help prospective contributors identify an AE and consider an extension. Code and notebook submissions are paused until distribution terms are confirmed.</p>
       </div>
       <div class="ae-contribute-actions">
         <a class="button button-primary" href="/contribute">Contribution routes</a>
-        <a class="text-link" href="https://github.com/ml4ea/ae-notebooks/blob/main/notebook-inventory.csv" target="_blank" rel="noreferrer">Download the notebook inventory <ExternalLink aria-hidden="true" size={16} /></a>
+        <span class="ae-access-note"><LockKeyhole aria-hidden="true" size={16} /> Repository access is restricted during prelaunch.</span>
       </div>
     </div>
   </section>

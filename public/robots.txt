@@ -1,4 +1,2 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://ml4ea.github.io/sitemap-index.xml

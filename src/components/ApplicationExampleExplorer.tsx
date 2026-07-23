@@ -1,4 +1,4 @@
-import { CheckCircle2, Database, ExternalLink, KeyRound, Play, Search, X } from 'lucide-react';
+import { CheckCircle2, KeyRound, LockKeyhole, Search, X } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 
 export interface ApplicationExample {
@@ -19,8 +19,6 @@ interface Props {
 }
 
 const normalize = (value: string) => value.toLowerCase().trim();
-const githubBase = 'https://github.com/ml4ea/ae-notebooks/blob/main/';
-const colabBase = 'https://colab.research.google.com/github/ml4ea/ae-notebooks/blob/main/';
 
 export default function ApplicationExampleExplorer({ examples }: Props) {
   const [query, setQuery] = useState('');
@@ -95,7 +93,6 @@ export default function ApplicationExampleExplorer({ examples }: Props) {
       {results.length > 0 ? (
         <ol className="ae-results">
           {results.map((example) => {
-            const filename = encodeURIComponent(example.filename);
             return (
               <li key={example.filename}>
                 <article className="ae-result">
@@ -109,11 +106,6 @@ export default function ApplicationExampleExplorer({ examples }: Props) {
                     <p>{example.method} · {example.chapter_title}</p>
                     <div className="ae-resource-meta">
                       <span className="validation-complete"><CheckCircle2 aria-hidden="true" size={14} /> Validated in Google Colab</span>
-                      {example.source_urls.length > 0 && (
-                        <a href={example.source_urls[0]} target="_blank" rel="noreferrer">
-                          <Database aria-hidden="true" size={14} /> Data or source
-                        </a>
-                      )}
                     </div>
                     <ul className="package-list" aria-label="Key Python packages">
                       {example.packages.slice(0, 5).map((item) => <li key={item}>{item}</li>)}
@@ -121,12 +113,10 @@ export default function ApplicationExampleExplorer({ examples }: Props) {
                     </ul>
                   </div>
                   <div className="ae-actions">
-                    <a className="button button-primary" href={`${colabBase}${filename}`} target="_blank" rel="noreferrer">
-                      <Play aria-hidden="true" size={17} /> Open in Colab
-                    </a>
-                    <a className="button button-secondary" href={`${githubBase}${filename}`} target="_blank" rel="noreferrer">
-                      <ExternalLink aria-hidden="true" size={17} /> View notebook
-                    </a>
+                    <div className="ae-access-locked">
+                      <LockKeyhole aria-hidden="true" size={19} />
+                      <span><strong>Prelaunch</strong>Access pending publisher review</span>
+                    </div>
                   </div>
                 </article>
               </li>

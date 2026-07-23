@@ -113,6 +113,30 @@ p {
   transform: translateY(0);
 }
 
+.prelaunch-banner {
+  border-bottom: 1px solid color-mix(in srgb, var(--orange) 45%, var(--line));
+  background: #fff4e8;
+  color: var(--ink);
+}
+
+.prelaunch-banner .container {
+  display: flex;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.84rem;
+  text-align: center;
+}
+
+.prelaunch-banner strong {
+  color: #9a3d00;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
 .site-header {
   position: sticky;
   top: 0;
@@ -2025,6 +2049,26 @@ p {
   white-space: nowrap;
 }
 
+.ae-access-locked {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0;
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+}
+
+.ae-access-locked svg {
+  flex: 0 0 auto;
+  color: var(--orange);
+}
+
+.ae-access-locked strong {
+  display: block;
+  color: var(--ink);
+  font-weight: 500;
+}
+
 .ae-start-grid,
 .contribution-intro {
   display: grid;
@@ -2122,6 +2166,73 @@ p {
   justify-items: start;
   align-content: center;
   gap: 18px;
+}
+
+.ae-access-note,
+.route-status,
+.toolkit-review-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+}
+
+.ae-access-note svg,
+.route-status svg,
+.toolkit-review-status svg {
+  flex: 0 0 auto;
+  color: var(--orange);
+}
+
+.route-status {
+  margin-top: 10px;
+  padding-block: 10px;
+  font-weight: 500;
+}
+
+.toolkit-review-status {
+  white-space: nowrap;
+}
+
+.discussion-edit-form {
+  display: grid;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.discussion-edit-form label {
+  display: grid;
+  gap: 7px;
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+}
+
+.discussion-edit-form input,
+.discussion-edit-form textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+}
+
+.discussion-edit-form input {
+  min-height: 48px;
+  padding: 10px 12px;
+}
+
+.discussion-edit-form textarea {
+  min-height: 180px;
+  padding: 12px;
+  resize: vertical;
+}
+
+.discussion-original-post footer > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
 }
 
 .contribution-intro {

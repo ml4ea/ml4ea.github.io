@@ -5,6 +5,7 @@ import '@fontsource/source-sans-3/500.css';
 import '@fontsource/source-serif-4/500.css';
 import '@fontsource/ibm-plex-mono/400.css';
 import Header from '../components/Header.astro';
+import { PRELAUNCH_MODE, PRELAUNCH_NOTICE } from '../config/site';
 
 interface Props {
   title?: string;
@@ -19,6 +20,7 @@ const {
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const shouldNoindex = PRELAUNCH_MODE || noindex;
 ---
 
 <!doctype html>
@@ -28,7 +30,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {shouldNoindex && <meta name="robots" content="noindex, nofollow, noarchive" />}
     <meta name="theme-color" content="#ffffff" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
@@ -49,6 +51,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
+    {PRELAUNCH_MODE && (
+      <div class="prelaunch-banner" role="status">
+        <div class="container">
+          <strong>Prelaunch preview</strong>
+          <span>{PRELAUNCH_NOTICE.replace('Prelaunch preview: ', '')}</span>
+        </div>
+      </div>
+    )}
     <Header />
     <main id="main-content">
       <slot />
@@ -60,7 +70,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
             <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
             <span>ML4EA</span>
           </a>
-          <p>The companion portal for <cite>Machine Learning for Engineering Applications</cite>.</p>
+          <p>The prelaunch companion portal for <cite>Machine Learning for Engineering Applications</cite>.</p>
         </div>
         <nav class="footer-navigation" aria-label="Footer navigation">
           <a href="/book">Book</a>

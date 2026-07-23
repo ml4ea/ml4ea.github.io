@@ -5,8 +5,10 @@ import {
   LockKeyhole,
   MessageSquareText,
   MessagesSquare,
+  Pencil,
   Plus,
   Reply,
+  Save,
   Send,
   ShieldCheck,
   X,
@@ -76,6 +78,9 @@ export default function DiscussionBoard() {
   const [replies, setReplies] = useState<DiscussionReply[]>([]);
   const [threadForm, setThreadForm] = useState(emptyThreadForm);
   const [replyBody, setReplyBody] = useState('');
+  const [editingThread, setEditingThread] = useState(false);
+  const [editTitle, setEditTitle] = useState('');
+  const [editBody, setEditBody] = useState('');
   const [composerOpen, setComposerOpen] = useState(false);
   const [reportTarget, setReportTarget] = useState<ReportTarget | null>(null);
   const [reportReason, setReportReason] = useState('spam');
@@ -197,7 +202,33 @@ export default function DiscussionBoard() {
     window.history.pushState({}, '', url);
     setSelectedThread(null);
     setReplies([]);
+    setEditingThread(false);
     void loadThreads(selectedCategory);
+  };
+
+  const beginThreadEdit = () => {
+    if (!selectedThread) return;
+    setEditTitle(selectedThread.title);
+    setEditBody(selectedThread.body);
+    setEditingThread(true);
+    setError('');
+    setNotice('');
+  };
+
+  const saveThreadEdit = async (event: SubmitEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const supabase = getSupabaseClient();
+    if (!supabase || !selectedThread || !isAdmin) return;
+    setSubmitting(true); setError(''); setNotice('');
+    const { error: updateError } = await supabase
+      .from('discussion_threads')
+      .update({ title: editTitle.trim(), body: editBody.trim() })
+      .eq('id', selectedThread.id);
+    setSubmitting(false);
+    if (updateError) { setError(updateError.message); return; }
+    setEditingThread(false);
+    setNotice('The discussion was updated.');
+    await loadThread(selectedThread.id);
   };
 
   const submitThread = async (event: SubmitEvent<HTMLFormElement>) => {
@@ -268,10 +299,29 @@ export default function DiscussionBoard() {
           <button className="discussion-back" type="button" onClick={closeThread}><ArrowLeft aria-hidden="true" size={17} /> All discussions</button>
           <article className="discussion-original-post">
             <div className="discussion-post-meta"><span>{categoryById.get(selectedThread.category_id)?.name}</span>{selectedThread.pinned && <strong>Pinned</strong>}{selectedThread.status === 'locked' && <strong><LockKeyhole aria-hidden="true" size={13} /> Locked</strong>}</div>
-            <h2>{selectedThread.title}</h2>
-            <div className="discussion-tags">{selectedThread.chapter_number && <span>Chapter {selectedThread.chapter_number}</span>}{selectedThread.ae_number && <span>AE {selectedThread.ae_number}</span>}</div>
-            <p className="discussion-body">{selectedThread.body}</p>
-            <footer><span>Started by <strong>{selectedThread.author_name}</strong> on {formatDate(selectedThread.created_at)}</span>{session && <button type="button" onClick={() => setReportTarget({ threadId: selectedThread.id, replyId: null })}><Flag aria-hidden="true" size={14} /> Report</button>}</footer>
+            {editingThread ? (
+              <form className="discussion-edit-form" onSubmit={saveThreadEdit}>
+                <label><span>Title</span><input required minLength={8} maxLength={180} value={editTitle} onChange={(event) => setEditTitle(event.target.value)} /></label>
+                <label><span>Discussion</span><textarea required minLength={20} maxLength={10000} rows={9} value={editBody} onChange={(event) => setEditBody(event.target.value)} /></label>
+                <div className="button-row">
+                  <button className="button button-primary" type="submit" disabled={submitting}><Save aria-hidden="true" size={16} /> {submitting ? 'Saving…' : 'Save changes'}</button>
+                  <button className="button button-secondary" type="button" onClick={() => setEditingThread(false)}>Cancel</button>
+                </div>
+              </form>
+            ) : (
+              <>
+                <h2>{selectedThread.title}</h2>
+                <div className="discussion-tags">{selectedThread.chapter_number && <span>Chapter {selectedThread.chapter_number}</span>}{selectedThread.ae_number && <span>AE {selectedThread.ae_number}</span>}</div>
+                <p className="discussion-body">{selectedThread.body}</p>
+                <footer>
+                  <span>Started by <strong>{selectedThread.author_name}</strong> on {formatDate(selectedThread.created_at)}</span>
+                  <div>
+                    {isAdmin && <button type="button" onClick={beginThreadEdit}><Pencil aria-hidden="true" size={14} /> Edit</button>}
+                    {session && <button type="button" onClick={() => setReportTarget({ threadId: selectedThread.id, replyId: null })}><Flag aria-hidden="true" size={14} /> Report</button>}
+                  </div>
+                </footer>
+              </>
+            )}
           </article>
 
           <section className="discussion-replies" aria-labelledby="discussion-replies-heading">
