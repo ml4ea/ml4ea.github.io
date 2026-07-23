@@ -1,0 +1,14 @@
+---
+import PublisherReview from '../components/PublisherReview';
+import PageHero from '../components/PageHero.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Publisher Review | ML4EA" description="Protected prelaunch review workspace for the ML4EA book portal." noindex>
+  <PageHero eyebrow="Protected prelaunch" title="Publisher review." description="A time-limited workspace for reviewing the portal, proposed materials, and distribution boundaries." accent="green" />
+  <section class="content-section">
+    <div class="container account-container">
+      <PublisherReview client:load />
+    </div>
+  </section>
+</BaseLayout>

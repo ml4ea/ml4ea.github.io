@@ -58,6 +58,7 @@ function SearchSnippet({ text }: { text: string }) {
 export default function InstructorManual() {
   const [session, setSession] = useState<Session | null>(null);
   const [approved, setApproved] = useState<boolean | null>(null);
+  const [reviewOnly, setReviewOnly] = useState(false);
   const [edition, setEdition] = useState<ManualEdition | null>(null);
   const [sections, setSections] = useState<ManualSection[]>([]);
   const [selectedSlug, setSelectedSlug] = useState('');
@@ -84,13 +85,24 @@ export default function InstructorManual() {
 
     setLoading(true);
     setError('');
-    const { data: access, error: accessError } = await supabase.rpc('is_approved_instructor');
+    const [
+      { data: access, error: accessError },
+      { data: reviewer },
+      { data: instructor },
+      { data: administrator },
+    ] = await Promise.all([
+      supabase.rpc('can_view_instructor_manual'),
+      supabase.rpc('is_publisher_reviewer'),
+      supabase.rpc('is_approved_instructor'),
+      supabase.rpc('is_portal_admin'),
+    ]);
     if (accessError) {
       setError(accessError.message);
       setLoading(false);
       return;
     }
     setApproved(Boolean(access));
+    setReviewOnly(Boolean(reviewer && !instructor && !administrator));
     if (!access) {
       setLoading(false);
       return;
@@ -246,9 +258,9 @@ export default function InstructorManual() {
 
   if (!isSupabaseConfigured) return <div className="account-state account-unconfigured"><LockKeyhole aria-hidden="true" size={28} /><div><h2>The online manual is being connected.</h2><p>The protected edition will appear after the account service is configured.</p></div></div>;
   if (loading) return <p className="account-loading" aria-live="polite">Checking manual access…</p>;
-  if (!session) return <div className="account-state"><BookOpen aria-hidden="true" size={28} /><div><h2>Instructor sign-in required.</h2><p>Sign in with the verified account associated with your instructor approval.</p><a className="button button-primary" href="/account?next=/instructor/manual/">Sign in</a></div></div>;
-  if (approved === false) return <div className="account-state account-unconfigured"><ShieldCheck aria-hidden="true" size={28} /><div><h2>Approved instructor access required.</h2><p>This account does not currently have access to the protected manual.</p><a className="button button-primary" href="/instructor">Request or review access</a></div></div>;
-  if (!edition || sections.length === 0) return <div className="account-state"><FileText aria-hidden="true" size={28} /><div><h2>The online edition is being prepared.</h2><p>Your instructor access is active. The manual will appear here when the current edition is published.</p>{error && <p className="form-message form-error" role="alert">{error}</p>}</div></div>;
+  if (!session) return <div className="account-state"><BookOpen aria-hidden="true" size={28} /><div><h2>Protected manual sign-in required.</h2><p>Sign in with an approved instructor or invited publisher-review account.</p><a className="button button-primary" href="/account?next=/instructor/manual/">Sign in</a></div></div>;
+  if (approved === false) return <div className="account-state account-unconfigured"><ShieldCheck aria-hidden="true" size={28} /><div><h2>Protected manual access required.</h2><p>This account does not currently have access to the online manual.</p><a className="button button-primary" href="/instructor">Request instructor access</a></div></div>;
+  if (!edition || sections.length === 0) return <div className="account-state"><FileText aria-hidden="true" size={28} /><div><h2>The online edition is being prepared.</h2><p>Your protected access is active. The manual will appear here when the current edition is published.</p>{error && <p className="form-message form-error" role="alert">{error}</p>}</div></div>;
 
   return (
     <div className="manual-shell">
@@ -256,8 +268,8 @@ export default function InstructorManual() {
         <button className="manual-toc-toggle" type="button" onClick={() => setTocOpen(!tocOpen)} aria-expanded={tocOpen} aria-controls="manual-toc">
           {tocOpen ? <X aria-hidden="true" size={19} /> : <Menu aria-hidden="true" size={19} />} Contents
         </button>
-        <div className="manual-edition"><span>{edition.version_label} edition</span><small>Protected instructor resource</small></div>
-        <button className="button button-secondary" type="button" onClick={downloadPdf} disabled={downloading}><Download aria-hidden="true" size={17} /> {downloading ? 'Preparing…' : 'Download PDF'}</button>
+        <div className="manual-edition"><span>{edition.version_label} edition</span><small>{reviewOnly ? 'Publisher review preview' : 'Protected instructor resource'}</small></div>
+        {reviewOnly ? <a className="button button-secondary" href="/publisher-review/"><ArrowLeft aria-hidden="true" size={17} /> Review workspace</a> : <button className="button button-secondary" type="button" onClick={downloadPdf} disabled={downloading}><Download aria-hidden="true" size={17} /> {downloading ? 'Preparing…' : 'Download PDF'}</button>}
       </header>
 
       <div className="manual-workspace">

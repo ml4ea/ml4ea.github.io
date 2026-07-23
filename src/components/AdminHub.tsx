@@ -1,4 +1,4 @@
-import { BellRing, CheckCircle2, ExternalLink, GraduationCap, KeyRound, LockKeyhole, Megaphone, MessageSquareWarning, ShieldCheck } from 'lucide-react';
+import { BellRing, BookKey, CheckCircle2, ExternalLink, GraduationCap, KeyRound, LockKeyhole, Megaphone, MessageSquareWarning, ShieldCheck } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { getSupabaseClient, isSupabaseConfigured } from '../lib/supabase';
@@ -76,6 +76,7 @@ export default function AdminHub() {
       <nav aria-label="Administrator pages">
         <a href="/admin/instructors/"><GraduationCap aria-hidden="true" size={19} /><span><strong>Instructor Reviews</strong><small>Access decisions and decision emails</small></span><ExternalLink aria-hidden="true" size={15} /></a>
         <a href="/admin/discussions/"><MessageSquareWarning aria-hidden="true" size={19} /><span><strong>Discussion Moderation</strong><small>Reports and content review</small></span><ExternalLink aria-hidden="true" size={15} /></a>
+        <a href="/admin/access/"><BookKey aria-hidden="true" size={19} /><span><strong>Review Access</strong><small>Publisher reviewer grants, expiration, and revocation</small></span><ExternalLink aria-hidden="true" size={15} /></a>
         <a href="/community/?category=announcements"><Megaphone aria-hidden="true" size={19} /><span><strong>Portal Announcements</strong><small>Publish community notices as administrator</small></span><ExternalLink aria-hidden="true" size={15} /></a>
         {isOwner && <a href="/admin/delegation/"><KeyRound aria-hidden="true" size={19} /><span><strong>Administrator Delegation</strong><small>Appoint or revoke one alternate administrator</small></span><ExternalLink aria-hidden="true" size={15} /></a>}
       </nav>

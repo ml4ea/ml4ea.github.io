@@ -74,6 +74,21 @@ function auditStaticBuild() {
   }
 }
 
+function auditAccessMigration() {
+  const migrationPath = path.join(root, 'supabase/migrations/202607230001_publisher_review_entitlements.sql');
+  check(fs.existsSync(migrationPath), 'The publisher-review entitlement migration is missing.');
+  if (!fs.existsSync(migrationPath)) return;
+
+  const migration = fs.readFileSync(migrationPath, 'utf8');
+  check(migration.includes("v_role = 'book_owner'"), 'The migration does not explicitly block book-owner activation.');
+  check(migration.includes('written publisher permission'), 'The dormant book-owner grant does not explain its permission boundary.');
+  check(migration.includes("public.is_publisher_reviewer()"), 'The migration does not define publisher-review identity checks.');
+  check(migration.includes("public.can_view_instructor_manual()"), 'The migration does not scope online manual preview access.');
+  check(!migration.includes("bucket_id = 'instructor-materials'"), 'Publisher review must not modify private Storage access.');
+  check(migration.includes("'entitlement_granted'"), 'Publisher-review grants are not written to the administrator audit log.');
+  check(migration.includes("'entitlement_revoked'"), 'Publisher-review revocations are not written to the administrator audit log.');
+}
+
 async function auditAnonymousApi() {
   const localEnv = readLocalEnv();
   const supabaseUrl = process.env.PUBLIC_SUPABASE_URL || localEnv.PUBLIC_SUPABASE_URL;
@@ -115,6 +130,7 @@ async function auditAnonymousApi() {
     'portal_admins',
     'portal_admin_delegates',
     'portal_admin_audit_log',
+    'portal_access_entitlements',
     'instructor_applications',
     'instructor_resources',
     'instructor_manual_editions',
@@ -124,11 +140,22 @@ async function auditAnonymousApi() {
   for (const table of protectedTables) {
     const result = await request(`/rest/v1/${table}?select=*&limit=1`);
     check(!result.response.ok, `Anonymous users can query protected table ${table}.`);
+    check(result.response.status !== 404, `Protected table ${table} is missing from the live Supabase project.`);
   }
 
-  for (const rpc of ['is_portal_admin', 'is_portal_owner', 'is_approved_instructor']) {
+  for (const rpc of [
+    'is_portal_admin',
+    'is_portal_owner',
+    'is_approved_instructor',
+    'is_publisher_reviewer',
+    'is_verified_book_owner',
+    'can_view_instructor_manual',
+    'get_my_portal_entitlements',
+    'get_portal_access_entitlements',
+  ]) {
     const result = await request(`/rest/v1/rpc/${rpc}`, { method: 'POST', body: '{}' });
     check(!result.response.ok, `Anonymous users can execute protected function ${rpc}.`);
+    check(result.response.status !== 404, `Protected function ${rpc} is missing from the live Supabase project.`);
   }
 
   const manualSearch = await request('/rest/v1/rpc/search_instructor_manual', {
@@ -156,6 +183,7 @@ async function auditAnonymousApi() {
   check(notebookRepository.status === 404, 'The AE notebook repository is visible to an anonymous GitHub user.');
 }
 
+auditAccessMigration();
 await auditAnonymousApi();
 auditStaticBuild();
 

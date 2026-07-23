@@ -60,6 +60,18 @@ before appointment. Delegates can complete operational reviews and moderation,
 but only `yjin@usc.edu` can appoint, replace, or revoke a delegate. Appointment
 and revocation events are recorded in the protected administrator audit log.
 
+Apply `migrations/202607230001_publisher_review_entitlements.sql` to add
+time-limited publisher-review access and the dormant verified-book-owner role.
+Administrators manage publisher reviewers at `/admin/access/`; reviewers use
+`/publisher-review/`. The invited account must first sign in and verify its
+exact email. Grants and revocations are written to the administrator audit log.
+
+Publisher reviewers may inspect the portal and browser-based online manual.
+They cannot download the manual PDF, use instructor resources or discussions,
+open AE notebook files, or enter administrator pages. The database refuses all
+`book_owner` grants until a future migration enables that role after written
+publisher permission.
+
 Deploy the `notify-instructor-decision` Edge Function with the existing SMTP
 secrets. Set `ML4EA_ADMIN_EMAIL` to `ml4ea.book@gmail.com`; the function also
 uses that address as its built-in fallback. New submissions notify the
@@ -142,8 +154,13 @@ stored as plain text; HTML from participants is never rendered.
 - Only approved instructors and portal administrators can read published
   resource metadata or download objects.
 - Signed download URLs expire after 60 seconds.
-- Manual edition rows, section HTML, search results, and the PDF are all
-  restricted by approved-instructor RLS checks.
+- Manual edition rows, section HTML, and search results are restricted to
+  approved instructors, administrators, and active publisher reviewers.
+- The manual PDF and other private Storage objects remain restricted to
+  approved instructors and administrators; publisher review is online-only.
+- Publisher-review grants require exact verified-email matching, expire
+  automatically, can be revoked immediately, and are audited.
+- Verified-book-owner activation remains blocked during prelaunch.
 - Public discussion reads expose display names but not account email addresses
   or authentication user IDs.
 - Instructor-only discussion categories are enforced by RLS rather than by

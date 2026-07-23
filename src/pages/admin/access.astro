@@ -1,0 +1,14 @@
+---
+import AccessEntitlements from '../../components/AccessEntitlements';
+import PageHero from '../../components/PageHero.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Review Access | ML4EA" description="Administrator management of time-limited ML4EA review access." noindex>
+  <PageHero eyebrow="Administration" title="Review access." description="Grant and revoke protected preview access while keeping future book-owner distribution dormant." accent="orange" />
+  <section class="content-section">
+    <div class="container account-container">
+      <AccessEntitlements client:load />
+    </div>
+  </section>
+</BaseLayout>
