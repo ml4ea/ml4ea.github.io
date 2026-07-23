@@ -1,6 +1,7 @@
-import { CheckCircle2, ExternalLink, LogOut, Mail, ShieldCheck, UserRound } from 'lucide-react';
+import { CheckCircle2, ExternalLink, LogOut, Mail, ShieldAlert, ShieldCheck, UserRound } from 'lucide-react';
 import { type SubmitEvent, useEffect, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
+import { institutionalEmailMessage, usesPersonalEmailProvider } from '../lib/emailEligibility';
 import { getSupabaseClient, isSupabaseConfigured } from '../lib/supabase';
 
 const EMAIL_OTP_LENGTH = 8;
@@ -10,6 +11,8 @@ const getReturnPath = () => {
   const next = new URLSearchParams(window.location.search).get('next');
   return next?.startsWith('/') && !next.startsWith('//') ? next : null;
 };
+
+const isInstructorApplicationRequest = () => getReturnPath() === '/instructor';
 
 export default function AccountAccess() {
   const [session, setSession] = useState<Session | null>(null);
@@ -48,10 +51,14 @@ export default function AccountAccess() {
     const supabase = getSupabaseClient();
     if (!supabase) return;
 
-    setSubmitting(true);
     setNotice('');
     setError('');
+    if (isInstructorApplicationRequest() && usesPersonalEmailProvider(email)) {
+      setError(institutionalEmailMessage);
+      return;
+    }
 
+    setSubmitting(true);
     const returnPath = getReturnPath();
     const callbackUrl = new URL('/account/', window.location.origin);
     if (returnPath) callbackUrl.searchParams.set('next', returnPath);
@@ -177,6 +184,8 @@ export default function AccountAccess() {
     );
   }
 
+  const personalEmailBlocked = isInstructorApplicationRequest() && usesPersonalEmailProvider(email);
+
   return (
     <div className="auth-grid">
       <form className="auth-form" onSubmit={requestCode}>
@@ -187,7 +196,8 @@ export default function AccountAccess() {
           <span>Email address</span>
           <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="email" required placeholder="name@university.edu" />
         </label>
-        <button className="button button-primary" type="submit" disabled={submitting}>
+        {personalEmailBlocked && <p className="form-message form-error" role="alert"><ShieldAlert aria-hidden="true" size={19} /> {institutionalEmailMessage}</p>}
+        <button className="button button-primary" type="submit" disabled={submitting || personalEmailBlocked}>
           <Mail aria-hidden="true" size={17} /> {submitting ? 'Sending…' : 'Email me a sign-in code'}
         </button>
         <p className="form-privacy">By requesting a code, you acknowledge the <a href="/privacy">privacy notice</a>.</p>

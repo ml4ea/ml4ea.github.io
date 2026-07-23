@@ -1,6 +1,7 @@
 import { BookOpen, CheckCircle2, Clock3, Download, ExternalLink, GraduationCap, Library, LockKeyhole, MessageSquareText, Send, ShieldAlert, UsersRound } from 'lucide-react';
 import { type SubmitEvent, useEffect, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
+import { institutionalEmailMessage, usesPersonalEmailProvider } from '../lib/emailEligibility';
 import { getSupabaseClient, isSupabaseConfigured } from '../lib/supabase';
 
 interface Application {
@@ -30,29 +31,6 @@ const emptyForm = {
   positionTitle: '',
   facultyUrl: '',
   courseContext: '',
-};
-
-const personalEmailDomains = new Set([
-  'gmail.com',
-  'googlemail.com',
-  'yahoo.com',
-  'yahoo.co.uk',
-  'hotmail.com',
-  'outlook.com',
-  'live.com',
-  'icloud.com',
-  'me.com',
-  'aol.com',
-  'proton.me',
-  'protonmail.com',
-  'mail.com',
-  'gmx.com',
-  'gmx.net',
-]);
-
-const usesPersonalEmailProvider = (email?: string) => {
-  const domain = email?.trim().toLowerCase().split('@')[1];
-  return Boolean(domain && personalEmailDomains.has(domain));
 };
 
 export default function InstructorPortal() {
@@ -137,7 +115,7 @@ export default function InstructorPortal() {
     const supabase = getSupabaseClient();
     if (!supabase) return;
     if (usesPersonalEmailProvider(session?.user.email)) {
-      setError('Instructor access requests require an institutional email address. Personal email providers cannot be used for this request.');
+      setError(institutionalEmailMessage);
       return;
     }
 
@@ -248,7 +226,7 @@ export default function InstructorPortal() {
         {personalEmailBlocked && (
           <div className="form-message form-error institutional-email-warning" role="alert">
             <ShieldAlert aria-hidden="true" size={19} />
-            <p><strong>Use an institutional email for an instructor request.</strong> Personal providers such as Gmail are available for general portal participation but cannot be used to request protected teaching resources. Institutional domains from all countries are accepted; they do not need to end in <code>.edu</code>. Contact the portal administrator if your institution uses an unusual email arrangement.</p>
+            <p><strong>Use an institutional email for an instructor request.</strong> {institutionalEmailMessage}</p>
           </div>
         )}
         <div className="form-grid">
