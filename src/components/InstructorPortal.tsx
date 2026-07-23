@@ -32,6 +32,29 @@ const emptyForm = {
   courseContext: '',
 };
 
+const personalEmailDomains = new Set([
+  'gmail.com',
+  'googlemail.com',
+  'yahoo.com',
+  'yahoo.co.uk',
+  'hotmail.com',
+  'outlook.com',
+  'live.com',
+  'icloud.com',
+  'me.com',
+  'aol.com',
+  'proton.me',
+  'protonmail.com',
+  'mail.com',
+  'gmx.com',
+  'gmx.net',
+]);
+
+const usesPersonalEmailProvider = (email?: string) => {
+  const domain = email?.trim().toLowerCase().split('@')[1];
+  return Boolean(domain && personalEmailDomains.has(domain));
+};
+
 export default function InstructorPortal() {
   const [session, setSession] = useState<Session | null>(null);
   const [application, setApplication] = useState<Application | null>(null);
@@ -113,6 +136,10 @@ export default function InstructorPortal() {
     event.preventDefault();
     const supabase = getSupabaseClient();
     if (!supabase) return;
+    if (usesPersonalEmailProvider(session?.user.email)) {
+      setError('Instructor access requests require an institutional email address. Personal email providers cannot be used for this request.');
+      return;
+    }
 
     setSubmitting(true);
     setError('');
@@ -210,12 +237,20 @@ export default function InstructorPortal() {
     );
   }
 
+  const personalEmailBlocked = usesPersonalEmailProvider(session.user.email);
+
   return (
     <div className="instructor-application-grid">
       <form className="instructor-form" onSubmit={submitApplication}>
         <p className="eyebrow">Instructor application</p>
         <h2>{application ? 'Update and resubmit your information.' : 'Tell us about your teaching role.'}</h2>
         <p className="verified-email"><CheckCircle2 aria-hidden="true" size={17} /> Verified email: <strong>{session.user.email}</strong></p>
+        {personalEmailBlocked && (
+          <div className="form-message form-error institutional-email-warning" role="alert">
+            <ShieldAlert aria-hidden="true" size={19} />
+            <p><strong>Use an institutional email for an instructor request.</strong> Personal providers such as Gmail are available for general portal participation but cannot be used to request protected teaching resources. Institutional domains from all countries are accepted; they do not need to end in <code>.edu</code>. Contact the portal administrator if your institution uses an unusual email arrangement.</p>
+          </div>
+        )}
         <div className="form-grid">
           <label><span>Institution</span><input required value={form.institution} onChange={(event) => setForm({ ...form, institution: event.target.value })} autoComplete="organization" /></label>
           <label><span>Department</span><input required value={form.department} onChange={(event) => setForm({ ...form, department: event.target.value })} /></label>
@@ -223,7 +258,7 @@ export default function InstructorPortal() {
           <label><span>Institutional profile URL</span><input type="url" required value={form.facultyUrl} onChange={(event) => setForm({ ...form, facultyUrl: event.target.value })} placeholder="https://university.edu/faculty/name" /></label>
           <label className="form-span"><span>Course context <small>Optional</small></span><textarea value={form.courseContext} onChange={(event) => setForm({ ...form, courseContext: event.target.value })} rows={4} placeholder="Course title, expected term, level, or planned use of the book" /></label>
         </div>
-        <button className="button button-primary" type="submit" disabled={submitting}><Send aria-hidden="true" size={17} /> {submitting ? 'Submitting…' : application ? 'Resubmit for review' : 'Submit for review'}</button>
+        <button className="button button-primary" type="submit" disabled={submitting || personalEmailBlocked}><Send aria-hidden="true" size={17} /> {submitting ? 'Submitting…' : application ? 'Resubmit for review' : 'Submit for review'}</button>
         <p className="form-privacy">Submitting this form acknowledges the <a href="/privacy">privacy notice</a> and confirms that the information is accurate.</p>
         {notice && <p className="form-message form-success" role="status">{notice}</p>}
         {error && <p className="form-message form-error" role="alert">{error}</p>}
