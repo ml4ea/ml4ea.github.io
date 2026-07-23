@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { type SubmitEvent, useEffect, useMemo, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
+import { sanitizeManualHtml } from '../lib/sanitizeManualHtml';
 import { getSupabaseClient, isSupabaseConfigured } from '../lib/supabase';
 
 interface ManualEdition {
@@ -174,7 +175,7 @@ export default function InstructorManual() {
           setBodyHtml('');
           return;
         }
-        setBodyHtml((data as { body_html: string }).body_html);
+        setBodyHtml(sanitizeManualHtml((data as { body_html: string }).body_html));
         document.querySelector('.manual-workspace')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     return () => { current = false; };

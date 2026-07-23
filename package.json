@@ -10,7 +10,8 @@
     "dev": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "security:audit": "node scripts/security-audit.mjs"
   },
   "dependencies": {
     "@astrojs/react": "latest",
@@ -19,6 +20,7 @@
     "@fontsource/source-serif-4": "latest",
     "@supabase/supabase-js": "^2.110.8",
     "astro": "latest",
+    "dompurify": "^3.4.12",
     "lucide-react": "latest",
     "react": "latest",
     "react-dom": "latest"

@@ -23,7 +23,7 @@ In Authentication > URL Configuration, use:
 - Redirect URL: `https://ml4ea.github.io/**`
 - Local redirect URL: `http://127.0.0.1:4321/**`
 
-Keep email-link authentication enabled. A successful email-link sign-in proves
+Keep email OTP authentication enabled. A successful email-code sign-in proves
 control of the address; it does not by itself grant instructor access.
 
 ## 3. Configure portal build variables
@@ -130,7 +130,9 @@ stored as plain text; HTML from participants is never rendered.
 
 ## Security boundaries
 
-- Public pages and Application Example notebooks do not require an account.
+- Public pages and the Application Example catalog do not require an account.
+- Application Example notebook files and repository access remain private
+  during prelaunch publisher review.
 - Personal email providers are screened out during instructor application.
 - Institutional email is necessary but not sufficient; an administrator must
   verify the public institutional profile and teaching role.
@@ -146,3 +148,9 @@ stored as plain text; HTML from participants is never rendered.
   or authentication user IDs.
 - Instructor-only discussion categories are enforced by RLS rather than by
   client-side hiding.
+- Manual HTML is sanitized in the browser before rendering or inclusion in an
+  exported editable document.
+
+Run `npm run build` followed by `npm run security:audit` to verify the static
+artifact and anonymous live API boundaries. The GitHub Pages workflow runs the
+same audit before deployment.

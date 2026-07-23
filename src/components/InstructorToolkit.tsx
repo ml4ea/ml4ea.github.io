@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
+import { sanitizeManualHtml } from '../lib/sanitizeManualHtml';
 import { getSupabaseClient, isSupabaseConfigured } from '../lib/supabase';
 
 interface ApplicationExample {
@@ -124,7 +125,8 @@ function downloadBlob(filename: string, content: string, type: string) {
 }
 
 function downloadDocument(filename: string, title: string, bodyHtml: string) {
-  const html = `<!doctype html><html><head><meta charset="utf-8"><title>${htmlEscape(title)}</title><style>body{font-family:Arial,sans-serif;line-height:1.45;margin:42px;color:#202324;max-width:900px}h1{font-family:Georgia,serif;font-size:28pt}h2,h3{margin-top:28px}table{width:100%;border-collapse:collapse;margin-top:20px}th,td{padding:8px;border:1px solid #999;text-align:left;vertical-align:top}th{background:#eee}li{margin-bottom:8px}.manual-callout{padding:14px 18px;border-left:4px solid #288a5b;background:#f2f4f3}.note{color:#555;font-size:10pt;margin-top:32px}</style></head><body><h1>${htmlEscape(title)}</h1>${bodyHtml}<h2>Local adaptation notes</h2><p>[Add institutional policies, dates, grading details, accessibility information, and course-specific expectations here.]</p><p class="note">Adapted from the protected instructor resources for <i>Machine Learning for Engineering Applications</i> by Yan Jin. For use by the approved instructor; do not redistribute.</p></body></html>`;
+  const safeBodyHtml = sanitizeManualHtml(bodyHtml);
+  const html = `<!doctype html><html><head><meta charset="utf-8"><title>${htmlEscape(title)}</title><style>body{font-family:Arial,sans-serif;line-height:1.45;margin:42px;color:#202324;max-width:900px}h1{font-family:Georgia,serif;font-size:28pt}h2,h3{margin-top:28px}table{width:100%;border-collapse:collapse;margin-top:20px}th,td{padding:8px;border:1px solid #999;text-align:left;vertical-align:top}th{background:#eee}li{margin-bottom:8px}.manual-callout{padding:14px 18px;border-left:4px solid #288a5b;background:#f2f4f3}.note{color:#555;font-size:10pt;margin-top:32px}</style></head><body><h1>${htmlEscape(title)}</h1>${safeBodyHtml}<h2>Local adaptation notes</h2><p>[Add institutional policies, dates, grading details, accessibility information, and course-specific expectations here.]</p><p class="note">Adapted from the protected instructor resources for <i>Machine Learning for Engineering Applications</i> by Yan Jin. For use by the approved instructor; do not redistribute.</p></body></html>`;
   downloadBlob(filename, html, 'application/msword;charset=utf-8');
 }
 
