@@ -117,6 +117,13 @@ only for `drive.file`, creates an app-managed `ML4EA` folder when needed,
 uploads or updates the authorized notebook, and opens that Drive file in
 Colab. The portal does not store the Google access token.
 
+Apply `migrations/202607240003_publisher_review_ae_delivery_test.sql` to enable
+the real Colab and local-download workflow only for the permanent portal owner
+and active publisher reviewers. This review-test path records the same
+acknowledgment and delivery audit as the future distribution workflow, but it
+does not activate the dormant `book_owner` role or the production delivery
+switches that require written publisher permission.
+
 Deploy the `notify-instructor-decision` Edge Function with the existing SMTP
 secrets. Set `ML4EA_ADMIN_EMAIL` to `ml4ea.book@gmail.com`; the function also
 uses that address as its built-in fallback. New submissions notify the
