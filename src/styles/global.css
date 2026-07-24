@@ -4188,9 +4188,9 @@ p {
   color: var(--ink);
 }
 
-.notebook-markdown h1 { margin: 0 0 20px; font-size: clamp(2rem, 4vw, 3rem); }
-.notebook-markdown h2 { margin: 34px 0 12px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 1.55rem; }
-.notebook-markdown h3 { margin: 25px 0 9px; font-size: 1.22rem; }
+.notebook-markdown h1 { margin: 0 0 18px; font-size: 1.55rem; }
+.notebook-markdown h2 { margin: 30px 0 10px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 1.22rem; }
+.notebook-markdown h3 { margin: 22px 0 8px; font-size: 1.05rem; }
 .notebook-markdown p { margin: 0 0 14px; }
 .notebook-markdown ul,
 .notebook-markdown ol { padding-left: 24px; }
