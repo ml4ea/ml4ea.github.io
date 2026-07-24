@@ -4151,7 +4151,7 @@ p {
 
 .publisher-example-reader > header h2,
 .publisher-example-reader > header p { margin: 0; }
-.publisher-example-reader > header h2 { max-width: 820px; margin-top: 7px; font-size: clamp(2rem, 4vw, 3.4rem); }
+.publisher-example-reader > header h2 { max-width: 820px; margin-top: 7px; font-size: 1.55rem; }
 .publisher-example-reader > header p:last-child { margin-top: 8px; color: var(--ink-soft); }
 
 .publisher-example-source {
