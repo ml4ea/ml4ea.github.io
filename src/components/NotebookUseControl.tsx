@@ -26,8 +26,14 @@ interface Delivery {
 
 interface GoogleTokenResponse {
   access_token?: string;
+  authuser?: string;
   error?: string;
   error_description?: string;
+}
+
+interface GoogleAuthorization {
+  accessToken: string;
+  authuser?: string;
 }
 
 interface GoogleTokenClient {
@@ -83,12 +89,14 @@ async function requestGoogleDriveToken() {
   if (!googleClientId) throw new Error('Google Colab delivery is not configured.');
   await loadGoogleIdentityServices();
 
-  return new Promise<string>((resolve, reject) => {
+  return new Promise<GoogleAuthorization>((resolve, reject) => {
     const client = window.google!.accounts.oauth2.initTokenClient({
       client_id: googleClientId,
       scope: driveScope,
       callback: (response) => {
-        if (response.access_token) resolve(response.access_token);
+        if (response.access_token) {
+          resolve({ accessToken: response.access_token, authuser: response.authuser });
+        }
         else reject(new Error(response.error_description ?? 'Google Drive authorization was not completed.'));
       },
       error_callback: () => reject(new Error('Google Drive authorization was cancelled or blocked.')),
@@ -295,12 +303,20 @@ export default function NotebookUseControl({ slug, aeNumber, title, showDormantN
         return;
       }
 
-      const token = await requestGoogleDriveToken();
+      const authorization = await requestGoogleDriveToken();
       const delivery = await requestDelivery('colab');
       const notebook = notebookBlob(delivery);
-      const folderId = await getOrCreateMl4eaFolder(token);
-      const fileId = await uploadNotebookToDrive(token, notebook, delivery, slug, folderId);
-      window.location.assign(`https://colab.research.google.com/drive/${encodeURIComponent(fileId)}`);
+      const folderId = await getOrCreateMl4eaFolder(authorization.accessToken);
+      const fileId = await uploadNotebookToDrive(
+        authorization.accessToken,
+        notebook,
+        delivery,
+        slug,
+        folderId,
+      );
+      const colabUrl = new URL(`https://colab.research.google.com/drive/${encodeURIComponent(fileId)}`);
+      if (authorization.authuser) colabUrl.searchParams.set('authuser', authorization.authuser);
+      window.location.assign(colabUrl);
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : 'The notebook could not be prepared.');
     } finally {
