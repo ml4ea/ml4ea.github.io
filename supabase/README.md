@@ -68,9 +68,24 @@ exact email. Grants and revocations are written to the administrator audit log.
 
 Publisher reviewers may inspect the portal and browser-based online manual.
 They cannot download the manual PDF, use instructor resources or discussions,
-open AE notebook files, or enter administrator pages. The database refuses all
-`book_owner` grants until a future migration enables that role after written
-publisher permission.
+open the private AE repository, or enter administrator pages. The database
+refuses all `book_owner` grants until a future migration enables that role
+after written publisher permission.
+
+Apply `migrations/202607240001_publisher_review_ae_examples.sql` to create the
+RLS-protected table for three complete publisher-review examples. Then generate
+the private content ingestion SQL from the ignored `AE-notebooks` repository:
+
+```bash
+npm run publisher-examples:build
+```
+
+Run `.private-build/publisher-ae-examples.sql` in the Supabase SQL Editor. This
+loads AE 7.5.5 (SVM bearing-fault classification), AE 9.5.2 (CNN surface-defect
+detection), and AE 12.3.5 (VAE sensor-anomaly detection), including code and
+executed outputs. The generated SQL and notebook content remain ignored by Git
+and never enter the public Pages artifact. Reviewers open them from
+`/publisher-review/application-examples/`.
 
 Deploy the `notify-instructor-decision` Edge Function with the existing SMTP
 secrets. Set `ML4EA_ADMIN_EMAIL` to `ml4ea.book@gmail.com`; the function also
@@ -160,6 +175,9 @@ stored as plain text; HTML from participants is never rendered.
   approved instructors and administrators; publisher review is online-only.
 - Publisher-review grants require exact verified-email matching, expire
   automatically, can be revoked immediately, and are audited.
+- Only active publisher reviewers and administrators can query the three
+  selected full AE previews. Their HTML is sanitized before browser rendering.
+- The remaining AE notebooks and private repository are not exposed.
 - Verified-book-owner activation remains blocked during prelaunch.
 - Public discussion reads expose display names but not account email addresses
   or authentication user IDs.

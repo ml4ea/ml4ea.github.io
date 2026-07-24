@@ -1,4 +1,4 @@
-import { BookOpen, CheckCircle2, Clock3, ExternalLink, FileCheck2, LockKeyhole, ShieldCheck } from 'lucide-react';
+import { BookOpen, Braces, CheckCircle2, Clock3, ExternalLink, FileCheck2, LockKeyhole, ShieldCheck } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { getSupabaseClient, isSupabaseConfigured } from '../lib/supabase';
@@ -56,8 +56,9 @@ export default function PublisherReview() {
       <nav aria-label="Publisher review destinations">
         <a href="/book"><span>01</span><div><strong>Book presentation</strong><small>Bibliographic, author, and ordering information</small></div><ExternalLink aria-hidden="true" size={16} /></a>
         <a href="/application-examples"><span>02</span><div><strong>Application Example catalog</strong><small>Metadata only; notebook files remain unavailable</small></div><ExternalLink aria-hidden="true" size={16} /></a>
-        <a href="/instructor/manual/"><span>03</span><div><strong>Online instructor’s manual</strong><small>Protected browser preview; PDF download is withheld</small></div><BookOpen aria-hidden="true" size={17} /></a>
-        <a href="/updates/"><span>04</span><div><strong>Updates and errata</strong><small>Proposed public correction and update channel</small></div><ExternalLink aria-hidden="true" size={16} /></a>
+        <a href="/publisher-review/application-examples/"><span>03</span><div><strong>Three complete Application Examples</strong><small>Executed code and outputs spanning three major methods</small></div><Braces aria-hidden="true" size={17} /></a>
+        <a href="/instructor/manual/"><span>04</span><div><strong>Online instructor’s manual</strong><small>Protected browser preview; PDF download is withheld</small></div><BookOpen aria-hidden="true" size={17} /></a>
+        <a href="/updates/"><span>05</span><div><strong>Updates and errata</strong><small>Proposed public correction and update channel</small></div><ExternalLink aria-hidden="true" size={16} /></a>
       </nav>
     </section>
 
@@ -72,6 +73,6 @@ export default function PublisherReview() {
       </ul>
     </section>
 
-    <aside className="publisher-review-boundary"><Clock3 aria-hidden="true" size={22} /><p><strong>Prelaunch boundary:</strong> AE notebook files, the private repository, manual PDF downloads, instructor discussions, teaching contributions, and administrator functions remain outside publisher-review access.</p></aside>
+    <aside className="publisher-review-boundary"><Clock3 aria-hidden="true" size={22} /><p><strong>Prelaunch boundary:</strong> Only the three identified AE notebooks are visible for review. The remaining notebooks, private repository, manual PDF downloads, instructor discussions, teaching contributions, and administrator functions remain outside publisher-review access.</p></aside>
   </div>;
 }

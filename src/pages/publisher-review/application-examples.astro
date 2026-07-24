@@ -1,0 +1,19 @@
+---
+import PublisherExampleViewer from '../../components/PublisherExampleViewer';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Selected Application Examples | ML4EA" description="Three complete Application Examples for protected publisher review." noindex>
+  <section class="manual-masthead publisher-example-masthead">
+    <div class="container">
+      <p class="eyebrow">Protected publisher review</p>
+      <h1>Selected Application Examples</h1>
+      <p>Classification, deep neural networks, and generative models</p>
+    </div>
+  </section>
+  <section class="manual-reader-section">
+    <div class="container manual-container">
+      <PublisherExampleViewer client:load />
+    </div>
+  </section>
+</BaseLayout>

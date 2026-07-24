@@ -11,6 +11,7 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "check": "astro check",
+    "publisher-examples:build": "node tools/build_publisher_ae_examples.mjs",
     "security:audit": "node scripts/security-audit.mjs"
   },
   "dependencies": {
@@ -29,6 +30,7 @@
     "@astrojs/check": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "markdown-it": "^14.3.0",
     "typescript": "latest"
   },
   "optionalDependencies": {

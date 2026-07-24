@@ -47,6 +47,9 @@ function auditStaticBuild() {
     'colab.research.google.com/github/ml4ea/ae-notebooks',
     '"notebook_license":"MIT"',
     'service_role',
+    'feature_time_48k_2048_load_1.csv',
+    'layers.Conv2D(64, 3, padding="same"',
+    'class VAE(nn.Module)',
   ];
 
   check(htmlFiles.length > 0, 'No generated HTML pages were found.');
@@ -87,6 +90,29 @@ function auditAccessMigration() {
   check(!migration.includes("bucket_id = 'instructor-materials'"), 'Publisher review must not modify private Storage access.');
   check(migration.includes("'entitlement_granted'"), 'Publisher-review grants are not written to the administrator audit log.');
   check(migration.includes("'entitlement_revoked'"), 'Publisher-review revocations are not written to the administrator audit log.');
+}
+
+function auditPublisherExamplesMigration() {
+  const migrationPath = path.join(root, 'supabase/migrations/202607240001_publisher_review_ae_examples.sql');
+  check(fs.existsSync(migrationPath), 'The protected publisher AE-example migration is missing.');
+  if (!fs.existsSync(migrationPath)) return;
+
+  const migration = fs.readFileSync(migrationPath, 'utf8');
+  check(migration.includes('publisher_review_ae_examples'), 'The protected publisher AE-example table is not defined.');
+  check(migration.includes('public.is_publisher_reviewer() or public.is_portal_admin()'), 'Selected AE examples are not limited to reviewers and administrators.');
+  check(!migration.includes('grant select on table public.publisher_review_ae_examples to anon'), 'Anonymous users received access to selected AE examples.');
+
+  const builderPath = path.join(root, 'tools/build_publisher_ae_examples.mjs');
+  check(fs.existsSync(builderPath), 'The protected publisher AE-example builder is missing.');
+  if (!fs.existsSync(builderPath)) return;
+  const builder = fs.readFileSync(builderPath, 'utf8');
+  for (const filename of [
+    'Notebook-07.5.5-SVM-cwru-bearing.ipynb',
+    'Notebook-09.5.2-CNN-NEU-DET.ipynb',
+    'Notebook-12.3.5-VAE-SensorAnomaly.ipynb',
+  ]) {
+    check(builder.includes(filename), `The protected publisher set is missing ${filename}.`);
+  }
 }
 
 async function auditAnonymousApi() {
@@ -131,6 +157,7 @@ async function auditAnonymousApi() {
     'portal_admin_delegates',
     'portal_admin_audit_log',
     'portal_access_entitlements',
+    'publisher_review_ae_examples',
     'instructor_applications',
     'instructor_resources',
     'instructor_manual_editions',
@@ -184,6 +211,7 @@ async function auditAnonymousApi() {
 }
 
 auditAccessMigration();
+auditPublisherExamplesMigration();
 await auditAnonymousApi();
 auditStaticBuild();
 
