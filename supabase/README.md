@@ -91,24 +91,30 @@ Apply `migrations/202607240002_protected_ae_delivery.sql` to install the
 dormant protected-notebook delivery boundary. It creates a private
 `ae-notebooks` Storage bucket with no client read policies, notebook metadata,
 an acknowledgment and delivery audit, separate Colab and download capability
-switches, and the authorization RPC used by the delivery Edge Function.
+switches, and the authorization RPC used by the delivery Edge Function. The
+bucket is retained for migration compatibility but is not the notebook source.
 
 The migration leaves both delivery switches off. It cannot enable either
 switch without a written publisher-permission reference, and the earlier
 migration still refuses all `book_owner` grants. This lets the workflow be
 reviewed without distributing any notebook.
 
-Deploy the `deliver-ae-notebook` Edge Function. It verifies the signed-in user,
-requires the exact `book_owner` entitlement, records the selected action and
-notice version, and returns a 60-second signed Storage URL. The service-role
-key remains an automatic Edge Function secret and must never be copied to the
-portal or GitHub.
+Apply `migrations/202607240005_private_github_ae_source.sql` after the review
+test migration. It stores only each validated notebook's repository-relative
+path in Supabase. The private `ml4ea/ae-notebooks` repository remains the
+single source of notebook files.
 
-Running `npm run publisher-examples:build` after the delivery migration also
-writes protected file metadata to the generated SQL and stages the three
-private `.ipynb` objects under `.private-build/ae-storage/notebooks/`. Upload
-those staged files to the private `ae-notebooks` bucket under the same
-`notebooks/` path. Neither the files nor generated SQL may be committed.
+Create a fine-grained GitHub personal access token owned by `ml4ea`, restricted
+to only the `ae-notebooks` repository, with only **Contents: Read-only**
+permission. Save it as the Supabase Edge Function secret `GITHUB_AE_TOKEN`.
+Never add this token to Portal, GitHub Pages variables, client JavaScript, or a
+database row.
+
+Deploy the `deliver-ae-notebook` Edge Function. It verifies the signed-in user,
+records the selected action and notice version, fetches the authorized file
+from the private GitHub repository, verifies its SHA-256 checksum, and returns
+the notebook content to the authorized browser. The GitHub token and automatic
+service-role key remain server-side Edge Function secrets.
 
 For future Google Colab activation, create a Google OAuth web client restricted
 to the portal origin and add its public client ID as
@@ -215,6 +221,8 @@ stored as plain text; HTML from participants is never rendered.
 - Only active publisher reviewers and administrators can query the three
   selected full AE previews. Their HTML is sanitized before browser rendering.
 - The remaining AE notebooks and private repository are not exposed.
+- Protected AE delivery retrieves validated files from the private GitHub
+  repository with a server-only, repository-scoped, read-only credential.
 - Verified-book-owner activation remains blocked during prelaunch.
 - AE delivery has independent Colab and local-download switches; both are off
   until the permanent owner records a written publisher-permission reference.
