@@ -8,6 +8,7 @@ const root = process.cwd();
 const notebookDirectory = path.join(root, 'AE-notebooks');
 const outputDirectory = path.join(root, '.private-build');
 const outputPath = path.join(outputDirectory, 'publisher-ae-examples.sql');
+const storageOutputDirectory = path.join(outputDirectory, 'ae-storage', 'notebooks');
 
 const examples = [
   {
@@ -111,6 +112,8 @@ const statements = examples.map((example) => {
   const notebook = JSON.parse(raw);
   const bodyHtml = renderNotebook(notebook);
   const sourceSha256 = crypto.createHash('sha256').update(raw).digest('hex');
+  fs.mkdirSync(storageOutputDirectory, { recursive: true });
+  fs.copyFileSync(notebookPath, path.join(storageOutputDirectory, example.filename));
 
   return `insert into public.publisher_review_ae_examples (
   slug, ae_number, title, topic, method, source_filename, source_sha256, body_html, sort_order
@@ -134,9 +137,32 @@ on conflict (slug) do update set
   source_sha256 = excluded.source_sha256,
   body_html = excluded.body_html,
   sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.ae_notebook_files (
+  slug, ae_number, title, source_filename, source_sha256, notebook_version, storage_path, active
+) values (
+  ${sqlText(example.slug)},
+  ${sqlText(example.aeNumber)},
+  ${sqlText(example.title)},
+  ${sqlText(example.filename)},
+  ${sqlText(sourceSha256)},
+  '1.0',
+  ${sqlText(`notebooks/${example.filename}`)},
+  true
+)
+on conflict (slug) do update set
+  ae_number = excluded.ae_number,
+  title = excluded.title,
+  source_filename = excluded.source_filename,
+  source_sha256 = excluded.source_sha256,
+  notebook_version = excluded.notebook_version,
+  storage_path = excluded.storage_path,
+  active = excluded.active,
   updated_at = now();`;
 });
 
 fs.mkdirSync(outputDirectory, { recursive: true });
 fs.writeFileSync(outputPath, `-- Generated protected content. Do not commit this file.\n\nbegin;\n\n${statements.join('\n\n')}\n\ncommit;\n`, 'utf8');
 console.log(`Wrote ${examples.length} protected AE examples to ${path.relative(root, outputPath)}.`);
+console.log(`Staged ${examples.length} private Storage objects in ${path.relative(root, storageOutputDirectory)}.`);

@@ -87,6 +87,36 @@ executed outputs. The generated SQL and notebook content remain ignored by Git
 and never enter the public Pages artifact. Reviewers open them from
 `/publisher-review/application-examples/`.
 
+Apply `migrations/202607240002_protected_ae_delivery.sql` to install the
+dormant protected-notebook delivery boundary. It creates a private
+`ae-notebooks` Storage bucket with no client read policies, notebook metadata,
+an acknowledgment and delivery audit, separate Colab and download capability
+switches, and the authorization RPC used by the delivery Edge Function.
+
+The migration leaves both delivery switches off. It cannot enable either
+switch without a written publisher-permission reference, and the earlier
+migration still refuses all `book_owner` grants. This lets the workflow be
+reviewed without distributing any notebook.
+
+Deploy the `deliver-ae-notebook` Edge Function. It verifies the signed-in user,
+requires the exact `book_owner` entitlement, records the selected action and
+notice version, and returns a 60-second signed Storage URL. The service-role
+key remains an automatic Edge Function secret and must never be copied to the
+portal or GitHub.
+
+Running `npm run publisher-examples:build` after the delivery migration also
+writes protected file metadata to the generated SQL and stages the three
+private `.ipynb` objects under `.private-build/ae-storage/notebooks/`. Upload
+those staged files to the private `ae-notebooks` bucket under the same
+`notebooks/` path. Neither the files nor generated SQL may be committed.
+
+For future Google Colab activation, create a Google OAuth web client restricted
+to the portal origin and add its public client ID as
+`PUBLIC_GOOGLE_DRIVE_CLIENT_ID` in GitHub Actions variables. The browser asks
+only for `drive.file`, creates an app-managed `ML4EA` folder when needed,
+uploads or updates the authorized notebook, and opens that Drive file in
+Colab. The portal does not store the Google access token.
+
 Deploy the `notify-instructor-decision` Edge Function with the existing SMTP
 secrets. Set `ML4EA_ADMIN_EMAIL` to `ml4ea.book@gmail.com`; the function also
 uses that address as its built-in fallback. New submissions notify the
@@ -179,6 +209,11 @@ stored as plain text; HTML from participants is never rendered.
   selected full AE previews. Their HTML is sanitized before browser rendering.
 - The remaining AE notebooks and private repository are not exposed.
 - Verified-book-owner activation remains blocked during prelaunch.
+- AE delivery has independent Colab and local-download switches; both are off
+  until the permanent owner records a written publisher-permission reference.
+- The AE Storage bucket has no authenticated client read policy. A verified
+  book owner receives only a 60-second URL after acknowledging the current
+  notice, and the action is recorded by user, notebook hash, and version.
 - Public discussion reads expose display names but not account email addresses
   or authentication user IDs.
 - Instructor-only discussion categories are enforced by RLS rather than by

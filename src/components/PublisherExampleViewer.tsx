@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { sanitizeNotebookHtml } from '../lib/sanitizeNotebookHtml';
 import { getSupabaseClient, isSupabaseConfigured } from '../lib/supabase';
+import NotebookUseControl from './NotebookUseControl';
 
 interface ExampleSummary {
   slug: string;
@@ -41,11 +42,12 @@ export default function PublisherExampleViewer() {
     if (!supabase || !activeSession) { setAuthorized(false); setLoading(false); return; }
     setLoading(true);
     setError('');
-    const [{ data: reviewer, error: reviewerError }, { data: admin }] = await Promise.all([
+    const [{ data: reviewer, error: reviewerError }, { data: admin }, { data: bookOwner }] = await Promise.all([
       supabase.rpc('is_publisher_reviewer'),
       supabase.rpc('is_portal_admin'),
+      supabase.rpc('is_verified_book_owner'),
     ]);
-    if (reviewerError || (!reviewer && !admin)) {
+    if (reviewerError || (!reviewer && !admin && !bookOwner)) {
       setAuthorized(false);
       setError(reviewerError?.message ?? 'Publisher review access is required.');
       setLoading(false);
@@ -132,6 +134,13 @@ export default function PublisherExampleViewer() {
         <div><p className="eyebrow">{topicLabels[selected.topic]} · AE {selected.ae_number}</p><h2>{selected.title}</h2><p>{selected.method}</p></div>
         <div className="publisher-example-source"><Code2 aria-hidden="true" size={18} /><span><strong>Complete executed notebook</strong><small>Source integrity {selected.source_sha256.slice(0, 12)}</small></span></div>
       </header>
+      <NotebookUseControl
+        key={selected.slug}
+        slug={selected.slug}
+        aeNumber={selected.ae_number}
+        title={selected.title}
+        showDormantNotice
+      />
       {exampleLoading ? <p className="manual-section-loading">Loading notebook code and outputs...</p> : <div className="notebook-document" dangerouslySetInnerHTML={{ __html: bodyHtml }} />}
       {error && <p className="form-message form-error" role="alert">{error}</p>}
       <footer><LockKeyhole aria-hidden="true" size={16} /><p>Confidential prelaunch review copy. Viewing does not grant permission to publish, redistribute, or reuse this notebook.</p></footer>

@@ -25,11 +25,13 @@ jobs:
         env:
           PUBLIC_SUPABASE_URL: ${{ vars.PUBLIC_SUPABASE_URL }}
           PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ vars.PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
+          PUBLIC_GOOGLE_DRIVE_CLIENT_ID: ${{ vars.PUBLIC_GOOGLE_DRIVE_CLIENT_ID }}
       - name: Audit public and protected boundaries
         run: npm run security:audit
         env:
           PUBLIC_SUPABASE_URL: ${{ vars.PUBLIC_SUPABASE_URL }}
           PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ vars.PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
+          PUBLIC_GOOGLE_DRIVE_CLIENT_ID: ${{ vars.PUBLIC_GOOGLE_DRIVE_CLIENT_ID }}
 
   deploy:
     needs: build
