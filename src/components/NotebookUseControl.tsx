@@ -235,7 +235,11 @@ export default function NotebookUseControl({ slug, aeNumber, title, showDormantN
   const downloadAvailable = Boolean(capabilities?.download_enabled);
   const anyAvailable = colabAvailable || downloadAvailable;
   const selectedAvailable = action === 'colab' ? colabAvailable : downloadAvailable;
-  const actionLabel = action === 'colab' ? 'Continue to Google Colab' : 'Download notebook';
+  const actionLabel = !anyAvailable
+    ? 'Available after permission'
+    : action === 'colab'
+      ? 'Continue to Google Colab'
+      : 'Download notebook';
   const description = useMemo(() => `AE ${aeNumber}: ${title}`, [aeNumber, title]);
 
   const close = () => {
@@ -292,18 +296,18 @@ export default function NotebookUseControl({ slug, aeNumber, title, showDormantN
   };
 
   if (!capabilities) return null;
-  if (!anyAvailable) {
-    return showDormantNotice ? <div className="ae-delivery-dormant">
-      <LockKeyhole aria-hidden="true" size={18} />
-      <p><strong>Controlled notebook delivery is prepared but inactive.</strong> Google Colab and local download remain disabled pending written publisher permission.</p>
-    </div> : null;
-  }
 
   return <div className="ae-use-control">
     <button className="button button-primary" type="button" onClick={() => setOpen(true)}>
-      <FileCode2 aria-hidden="true" size={18} /> Use notebook
+      <FileCode2 aria-hidden="true" size={18} /> Use example
     </button>
-    <p>Authorized personal use only. Each transfer requires acknowledgment and is recorded.</p>
+    <p>{anyAvailable
+      ? 'Authorized personal use only. Each transfer requires acknowledgment and is recorded.'
+      : 'Preview the protected delivery choices and restrictions.'}</p>
+    {!anyAvailable && showDormantNotice && <div className="ae-delivery-dormant">
+      <LockKeyhole aria-hidden="true" size={18} />
+      <p><strong>Controlled notebook delivery is prepared but inactive.</strong> Google Colab and local download remain disabled pending written publisher permission.</p>
+    </div>}
 
     {open && <dialog ref={dialogRef} className="ae-use-dialog" aria-labelledby="ae-use-title" onCancel={(event) => { event.preventDefault(); close(); }} onClose={() => setOpen(false)}>
       <button className="ae-use-dialog-close" type="button" onClick={close} aria-label="Close notebook options" disabled={working}>
@@ -331,6 +335,8 @@ export default function NotebookUseControl({ slug, aeNumber, title, showDormantN
         <LockKeyhole aria-hidden="true" size={20} />
         <div><strong>Access and use restrictions</strong><p>{capabilities.notice_text}</p></div>
       </div>
+
+      {!anyAvailable && <p className="form-message" role="status">This preview shows the planned workflow. Notebook transfer will remain unavailable until written publisher permission is recorded.</p>}
 
       <label className="ae-acknowledgment">
         <input type="checkbox" checked={acknowledged} onChange={(event) => setAcknowledged(event.target.checked)} disabled={working} />
