@@ -2,7 +2,6 @@ import { BellRing, BookKey, CheckCircle2, ExternalLink, GraduationCap, KeyRound,
 import { useEffect, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { getSupabaseClient, isSupabaseConfigured } from '../lib/supabase';
-import ProtectedNotebookUpload from './ProtectedNotebookUpload';
 
 interface TaskCounts {
   instructorRequests: number;
@@ -82,8 +81,6 @@ export default function AdminHub() {
         {isOwner && <a href="/admin/delegation/"><KeyRound aria-hidden="true" size={19} /><span><strong>Administrator Delegation</strong><small>Appoint or revoke one alternate administrator</small></span><ExternalLink aria-hidden="true" size={15} /></a>}
       </nav>
     </section>
-
-    {isOwner && <ProtectedNotebookUpload />}
 
     {error && <p className="form-message form-error" role="alert">{error}</p>}
   </div>;

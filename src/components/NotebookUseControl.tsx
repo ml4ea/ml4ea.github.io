@@ -18,11 +18,10 @@ interface Capabilities {
 }
 
 interface Delivery {
-  signedUrl: string;
+  notebookBase64: string;
   filename: string;
   sourceSha256: string;
   notebookVersion: string;
-  expiresIn: number;
 }
 
 interface GoogleTokenResponse {
@@ -204,6 +203,15 @@ function saveNotebook(blob: Blob, filename: string) {
   window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
 }
 
+function notebookBlob(delivery: Delivery) {
+  const binary = window.atob(delivery.notebookBase64);
+  const bytes = new Uint8Array(binary.length);
+  for (let index = 0; index < binary.length; index += 1) {
+    bytes[index] = binary.charCodeAt(index);
+  }
+  return new Blob([bytes], { type: 'application/x-ipynb+json' });
+}
+
 export default function NotebookUseControl({ slug, aeNumber, title, showDormantNotice = false }: Props) {
   const [capabilities, setCapabilities] = useState<Capabilities | null>(null);
   const [open, setOpen] = useState(false);
@@ -269,7 +277,7 @@ export default function NotebookUseControl({ slug, aeNumber, title, showDormantN
         : null;
       throw new Error(responseBody?.error ?? data?.error ?? deliveryError.message);
     }
-    if (!data?.signedUrl) throw new Error(data?.error ?? 'The protected notebook could not be prepared.');
+    if (!data?.notebookBase64) throw new Error(data?.error ?? 'The protected notebook could not be prepared.');
     return data as Delivery;
   };
 
@@ -281,9 +289,7 @@ export default function NotebookUseControl({ slug, aeNumber, title, showDormantN
     try {
       if (action === 'download') {
         const delivery = await requestDelivery('download');
-        const response = await fetch(delivery.signedUrl);
-        if (!response.ok) throw new Error('The short-lived notebook download expired. Please try again.');
-        saveNotebook(await response.blob(), delivery.filename);
+        saveNotebook(notebookBlob(delivery), delivery.filename);
         setAcknowledged(false);
         setSuccess(`Download started for ${delivery.filename}. Check your browser's Downloads list if it does not appear on screen.`);
         return;
@@ -291,9 +297,7 @@ export default function NotebookUseControl({ slug, aeNumber, title, showDormantN
 
       const token = await requestGoogleDriveToken();
       const delivery = await requestDelivery('colab');
-      const response = await fetch(delivery.signedUrl);
-      if (!response.ok) throw new Error('The short-lived notebook transfer expired. Please try again.');
-      const notebook = await response.blob();
+      const notebook = notebookBlob(delivery);
       const folderId = await getOrCreateMl4eaFolder(token);
       const fileId = await uploadNotebookToDrive(token, notebook, delivery, slug, folderId);
       window.location.assign(`https://colab.research.google.com/drive/${encodeURIComponent(fileId)}`);
