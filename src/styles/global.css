@@ -4189,11 +4189,11 @@ p {
 }
 
 .notebook-markdown h1 {
-  max-width: 44ch;
+  max-width: 100%;
   margin: 0 0 18px;
   font-size: 1.55rem;
   overflow-wrap: normal;
-  text-wrap: balance;
+  text-wrap: wrap;
 }
 .notebook-markdown h2 { margin: 30px 0 10px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 1.22rem; }
 .notebook-markdown h3 { margin: 22px 0 8px; font-size: 1.05rem; }
