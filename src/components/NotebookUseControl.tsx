@@ -26,14 +26,8 @@ interface Delivery {
 
 interface GoogleTokenResponse {
   access_token?: string;
-  authuser?: string;
   error?: string;
   error_description?: string;
-}
-
-interface GoogleAuthorization {
-  accessToken: string;
-  authuser?: string;
 }
 
 interface GoogleTokenClient {
@@ -89,14 +83,12 @@ async function requestGoogleDriveToken() {
   if (!googleClientId) throw new Error('Google Colab delivery is not configured.');
   await loadGoogleIdentityServices();
 
-  return new Promise<GoogleAuthorization>((resolve, reject) => {
+  return new Promise<string>((resolve, reject) => {
     const client = window.google!.accounts.oauth2.initTokenClient({
       client_id: googleClientId,
       scope: driveScope,
       callback: (response) => {
-        if (response.access_token) {
-          resolve({ accessToken: response.access_token, authuser: response.authuser });
-        }
+        if (response.access_token) resolve(response.access_token);
         else reject(new Error(response.error_description ?? 'Google Drive authorization was not completed.'));
       },
       error_callback: () => reject(new Error('Google Drive authorization was cancelled or blocked.')),
@@ -143,6 +135,15 @@ async function getOrCreateMl4eaFolder(token: string) {
     }),
   });
   return folder.id;
+}
+
+async function getDriveUserEmail(token: string) {
+  const about = await driveRequest<{ user?: { emailAddress?: string } }>(
+    'https://www.googleapis.com/drive/v3/about?fields=user(emailAddress)',
+    token,
+  );
+  if (!about.user?.emailAddress) throw new Error('Google Drive did not identify the selected account.');
+  return about.user.emailAddress;
 }
 
 async function findManagedNotebook(token: string, slug: string) {
@@ -303,20 +304,25 @@ export default function NotebookUseControl({ slug, aeNumber, title, showDormantN
         return;
       }
 
-      const authorization = await requestGoogleDriveToken();
+      const token = await requestGoogleDriveToken();
       const delivery = await requestDelivery('colab');
       const notebook = notebookBlob(delivery);
-      const folderId = await getOrCreateMl4eaFolder(authorization.accessToken);
+      const [folderId, driveEmail] = await Promise.all([
+        getOrCreateMl4eaFolder(token),
+        getDriveUserEmail(token),
+      ]);
       const fileId = await uploadNotebookToDrive(
-        authorization.accessToken,
+        token,
         notebook,
         delivery,
         slug,
         folderId,
       );
       const colabUrl = new URL(`https://colab.research.google.com/drive/${encodeURIComponent(fileId)}`);
-      if (authorization.authuser) colabUrl.searchParams.set('authuser', authorization.authuser);
-      window.location.assign(colabUrl);
+      const accountChooser = new URL('https://accounts.google.com/AccountChooser');
+      accountChooser.searchParams.set('Email', driveEmail);
+      accountChooser.searchParams.set('continue', colabUrl.toString());
+      window.location.assign(accountChooser);
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : 'The notebook could not be prepared.');
     } finally {
