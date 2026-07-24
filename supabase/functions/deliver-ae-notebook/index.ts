@@ -41,9 +41,8 @@ Deno.serve(async (request) => {
 
   const supabaseUrl = Deno.env.get('SUPABASE_URL');
   const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY');
-  const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
   const githubToken = Deno.env.get('GITHUB_AE_TOKEN');
-  if (!supabaseUrl || !supabaseAnonKey || !serviceRoleKey || !githubToken) {
+  if (!supabaseUrl || !supabaseAnonKey || !githubToken) {
     return jsonResponse({ error: 'Protected notebook delivery is not configured.' }, 503);
   }
 
@@ -52,10 +51,6 @@ Deno.serve(async (request) => {
   });
   const { data: { user }, error: userError } = await userClient.auth.getUser();
   if (userError || !user) return jsonResponse({ error: 'Your session is not valid.' }, 401);
-
-  const serviceClient = createClient(supabaseUrl, serviceRoleKey, {
-    auth: { persistSession: false, autoRefreshToken: false },
-  });
 
   const { slug, action, noticeVersion } = await request.json() as {
     slug?: string;
@@ -74,6 +69,13 @@ Deno.serve(async (request) => {
   const delivery = (data?.[0] ?? null) as DeliveryRecord | null;
   if (error || !delivery) return jsonResponse({ error: error?.message ?? 'Notebook delivery was not authorized.' }, 403);
 
+  const finalizeAudit = async (status: 'delivered' | 'failed', failureCode: string | null = null) =>
+    userClient.rpc('finalize_ae_notebook_delivery', {
+      p_audit_id: delivery.audit_id,
+      p_status: status,
+      p_failure_code: failureCode,
+    });
+
   const encodedPath = delivery.github_path.split('/').map(encodeURIComponent).join('/');
   const githubResponse = await fetch(
     `https://api.github.com/repos/ml4ea/ae-notebooks/contents/${encodedPath}?ref=main`,
@@ -91,27 +93,22 @@ Deno.serve(async (request) => {
       path: delivery.github_path,
       status: githubResponse.status,
     });
-    await serviceClient
-      .from('ae_delivery_audit')
-      .update({ status: 'failed', failure_code: `github_${githubResponse.status}` })
-      .eq('id', delivery.audit_id);
+    await finalizeAudit('failed', `github_${githubResponse.status}`);
     return jsonResponse({ error: 'The protected notebook could not be retrieved from its private source.' }, 502);
   }
 
   const notebook = await githubResponse.arrayBuffer();
   if (await sha256Hex(notebook) !== delivery.source_sha256) {
     console.error('Protected notebook checksum mismatch', { path: delivery.github_path });
-    await serviceClient
-      .from('ae_delivery_audit')
-      .update({ status: 'failed', failure_code: 'checksum_mismatch' })
-      .eq('id', delivery.audit_id);
+    await finalizeAudit('failed', 'checksum_mismatch');
     return jsonResponse({ error: 'The protected notebook does not match its validated source checksum.' }, 502);
   }
 
-  await serviceClient
-    .from('ae_delivery_audit')
-    .update({ status: 'delivered', delivered_at: new Date().toISOString(), failure_code: null })
-    .eq('id', delivery.audit_id);
+  const { error: auditError } = await finalizeAudit('delivered');
+  if (auditError) {
+    console.error('Protected notebook audit finalization failed', auditError);
+    return jsonResponse({ error: 'The protected notebook transfer audit could not be completed.' }, 500);
+  }
 
   return jsonResponse({
     notebookBase64: base64(notebook),
