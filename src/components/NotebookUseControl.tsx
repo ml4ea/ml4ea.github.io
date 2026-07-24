@@ -262,7 +262,13 @@ export default function NotebookUseControl({ slug, aeNumber, title, showDormantN
         noticeVersion: capabilities.notice_version,
       },
     });
-    if (deliveryError) throw new Error(data?.error ?? deliveryError.message);
+    if (deliveryError) {
+      const response = (deliveryError as { context?: Response }).context;
+      const responseBody = response
+        ? await response.clone().json().catch(() => null) as { error?: string } | null
+        : null;
+      throw new Error(responseBody?.error ?? data?.error ?? deliveryError.message);
+    }
     if (!data?.signedUrl) throw new Error(data?.error ?? 'The protected notebook could not be prepared.');
     return data as Delivery;
   };
