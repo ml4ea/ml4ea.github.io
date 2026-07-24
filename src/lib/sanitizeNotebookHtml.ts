@@ -19,6 +19,7 @@ const allowedTags = [
   'ol',
   'p',
   'pre',
+  'section',
   'span',
   'strong',
   'sub',
