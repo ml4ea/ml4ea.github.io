@@ -4291,6 +4291,8 @@ p {
 }
 
 .ae-acknowledgment input { width: 18px; height: 18px; margin: 3px 0 0; accent-color: var(--green); }
+.ae-download-success { margin-top: 18px; color: var(--ink); }
+.ae-download-success svg { flex: 0 0 auto; color: var(--green); }
 .ae-use-dialog-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
 .ae-use-dialog-actions .button { display: inline-flex; gap: 9px; align-items: center; }
 .ae-google-scope { margin: 14px 0 0; color: var(--ink-soft); font-size: 0.86rem; }

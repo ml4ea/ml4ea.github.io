@@ -1,4 +1,4 @@
-import { Download, ExternalLink, FileCode2, HardDrive, LockKeyhole, X } from 'lucide-react';
+import { CheckCircle2, Download, ExternalLink, FileCode2, HardDrive, LockKeyhole, X } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { getSupabaseClient } from '../lib/supabase';
 
@@ -211,6 +211,7 @@ export default function NotebookUseControl({ slug, aeNumber, title, showDormantN
   const [acknowledged, setAcknowledged] = useState(false);
   const [working, setWorking] = useState(false);
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -248,6 +249,7 @@ export default function NotebookUseControl({ slug, aeNumber, title, showDormantN
     setOpen(false);
     setAcknowledged(false);
     setError('');
+    setSuccess('');
   };
 
   const requestDelivery = async (selectedAction: 'colab' | 'download') => {
@@ -269,6 +271,7 @@ export default function NotebookUseControl({ slug, aeNumber, title, showDormantN
     if (!acknowledged || !selectedAvailable) return;
     setWorking(true);
     setError('');
+    setSuccess('');
     try {
       if (action === 'download') {
         const delivery = await requestDelivery('download');
@@ -276,7 +279,7 @@ export default function NotebookUseControl({ slug, aeNumber, title, showDormantN
         if (!response.ok) throw new Error('The short-lived notebook download expired. Please try again.');
         saveNotebook(await response.blob(), delivery.filename);
         setAcknowledged(false);
-        setOpen(false);
+        setSuccess(`Download started for ${delivery.filename}. Check your browser's Downloads list if it does not appear on screen.`);
         return;
       }
 
@@ -298,7 +301,7 @@ export default function NotebookUseControl({ slug, aeNumber, title, showDormantN
   if (!capabilities) return null;
 
   return <div className="ae-use-control">
-    <button className="button button-primary" type="button" onClick={() => setOpen(true)}>
+    <button className="button button-primary" type="button" onClick={() => { setSuccess(''); setOpen(true); }}>
       <FileCode2 aria-hidden="true" size={18} /> Use example
     </button>
     <p>{anyAvailable
@@ -320,12 +323,12 @@ export default function NotebookUseControl({ slug, aeNumber, title, showDormantN
       <fieldset className="ae-delivery-options">
         <legend>Notebook destination</legend>
         <label className={colabAvailable ? '' : 'is-disabled'}>
-          <input type="radio" name="notebook-action" value="colab" checked={action === 'colab'} onChange={() => setAction('colab')} disabled={!colabAvailable || working} />
+          <input type="radio" name="notebook-action" value="colab" checked={action === 'colab'} onChange={() => { setAction('colab'); setError(''); setSuccess(''); }} disabled={!colabAvailable || working} />
           <HardDrive aria-hidden="true" size={22} />
           <span><strong>Load to Google Colab</strong><small>Default. Save or update a private copy in the ML4EA folder in your Google Drive, then open it in Colab.</small></span>
         </label>
         <label className={downloadAvailable ? '' : 'is-disabled'}>
-          <input type="radio" name="notebook-action" value="download" checked={action === 'download'} onChange={() => setAction('download')} disabled={!downloadAvailable || working} />
+          <input type="radio" name="notebook-action" value="download" checked={action === 'download'} onChange={() => { setAction('download'); setError(''); setSuccess(''); }} disabled={!downloadAvailable || working} />
           <Download aria-hidden="true" size={22} />
           <span><strong>Download .ipynb file</strong><small>Use the notebook in a local Jupyter environment. Keep the file private and tied to your authorized access.</small></span>
         </label>
@@ -344,6 +347,7 @@ export default function NotebookUseControl({ slug, aeNumber, title, showDormantN
       </label>
 
       {error && <p className="form-message form-error" role="alert">{error}</p>}
+      {success && <p className="form-message form-success ae-download-success" role="status"><CheckCircle2 aria-hidden="true" size={19} /> {success}</p>}
       <div className="ae-use-dialog-actions">
         <button className="button button-secondary" type="button" onClick={close} disabled={working}>Cancel</button>
         <button className="button button-primary" type="button" onClick={() => void proceed()} disabled={!acknowledged || !selectedAvailable || working}>
