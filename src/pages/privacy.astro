@@ -10,15 +10,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="container privacy-layout">
       <aside>
         <p class="eyebrow">Effective</p>
-        <p><time datetime="2026-07-22">July 22, 2026</time></p>
-        <a class="text-link" href="mailto:yjin@usc.edu">Privacy questions</a>
+        <p><time datetime="2026-07-25">July 25, 2026</time></p>
+        <a class="text-link" href="mailto:ml4ea.book@gmail.com">Privacy questions</a>
       </aside>
       <div class="prose">
         <h2>Information collected</h2>
         <p>Email-code authentication stores your email address, account identifier, and session information through Supabase. If you participate in discussions, the portal stores your chosen display name, posts, replies, and any moderation reports you submit. An instructor application additionally collects institution, department, position, institutional-profile URL, optional course context, review status, and administrative decision information.</p>
+        <p>When an authorized account requests an Application Example notebook, the portal records the portal account identifier and email address, notebook identifier and version, selected delivery method, acknowledged notice version, request time, and whether delivery succeeded or failed. These records support access control, security review, and responsible administration of protected materials.</p>
 
         <h2>How information is used</h2>
         <p>Account information is used to authenticate you and attribute participation. Discussion information is used to operate and moderate the community. Instructor-application information is used only to evaluate eligibility for protected teaching resources, administer that access, prevent misuse, and communicate about the application when necessary.</p>
+
+        <h2>Google Drive and Colab</h2>
+        <p>If you choose <strong>Load to Google Colab</strong>, the portal asks Google for the limited <code>drive.file</code> permission. This permission allows the portal to view and manage only Google Drive files and folders that it creates or that you open with it; it does not provide general access to the other contents of your Drive.</p>
+        <p>With your authorization, the portal creates or reuses a private <strong>ML4EA</strong> folder in your Drive, places the selected notebook there, and opens that copy in Google Colab. It may update a notebook copy previously created through the portal when a new validated version is delivered.</p>
+        <p>The Google access token and selected Google account address are used transiently in your browser to complete the Drive transfer and open Colab under the account you selected. They are not sent to or stored by the ML4EA portal or Supabase. Google processes the authorization and Drive activity under its own terms and privacy practices. Choosing <strong>Download .ipynb file</strong> does not use Google Drive.</p>
 
         <h2>Visibility and sharing</h2>
         <p>Public discussion posts, replies, and chosen display names can be read by anyone. Account email addresses are not displayed with discussion content. Teaching Practice discussions are limited to approved instructors and portal administrators. Moderation reports are available only to authorized administrators.</p>
@@ -28,7 +34,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p>Instructor resources are kept in a private storage bucket. Approved accounts receive short-lived signed download links. Approval does not transfer copyright or permit redistribution.</p>
 
         <h2>Retention and requests</h2>
-        <p>Account, discussion, moderation, application, and protected administrator records are retained while needed to operate the portal, administer access, preserve review history, and prevent misuse. To request correction or deletion of your portal account or related information, contact <a href="mailto:yjin@usc.edu">yjin@usc.edu</a>. Public GitHub submissions must be managed through the corresponding GitHub repository. Some limited records may be retained when necessary for security, legal obligations, or misuse prevention.</p>
+        <p>Account, discussion, moderation, application, notebook-delivery audit, and protected administrator records are retained while needed to operate the portal, administer access, preserve review history, and prevent misuse. To request correction or deletion of your portal account or related information, contact <a href="mailto:ml4ea.book@gmail.com">ml4ea.book@gmail.com</a>. Public GitHub submissions must be managed through the corresponding GitHub repository. Some limited records may be retained when necessary for security, legal obligations, or misuse prevention.</p>
 
         <h2>Security and changes</h2>
         <p>The portal uses verified email sign-in, Row Level Security, private storage, and expiring links. No internet service can guarantee absolute security. Material changes to this notice will be recorded on this page and may also be announced through portal updates.</p>
