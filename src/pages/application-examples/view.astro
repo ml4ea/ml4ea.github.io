@@ -1,0 +1,16 @@
+---
+import PublisherExampleViewer from '../../components/PublisherExampleViewer';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Application Example | ML4EA"
+  description="Read a selected Machine Learning for Engineering Applications notebook."
+  noindex
+>
+  <section class="ae-single-reader">
+    <div class="container manual-container">
+      <PublisherExampleViewer client:load />
+    </div>
+  </section>
+</BaseLayout>

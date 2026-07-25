@@ -122,9 +122,9 @@ export default function ApplicationExampleExplorer({ examples }: Props) {
                   <div className="ae-actions">
                     {completeExampleSlug ? (
                       <div className="ae-complete-preview-action">
-                        <a className="button button-secondary" href={`/application-examples?example=${completeExampleSlug}#complete-example`}>
+                        <a className="button button-secondary" href={`/application-examples/view?example=${completeExampleSlug}`}>
                           <BookOpen aria-hidden="true" size={18} />
-                          View complete example
+                          View example
                         </a>
                         <span>Signed-in browser preview</span>
                       </div>

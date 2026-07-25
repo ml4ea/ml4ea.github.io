@@ -4122,6 +4122,24 @@ p {
   scroll-margin-top: 110px;
 }
 
+.ae-single-reader {
+  min-height: 65vh;
+  padding-block: clamp(28px, 5vw, 64px) clamp(54px, 8vw, 100px);
+}
+
+.ae-single-example {
+  min-width: 0;
+}
+
+.ae-single-example > .ae-use-control {
+  width: min(100%, 1060px);
+  margin: 0 auto 20px;
+}
+
+.ae-single-state {
+  margin-block: clamp(24px, 5vw, 64px);
+}
+
 .publisher-example-tabs {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

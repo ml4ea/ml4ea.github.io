@@ -1,7 +1,6 @@
 ---
 import { BookOpen, Braces, CheckCircle2, Code2, LockKeyhole } from 'lucide-react';
 import ApplicationExampleExplorer from '../components/ApplicationExampleExplorer';
-import PublisherExampleViewer from '../components/PublisherExampleViewer';
 import inventory from '../data/application-examples.json';
 import PageHero from '../components/PageHero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -57,10 +56,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <ApplicationExampleExplorer examples={inventory.notebooks} client:load />
     </div>
   </section>
-
-  <div class="container manual-container" id="complete-example">
-    <PublisherExampleViewer client:load />
-  </div>
 
   <section class="content-section ae-contribute-band">
     <div class="container two-column-copy">
