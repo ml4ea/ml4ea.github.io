@@ -55,8 +55,8 @@ export default function PublisherReview() {
       <div><p className="eyebrow">Review scope</p><h2 id="review-scope-heading">Initial portal and materials review.</h2><p>Please review presentation, rights boundaries, and proposed access paths. This preview does not authorize publication or redistribution.</p></div>
       <nav aria-label="Publisher review destinations">
         <a href="/book"><span>01</span><div><strong>Book presentation</strong><small>Bibliographic, author, and ordering information</small></div><ExternalLink aria-hidden="true" size={16} /></a>
-        <a href="/application-examples"><span>02</span><div><strong>Application Example catalog</strong><small>Metadata only; notebook files remain unavailable</small></div><ExternalLink aria-hidden="true" size={16} /></a>
-        <a href="/publisher-review/application-examples/"><span>03</span><div><strong>Three complete Application Examples</strong><small>Executed code and outputs spanning three major methods</small></div><Braces aria-hidden="true" size={17} /></a>
+        <a href="/application-examples"><span>02</span><div><strong>Application Example catalog</strong><small>Catalog plus three signed-in browser examples</small></div><ExternalLink aria-hidden="true" size={16} /></a>
+        <a href="/application-examples?example=svm-bearing-fault-classification#complete-example"><span>03</span><div><strong>Three complete Application Examples</strong><small>Executed code and outputs spanning three major methods</small></div><Braces aria-hidden="true" size={17} /></a>
         <a href="/instructor/manual/"><span>04</span><div><strong>Online instructor’s manual</strong><small>Protected browser preview; PDF download is withheld</small></div><BookOpen aria-hidden="true" size={17} /></a>
         <a href="/updates/"><span>05</span><div><strong>Updates and errata</strong><small>Proposed public correction and update channel</small></div><ExternalLink aria-hidden="true" size={16} /></a>
       </nav>

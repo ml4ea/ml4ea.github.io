@@ -330,7 +330,7 @@ export default function NotebookUseControl({ slug, aeNumber, title, showDormantN
     }
   };
 
-  if (!capabilities) return null;
+  if (!capabilities?.eligible) return null;
 
   return <div className="ae-use-control">
     <button className="button button-primary" type="button" onClick={() => { setSuccess(''); setOpen(true); }}>

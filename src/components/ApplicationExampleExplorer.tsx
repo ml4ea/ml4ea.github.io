@@ -1,4 +1,4 @@
-import { CheckCircle2, KeyRound, LockKeyhole, Search, X } from 'lucide-react';
+import { BookOpen, CheckCircle2, KeyRound, LockKeyhole, Search, X } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 
 export interface ApplicationExample {
@@ -19,6 +19,12 @@ interface Props {
 }
 
 const normalize = (value: string) => value.toLowerCase().trim();
+
+const completeExampleSlugs: Record<string, string> = {
+  'Notebook-07.5.5-SVM-cwru-bearing.ipynb': 'svm-bearing-fault-classification',
+  'Notebook-09.5.2-CNN-NEU-DET.ipynb': 'cnn-surface-defect-detection',
+  'Notebook-12.3.5-VAE-SensorAnomaly.ipynb': 'vae-sensor-anomaly-detection',
+};
 
 export default function ApplicationExampleExplorer({ examples }: Props) {
   const [query, setQuery] = useState('');
@@ -93,6 +99,7 @@ export default function ApplicationExampleExplorer({ examples }: Props) {
       {results.length > 0 ? (
         <ol className="ae-results">
           {results.map((example) => {
+            const completeExampleSlug = completeExampleSlugs[example.filename];
             return (
               <li key={example.filename}>
                 <article className="ae-result">
@@ -113,10 +120,20 @@ export default function ApplicationExampleExplorer({ examples }: Props) {
                     </ul>
                   </div>
                   <div className="ae-actions">
-                    <div className="ae-access-locked">
-                      <LockKeyhole aria-hidden="true" size={19} />
-                      <span><strong>Prelaunch</strong>Access pending publisher review</span>
-                    </div>
+                    {completeExampleSlug ? (
+                      <div className="ae-complete-preview-action">
+                        <a className="button button-secondary" href={`/application-examples?example=${completeExampleSlug}#complete-example`}>
+                          <BookOpen aria-hidden="true" size={18} />
+                          View complete example
+                        </a>
+                        <span>Signed-in browser preview</span>
+                      </div>
+                    ) : (
+                      <div className="ae-access-locked">
+                        <LockKeyhole aria-hidden="true" size={19} />
+                        <span><strong>Prelaunch</strong>Access pending publisher review</span>
+                      </div>
+                    )}
                   </div>
                 </article>
               </li>

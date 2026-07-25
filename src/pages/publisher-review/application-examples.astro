@@ -1,19 +1,19 @@
 ---
-import PublisherExampleViewer from '../../components/PublisherExampleViewer';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const destination = '/application-examples?example=svm-bearing-fault-classification#complete-example';
 ---
 
-<BaseLayout title="Selected Application Examples | ML4EA" description="Three complete Application Examples for protected publisher review." noindex>
-  <section class="manual-masthead publisher-example-masthead">
-    <div class="container">
-      <p class="eyebrow">Protected publisher review</p>
-      <h1>Selected Application Examples</h1>
-      <p>Classification, deep neural networks, and generative models</p>
+<BaseLayout title="Application Examples | ML4EA" description="Continue to the regular Application Example catalog." noindex>
+  <section class="content-section">
+    <div class="container narrow-copy">
+      <p class="eyebrow">Application Examples</p>
+      <h1>The complete examples have moved.</h1>
+      <p>The three signed-in browser previews are now part of the regular Application Example catalog.</p>
+      <a class="button button-primary" href={destination}>Continue to the examples</a>
     </div>
   </section>
-  <section class="manual-reader-section">
-    <div class="container manual-container">
-      <PublisherExampleViewer client:load />
-    </div>
-  </section>
+  <script is:inline define:vars={{ destination }}>
+    window.location.replace(destination);
+  </script>
 </BaseLayout>

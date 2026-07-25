@@ -1997,7 +1997,7 @@ p {
 
 .ae-result {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 178px;
+  grid-template-columns: minmax(0, 1fr) 220px;
   gap: clamp(28px, 5vw, 70px);
   align-items: center;
   padding-block: 27px;
@@ -2067,6 +2067,18 @@ p {
   display: block;
   color: var(--ink);
   font-weight: 500;
+}
+
+.ae-complete-preview-action {
+  display: grid;
+  gap: 8px;
+}
+
+.ae-complete-preview-action > span {
+  color: var(--ink-soft);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  text-align: center;
 }
 
 .ae-start-grid,
@@ -4103,6 +4115,11 @@ p {
 .publisher-examples {
   display: grid;
   gap: 24px;
+}
+
+.ae-complete-example {
+  margin-block: clamp(40px, 7vw, 84px);
+  scroll-margin-top: 110px;
 }
 
 .publisher-example-tabs {

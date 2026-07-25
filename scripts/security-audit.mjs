@@ -94,13 +94,18 @@ function auditAccessMigration() {
 
 function auditPublisherExamplesMigration() {
   const migrationPath = path.join(root, 'supabase/migrations/202607240001_publisher_review_ae_examples.sql');
+  const previewMigrationPath = path.join(root, 'supabase/migrations/202607250001_signed_in_ae_browser_previews.sql');
   check(fs.existsSync(migrationPath), 'The protected publisher AE-example migration is missing.');
+  check(fs.existsSync(previewMigrationPath), 'The signed-in AE browser-preview migration is missing.');
   if (!fs.existsSync(migrationPath)) return;
 
   const migration = fs.readFileSync(migrationPath, 'utf8');
+  const previewMigration = fs.existsSync(previewMigrationPath) ? fs.readFileSync(previewMigrationPath, 'utf8') : '';
   check(migration.includes('publisher_review_ae_examples'), 'The protected publisher AE-example table is not defined.');
-  check(migration.includes('public.is_publisher_reviewer() or public.is_portal_admin()'), 'Selected AE examples are not limited to reviewers and administrators.');
+  check(previewMigration.includes('public.has_verified_portal_account()'), 'Selected AE browser previews are not limited to verified accounts.');
+  check(previewMigration.includes('email_confirmed_at is not null'), 'AE browser preview access does not verify the signed-in email.');
   check(!migration.includes('grant select on table public.publisher_review_ae_examples to anon'), 'Anonymous users received access to selected AE examples.');
+  check(!previewMigration.includes('to anon'), 'Anonymous users received access to selected AE browser previews.');
 
   const builderPath = path.join(root, 'tools/build_publisher_ae_examples.mjs');
   check(fs.existsSync(builderPath), 'The protected publisher AE-example builder is missing.');

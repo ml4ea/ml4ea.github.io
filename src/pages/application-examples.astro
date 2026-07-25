@@ -1,6 +1,7 @@
 ---
 import { BookOpen, Braces, CheckCircle2, Code2, LockKeyhole } from 'lucide-react';
 import ApplicationExampleExplorer from '../components/ApplicationExampleExplorer';
+import PublisherExampleViewer from '../components/PublisherExampleViewer';
 import inventory from '../data/application-examples.json';
 import PageHero from '../components/PageHero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -31,7 +32,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div>
         <p class="eyebrow">Start here</p>
         <h2>Explore the collection before release.</h2>
-        <p>The searchable catalog is available during prelaunch review. Notebook files and executable access are being held while distribution terms are confirmed with the publisher.</p>
+        <p>The searchable catalog is available during prelaunch review. Three representative notebooks can be read in full after sign-in; notebook files and executable access remain controlled.</p>
         <div class="button-row">
           <a class="button button-primary" href="#notebooks"><BookOpen aria-hidden="true" size={17} /> Browse the catalog</a>
         </div>
@@ -56,6 +57,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <ApplicationExampleExplorer examples={inventory.notebooks} client:load />
     </div>
   </section>
+
+  <div class="container manual-container" id="complete-example">
+    <PublisherExampleViewer client:load />
+  </div>
 
   <section class="content-section ae-contribute-band">
     <div class="container two-column-copy">
