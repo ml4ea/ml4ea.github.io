@@ -4356,12 +4356,12 @@ p {
 .notebook-markdown h1 {
   max-width: 100%;
   margin: 0 0 18px;
-  font-size: 1.55rem;
+  font-size: 1.8rem;
   overflow-wrap: normal;
   text-wrap: wrap;
 }
-.notebook-markdown h2 { margin: 30px 0 10px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 1.22rem; }
-.notebook-markdown h3 { margin: 22px 0 8px; font-size: 1.05rem; }
+.notebook-markdown h2 { margin: 30px 0 10px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 1.45rem; }
+.notebook-markdown h3 { margin: 22px 0 8px; font-size: 1.22rem; }
 .notebook-markdown p { margin: 0 0 14px; }
 .notebook-markdown ul,
 .notebook-markdown ol { padding-left: 24px; }
@@ -5637,6 +5637,10 @@ p {
   .notebook-document {
     padding: 22px 16px;
   }
+
+  .notebook-markdown h1 { font-size: 1.65rem; }
+  .notebook-markdown h2 { font-size: 1.32rem; }
+  .notebook-markdown h3 { font-size: 1.12rem; }
 
   .notebook-source,
   .notebook-output-stream,
