@@ -3277,6 +3277,38 @@ p {
   font-size: 1.05rem;
 }
 
+.notebook-masthead {
+  position: relative;
+  padding-block: 34px 30px;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper-soft);
+}
+
+.notebook-masthead::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 10px;
+  background: var(--cyan);
+  content: '';
+}
+
+.notebook-masthead .eyebrow,
+.notebook-masthead h1,
+.notebook-masthead p:last-child {
+  margin: 0;
+}
+
+.notebook-masthead h1 {
+  max-width: none;
+  font-size: 3.3rem;
+}
+
+.notebook-masthead p:last-child {
+  margin-top: 3px;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+}
+
 .manual-reader-section {
   padding-block: 30px 70px;
 }
@@ -5658,6 +5690,10 @@ p {
     width: 7px;
   }
 
+  .notebook-masthead::before {
+    width: 7px;
+  }
+
   .toolkit-masthead::before {
     width: 7px;
   }
@@ -5817,6 +5853,7 @@ p {
   }
 
   .manual-masthead h1,
+  .notebook-masthead h1,
   .manual-article-heading h2 {
     font-size: 2.1rem;
   }
