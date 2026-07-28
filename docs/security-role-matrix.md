@@ -19,6 +19,7 @@ Supabase grants, Row Level Security, RPC checks, and private Storage policies.
 | Download private instructor files | No | No | No | 60-second signed URL | No | Dormant | 60-second signed URL | 60-second signed URL |
 | Approve instructor access | No | No | No | No | No | Dormant | Yes | Yes |
 | Moderate discussions and edit announcements | No | No | No | No | No | Dormant | Yes | Yes |
+| View signed-in user and approved-instructor directory | No | No | No | No | No | Dormant | Yes | Yes |
 | Grant or revoke publisher review | No | No | No | No | No | Dormant | Yes | Yes |
 | Appoint or revoke a delegated administrator | No | No | No | No | No | Dormant | No | Yes |
 

@@ -1,0 +1,14 @@
+---
+import AdminUsers from '../../components/AdminUsers';
+import PageHero from '../../components/PageHero.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="User Directory | ML4EA" description="Administrator directory of signed-in ML4EA accounts and approved instructors." noindex>
+  <PageHero eyebrow="Administration" title="Portal users." description="Review signed-in accounts, instructor status, portal roles, and recent access activity." accent="orange" />
+  <section class="content-section">
+    <div class="container account-container">
+      <AdminUsers client:load />
+    </div>
+  </section>
+</BaseLayout>

@@ -60,6 +60,13 @@ before appointment. Delegates can complete operational reviews and moderation,
 but only `yjin@usc.edu` can appoint, replace, or revoke a delegate. Appointment
 and revocation events are recorded in the protected administrator audit log.
 
+Apply `migrations/202607270001_admin_user_directory.sql` to add the read-only
+administrator user directory at `/admin/users/`. The protected RPC returns only
+confirmed accounts that have completed at least one sign-in. Owners and
+delegated administrators can search all signed-in accounts or filter to
+approved instructors. The browser never receives direct access to
+`auth.users`, and anonymous callers cannot execute the directory function.
+
 Apply `migrations/202607230001_publisher_review_entitlements.sql` to add
 time-limited publisher-review access and the dormant verified-book-owner role.
 Administrators manage publisher reviewers at `/admin/access/`; reviewers use

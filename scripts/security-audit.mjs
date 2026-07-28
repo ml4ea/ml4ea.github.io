@@ -120,6 +120,22 @@ function auditPublisherExamplesMigration() {
   }
 }
 
+function auditUserDirectoryMigration() {
+  const migrationPath = path.join(root, 'supabase/migrations/202607270001_admin_user_directory.sql');
+  check(fs.existsSync(migrationPath), 'The administrator user-directory migration is missing.');
+  if (!fs.existsSync(migrationPath)) return;
+
+  const migration = fs.readFileSync(migrationPath, 'utf8');
+  check(migration.includes('public.get_portal_user_directory'), 'The administrator user-directory function is not defined.');
+  check(migration.includes('if not public.is_portal_admin()'), 'The user directory does not require administrator access.');
+  check(migration.includes('account.email_confirmed_at is not null'), 'The user directory includes unverified email accounts.');
+  check(migration.includes('account.last_sign_in_at is not null'), 'The user directory includes accounts that never signed in.');
+  check(migration.includes('security definer'), 'The user directory cannot safely read protected Auth records.');
+  check(migration.includes('revoke all on function public.get_portal_user_directory'), 'Public user-directory execution was not revoked.');
+  check(migration.includes('to authenticated'), 'The protected user-directory function was not granted to authenticated callers.');
+  check(!migration.includes('to anon'), 'Anonymous users received access to the administrator user directory.');
+}
+
 async function auditAnonymousApi() {
   const localEnv = readLocalEnv();
   const supabaseUrl = process.env.PUBLIC_SUPABASE_URL || localEnv.PUBLIC_SUPABASE_URL;
@@ -184,6 +200,7 @@ async function auditAnonymousApi() {
     'can_view_instructor_manual',
     'get_my_portal_entitlements',
     'get_portal_access_entitlements',
+    'get_portal_user_directory',
   ]) {
     const result = await request(`/rest/v1/rpc/${rpc}`, { method: 'POST', body: '{}' });
     check(!result.response.ok, `Anonymous users can execute protected function ${rpc}.`);
@@ -217,6 +234,7 @@ async function auditAnonymousApi() {
 
 auditAccessMigration();
 auditPublisherExamplesMigration();
+auditUserDirectoryMigration();
 await auditAnonymousApi();
 auditStaticBuild();
 

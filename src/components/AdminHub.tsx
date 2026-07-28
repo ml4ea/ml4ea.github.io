@@ -1,4 +1,4 @@
-import { BellRing, BookKey, CheckCircle2, ExternalLink, GraduationCap, KeyRound, LockKeyhole, Megaphone, MessageSquareWarning, ShieldCheck } from 'lucide-react';
+import { BellRing, BookKey, CheckCircle2, ExternalLink, GraduationCap, KeyRound, LockKeyhole, Megaphone, MessageSquareWarning, ShieldCheck, UsersRound } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { getSupabaseClient, isSupabaseConfigured } from '../lib/supabase';
@@ -74,6 +74,7 @@ export default function AdminHub() {
     <section className="admin-tools" aria-labelledby="admin-tools-heading">
       <div><p className="eyebrow">Administrator pages</p><h2 id="admin-tools-heading">Portal management shortcuts.</h2></div>
       <nav aria-label="Administrator pages">
+        <a href="/admin/users/"><UsersRound aria-hidden="true" size={19} /><span><strong>User Directory</strong><small>Signed-in accounts, roles, and approved instructors</small></span><ExternalLink aria-hidden="true" size={15} /></a>
         <a href="/admin/instructors/"><GraduationCap aria-hidden="true" size={19} /><span><strong>Instructor Reviews</strong><small>Access decisions and decision emails</small></span><ExternalLink aria-hidden="true" size={15} /></a>
         <a href="/admin/discussions/"><MessageSquareWarning aria-hidden="true" size={19} /><span><strong>Discussion Moderation</strong><small>Reports and content review</small></span><ExternalLink aria-hidden="true" size={15} /></a>
         <a href="/admin/access/"><BookKey aria-hidden="true" size={19} /><span><strong>Review Access</strong><small>Publisher reviewer grants, expiration, and revocation</small></span><ExternalLink aria-hidden="true" size={15} /></a>
