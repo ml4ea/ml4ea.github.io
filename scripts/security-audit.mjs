@@ -95,28 +95,41 @@ function auditAccessMigration() {
 function auditPublisherExamplesMigration() {
   const migrationPath = path.join(root, 'supabase/migrations/202607240001_publisher_review_ae_examples.sql');
   const previewMigrationPath = path.join(root, 'supabase/migrations/202607250001_signed_in_ae_browser_previews.sql');
+  const accessMigrationPath = path.join(root, 'supabase/migrations/202607290001_signed_in_ae_access.sql');
+  const metadataMigrationPath = path.join(root, 'supabase/migrations/202607290002_all_ae_notebook_metadata.sql');
+  const edgeFunctionPath = path.join(root, 'supabase/functions/deliver-ae-notebook/index.ts');
   check(fs.existsSync(migrationPath), 'The protected publisher AE-example migration is missing.');
   check(fs.existsSync(previewMigrationPath), 'The signed-in AE browser-preview migration is missing.');
-  if (!fs.existsSync(migrationPath)) return;
+  check(fs.existsSync(accessMigrationPath), 'The signed-in all-AE access migration is missing.');
+  check(fs.existsSync(metadataMigrationPath), 'The all-AE metadata migration is missing.');
+  check(fs.existsSync(edgeFunctionPath), 'The protected AE delivery function is missing.');
+  if (!fs.existsSync(migrationPath) || !fs.existsSync(accessMigrationPath) || !fs.existsSync(metadataMigrationPath)) return;
 
   const migration = fs.readFileSync(migrationPath, 'utf8');
   const previewMigration = fs.existsSync(previewMigrationPath) ? fs.readFileSync(previewMigrationPath, 'utf8') : '';
+  const accessMigration = fs.readFileSync(accessMigrationPath, 'utf8');
+  const metadataMigration = fs.readFileSync(metadataMigrationPath, 'utf8');
+  const edgeFunction = fs.existsSync(edgeFunctionPath) ? fs.readFileSync(edgeFunctionPath, 'utf8') : '';
   check(migration.includes('publisher_review_ae_examples'), 'The protected publisher AE-example table is not defined.');
   check(previewMigration.includes('public.has_verified_portal_account()'), 'Selected AE browser previews are not limited to verified accounts.');
   check(previewMigration.includes('email_confirmed_at is not null'), 'AE browser preview access does not verify the signed-in email.');
   check(!migration.includes('grant select on table public.publisher_review_ae_examples to anon'), 'Anonymous users received access to selected AE examples.');
   check(!previewMigration.includes('to anon'), 'Anonymous users received access to selected AE browser previews.');
+  check(accessMigration.includes('public.has_verified_portal_account()'), 'Full AE access is not restricted to verified accounts.');
+  check(accessMigration.includes('account.email_confirmed_at is not null'), 'Full AE access does not verify the account email.');
+  check(accessMigration.includes('public.prepare_ae_notebook_view'), 'Browser notebook views are not authorized through a protected RPC.');
+  check(accessMigration.includes('public.ae_notebook_view_audit'), 'Browser notebook views are not audited.');
+  check(accessMigration.includes('colab_enabled = true'), 'Google Colab AE delivery was not enabled after permission.');
+  check(accessMigration.includes('download_enabled = true'), 'Local AE download was not enabled after permission.');
+  check(accessMigration.includes('permission_reference'), 'The publisher-permission reference is not recorded.');
+  check(!accessMigration.includes('grant execute on function public.prepare_ae_notebook_view(text) to anon'), 'Anonymous users can prepare protected AE browser views.');
+  check(edgeFunction.includes("action === 'view'"), 'The Edge Function does not support protected browser views.');
+  check(edgeFunction.includes("prepare_ae_notebook_view"), 'The Edge Function bypasses the protected browser-view RPC.');
 
-  const builderPath = path.join(root, 'tools/build_publisher_ae_examples.mjs');
-  check(fs.existsSync(builderPath), 'The protected publisher AE-example builder is missing.');
-  if (!fs.existsSync(builderPath)) return;
-  const builder = fs.readFileSync(builderPath, 'utf8');
-  for (const filename of [
-    'Notebook-07.5.5-SVM-cwru-bearing.ipynb',
-    'Notebook-09.5.2-CNN-NEU-DET.ipynb',
-    'Notebook-12.3.5-VAE-SensorAnomaly.ipynb',
-  ]) {
-    check(builder.includes(filename), `The protected publisher set is missing ${filename}.`);
+  const inventory = JSON.parse(fs.readFileSync(path.join(root, 'src/data/application-examples.json'), 'utf8'));
+  check(inventory.notebooks.length === 56, 'The expected 56-notebook inventory is incomplete.');
+  for (const notebook of inventory.notebooks) {
+    check(metadataMigration.includes(notebook.filename), `Protected metadata is missing ${notebook.filename}.`);
   }
 }
 
@@ -179,6 +192,10 @@ async function auditAnonymousApi() {
     'portal_admin_audit_log',
     'portal_access_entitlements',
     'publisher_review_ae_examples',
+    'ae_delivery_settings',
+    'ae_notebook_files',
+    'ae_delivery_audit',
+    'ae_notebook_view_audit',
     'instructor_applications',
     'instructor_resources',
     'instructor_manual_editions',
@@ -201,8 +218,35 @@ async function auditAnonymousApi() {
     'get_my_portal_entitlements',
     'get_portal_access_entitlements',
     'get_portal_user_directory',
+    'get_ae_delivery_capabilities',
   ]) {
     const result = await request(`/rest/v1/rpc/${rpc}`, { method: 'POST', body: '{}' });
+    check(!result.response.ok, `Anonymous users can execute protected function ${rpc}.`);
+    check(result.response.status !== 404, `Protected function ${rpc} is missing from the live Supabase project.`);
+  }
+
+  for (const [rpc, body] of [
+    ['prepare_ae_notebook_view', { p_slug: 'anonymous-probe' }],
+    ['prepare_ae_notebook_delivery', {
+      p_slug: 'anonymous-probe',
+      p_action: 'download',
+      p_notice_version: 'anonymous-probe',
+    }],
+    ['finalize_ae_notebook_view', {
+      p_audit_id: '00000000-0000-0000-0000-000000000000',
+      p_status: 'failed',
+      p_failure_code: 'anonymous-probe',
+    }],
+    ['finalize_ae_notebook_delivery', {
+      p_audit_id: '00000000-0000-0000-0000-000000000000',
+      p_status: 'failed',
+      p_failure_code: 'anonymous-probe',
+    }],
+  ]) {
+    const result = await request(`/rest/v1/rpc/${rpc}`, {
+      method: 'POST',
+      body: JSON.stringify(body),
+    });
     check(!result.response.ok, `Anonymous users can execute protected function ${rpc}.`);
     check(result.response.status !== 404, `Protected function ${rpc} is missing from the live Supabase project.`);
   }
@@ -225,6 +269,13 @@ async function auditAnonymousApi() {
     body: JSON.stringify({ applicationId: '00000000-0000-0000-0000-000000000000' }),
   });
   check(edgeFunction.response.status === 401, 'The instructor notification function accepts requests without a user token.');
+
+  const notebookFunction = await request('/functions/v1/deliver-ae-notebook', {
+    method: 'POST',
+    headers: { Authorization: '' },
+    body: JSON.stringify({ slug: 'not-authorized', action: 'view' }),
+  });
+  check(notebookFunction.response.status === 401, 'The AE notebook function accepts browser-view requests without a user token.');
 
   const notebookRepository = await fetch('https://api.github.com/repos/ml4ea/ae-notebooks', {
     headers: { Accept: 'application/vnd.github+json', 'User-Agent': 'ml4ea-security-audit' },

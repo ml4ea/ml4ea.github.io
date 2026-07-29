@@ -1,5 +1,8 @@
-import { BookOpen, CheckCircle2, KeyRound, LockKeyhole, Search, X } from 'lucide-react';
-import { useEffect, useMemo, useState } from 'react';
+import { BookOpen, CheckCircle2, KeyRound, LogIn, Search, X } from 'lucide-react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import type { Session } from '@supabase/supabase-js';
+import { applicationExampleSlug } from '../lib/applicationExampleSlug';
+import { getSupabaseClient } from '../lib/supabase';
 
 export interface ApplicationExample {
   filename: string;
@@ -20,15 +23,13 @@ interface Props {
 
 const normalize = (value: string) => value.toLowerCase().trim();
 
-const completeExampleSlugs: Record<string, string> = {
-  'Notebook-07.5.5-SVM-cwru-bearing.ipynb': 'svm-bearing-fault-classification',
-  'Notebook-09.5.2-CNN-NEU-DET.ipynb': 'cnn-surface-defect-detection',
-  'Notebook-12.3.5-VAE-SensorAnomaly.ipynb': 'vae-sensor-anomaly-detection',
-};
-
 export default function ApplicationExampleExplorer({ examples }: Props) {
   const [query, setQuery] = useState('');
   const [chapter, setChapter] = useState('All chapters');
+  const [session, setSession] = useState<Session | null>(null);
+  const [sessionKnown, setSessionKnown] = useState(false);
+  const [signInTarget, setSignInTarget] = useState('');
+  const signInDialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -37,6 +38,28 @@ export default function ApplicationExampleExplorer({ examples }: Props) {
     if (chapterValue) setChapter(chapterValue);
     if (queryValue) setQuery(queryValue);
   }, []);
+
+  useEffect(() => {
+    const supabase = getSupabaseClient();
+    if (!supabase) {
+      setSessionKnown(true);
+      return;
+    }
+    supabase.auth.getSession().then(({ data }) => {
+      setSession(data.session);
+      setSessionKnown(true);
+    });
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, nextSession) => {
+      setSession(nextSession);
+      setSessionKnown(true);
+    });
+    return () => listener.subscription.unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    if (!signInTarget || !signInDialogRef.current || signInDialogRef.current.open) return;
+    signInDialogRef.current.showModal();
+  }, [signInTarget]);
 
   const chapters = useMemo(
     () => [...new Set(examples.map((example) => example.chapter))].sort((a, b) => a - b),
@@ -63,6 +86,10 @@ export default function ApplicationExampleExplorer({ examples }: Props) {
   const clearFilters = () => {
     setQuery('');
     setChapter('All chapters');
+  };
+  const closeSignIn = () => {
+    signInDialogRef.current?.close();
+    setSignInTarget('');
   };
 
   return (
@@ -99,7 +126,8 @@ export default function ApplicationExampleExplorer({ examples }: Props) {
       {results.length > 0 ? (
         <ol className="ae-results">
           {results.map((example) => {
-            const completeExampleSlug = completeExampleSlugs[example.filename];
+            const slug = applicationExampleSlug(example);
+            const examplePath = `/application-examples/view?example=${encodeURIComponent(slug)}`;
             return (
               <li key={example.filename}>
                 <article className="ae-result">
@@ -120,20 +148,21 @@ export default function ApplicationExampleExplorer({ examples }: Props) {
                     </ul>
                   </div>
                   <div className="ae-actions">
-                    {completeExampleSlug ? (
-                      <div className="ae-complete-preview-action">
-                        <a className="button button-secondary" href={`/application-examples/view?example=${completeExampleSlug}`}>
-                          <BookOpen aria-hidden="true" size={18} />
-                          View example
-                        </a>
-                        <span>Signed-in browser preview</span>
-                      </div>
-                    ) : (
-                      <div className="ae-access-locked">
-                        <LockKeyhole aria-hidden="true" size={19} />
-                        <span><strong>Prelaunch</strong>Access pending publisher review</span>
-                      </div>
-                    )}
+                    <div className="ae-complete-preview-action">
+                      <a
+                        className="button button-secondary"
+                        href={examplePath}
+                        onClick={(event) => {
+                          if (!sessionKnown || session) return;
+                          event.preventDefault();
+                          setSignInTarget(examplePath);
+                        }}
+                      >
+                        <BookOpen aria-hidden="true" size={18} />
+                        View example
+                      </a>
+                      <span>{session ? 'Available to your account' : 'Sign-in required'}</span>
+                    </div>
                   </div>
                 </article>
               </li>
@@ -146,6 +175,28 @@ export default function ApplicationExampleExplorer({ examples }: Props) {
           <p>No matching Application Examples were found.</p>
         </div>
       )}
+
+      {signInTarget && <dialog
+        ref={signInDialogRef}
+        className="ae-sign-in-dialog"
+        aria-labelledby="ae-sign-in-title"
+        onCancel={(event) => { event.preventDefault(); closeSignIn(); }}
+        onClose={() => setSignInTarget('')}
+      >
+        <button className="ae-use-dialog-close" type="button" onClick={closeSignIn} aria-label="Close sign-in request">
+          <X aria-hidden="true" size={22} />
+        </button>
+        <LogIn aria-hidden="true" size={27} />
+        <p className="eyebrow">Verified portal account</p>
+        <h2 id="ae-sign-in-title">Sign in to open this Application Example.</h2>
+        <p>All companion notebooks are available to signed-in users and approved instructors.</p>
+        <div className="ae-use-dialog-actions">
+          <button className="button button-secondary" type="button" onClick={closeSignIn}>Cancel</button>
+          <a className="button button-primary" href={`/account?next=${encodeURIComponent(signInTarget)}`}>
+            <LogIn aria-hidden="true" size={17} /> Sign in
+          </a>
+        </div>
+      </dialog>}
     </div>
   );
 }

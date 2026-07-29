@@ -4402,7 +4402,8 @@ p {
 .ae-delivery-dormant strong { color: var(--ink); }
 .ae-use-control .button { width: max-content; }
 
-.ae-use-dialog {
+.ae-use-dialog,
+.ae-sign-in-dialog {
   position: fixed;
   inset: 50% auto auto 50%;
   z-index: 1000;
@@ -4419,9 +4420,18 @@ p {
   color: var(--ink);
 }
 
-.ae-use-dialog::backdrop { background: rgb(23 27 29 / 52%); }
-.ae-use-dialog h2 { margin: 7px 44px 0 0; font-size: clamp(1.65rem, 4vw, 2.35rem); }
+.ae-use-dialog::backdrop,
+.ae-sign-in-dialog::backdrop { background: rgb(23 27 29 / 52%); }
+.ae-use-dialog h2,
+.ae-sign-in-dialog h2 { margin: 7px 44px 0 0; font-size: clamp(1.65rem, 4vw, 2.35rem); }
 .ae-use-dialog-description { margin: 8px 0 24px; color: var(--ink-soft); }
+
+.ae-sign-in-dialog {
+  width: min(calc(100% - 32px), 620px);
+}
+
+.ae-sign-in-dialog > svg { margin-bottom: 14px; color: var(--green); }
+.ae-sign-in-dialog > p:not(.eyebrow) { margin: 14px 0 0; color: var(--ink-soft); }
 
 .ae-use-dialog-close {
   position: absolute;

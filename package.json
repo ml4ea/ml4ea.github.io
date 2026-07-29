@@ -11,6 +11,7 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "check": "astro check",
+    "ae-access:build": "node tools/build_ae_access_metadata.mjs",
     "publisher-examples:build": "node tools/build_publisher_ae_examples.mjs",
     "security:audit": "node scripts/security-audit.mjs"
   },

@@ -6,7 +6,6 @@ interface Props {
   slug: string;
   aeNumber: string;
   title: string;
-  showDormantNotice?: boolean;
 }
 
 interface Capabilities {
@@ -221,7 +220,7 @@ function notebookBlob(delivery: Delivery) {
   return new Blob([bytes], { type: 'application/x-ipynb+json' });
 }
 
-export default function NotebookUseControl({ slug, aeNumber, title, showDormantNotice = false }: Props) {
+export default function NotebookUseControl({ slug, aeNumber, title }: Props) {
   const [capabilities, setCapabilities] = useState<Capabilities | null>(null);
   const [open, setOpen] = useState(false);
   const [action, setAction] = useState<'colab' | 'download'>('colab');
@@ -254,7 +253,7 @@ export default function NotebookUseControl({ slug, aeNumber, title, showDormantN
   const anyAvailable = colabAvailable || downloadAvailable;
   const selectedAvailable = action === 'colab' ? colabAvailable : downloadAvailable;
   const actionLabel = !anyAvailable
-    ? 'Available after permission'
+    ? 'Temporarily unavailable'
     : action === 'colab'
       ? 'Continue to Google Colab'
       : 'Download notebook';
@@ -338,11 +337,7 @@ export default function NotebookUseControl({ slug, aeNumber, title, showDormantN
     </button>
     <p>{anyAvailable
       ? 'Authorized personal use only. Each transfer requires acknowledgment and is recorded.'
-      : 'Preview the protected delivery choices and restrictions.'}</p>
-    {!anyAvailable && showDormantNotice && <div className="ae-delivery-dormant">
-      <LockKeyhole aria-hidden="true" size={18} />
-      <p><strong>Controlled notebook delivery is prepared but inactive.</strong> Google Colab and local download remain disabled pending written publisher permission.</p>
-    </div>}
+      : 'Notebook transfer is temporarily unavailable.'}</p>
 
     {open && <dialog ref={dialogRef} className="ae-use-dialog" aria-labelledby="ae-use-title" onCancel={(event) => { event.preventDefault(); close(); }} onClose={() => setOpen(false)}>
       <button className="ae-use-dialog-close" type="button" onClick={close} aria-label="Close notebook options" disabled={working}>
@@ -371,7 +366,7 @@ export default function NotebookUseControl({ slug, aeNumber, title, showDormantN
         <div><strong>Access and use restrictions</strong><p>{capabilities.notice_text}</p></div>
       </div>
 
-      {!anyAvailable && <p className="form-message" role="status">This preview shows the planned workflow. Notebook transfer will remain unavailable until written publisher permission is recorded.</p>}
+      {!anyAvailable && <p className="form-message" role="status">Notebook transfer is temporarily unavailable. Please try again later.</p>}
 
       <label className="ae-acknowledgment">
         <input type="checkbox" checked={acknowledged} onChange={(event) => setAcknowledged(event.target.checked)} disabled={working} />

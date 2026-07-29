@@ -7,8 +7,9 @@ Supabase grants, Row Level Security, RPC checks, and private Storage policies.
 | Capability | Anonymous | Signed-in participant | Instructor applicant | Approved instructor | Publisher reviewer | Book owner | Delegated administrator | Owner (`yjin@usc.edu`) |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Read public portal and AE catalog | Yes | Yes | Yes | Yes | Yes | Dormant | Yes | Yes |
-| Download AE notebooks or open the private repository | No | No | No | No | No | Dormant | No | No |
-| Read the three selected AE browser previews | No | No | No | No | Yes | Dormant | Yes | Yes |
+| Read all AE notebooks in the browser | No | Yes | Yes | Yes | Yes | Yes through signed-in account | Yes | Yes |
+| Load an AE into Colab or download a personal copy | No | Yes, after acknowledgment | Yes, after acknowledgment | Yes, after acknowledgment | Yes, after acknowledgment | Yes through signed-in account | Yes, after acknowledgment | Yes, after acknowledgment |
+| Open the private AE repository | No | No | No | No | No | No | No | No |
 | Read public discussions | Yes | Yes | Yes | Yes | Yes | Dormant | Yes | Yes |
 | Post and report public discussions | No | Yes | Yes | Yes | No role-based grant | Dormant | Yes | Yes |
 | Read Teaching Practice discussions | No | No | No | Yes | No | Dormant | Yes | Yes |
@@ -30,10 +31,15 @@ Supabase grants, Row Level Security, RPC checks, and private Storage policies.
   verified email in the current authentication token.
 - Publisher review requires the matching authenticated user ID, exact current
   verified email, active entitlement, and an unexpired review period.
-- Publisher review permits an online manual preview and three identified,
-  browser-rendered AE examples. It does not permit notebook downloads, private
-  repository access, instructor resources, instructor discussions, or
-  administrator functions.
+- Every confirmed portal account may read all 56 AE notebooks in the browser.
+  Colab and local-download transfers require the current restrictions notice
+  to be acknowledged and are written to the delivery audit.
+- AE notebook files remain in the private repository. The browser receives only
+  the individually authorized notebook through the Edge Function after its
+  SHA-256 checksum is verified.
+- Publisher review continues to permit an online manual preview. It does not
+  grant private repository access, instructor resources, instructor
+  discussions, or administrator functions.
 - The `book_owner` entitlement type exists but cannot be granted. Its RPC
   rejects activation until a later migration follows written publisher
   permission and an approved purchaser-verification procedure.

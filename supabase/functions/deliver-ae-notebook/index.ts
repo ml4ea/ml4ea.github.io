@@ -18,6 +18,8 @@ type DeliveryRecord = {
   notebook_version: string;
 };
 
+type NotebookAction = 'view' | 'colab' | 'download';
+
 const sha256Hex = async (value: ArrayBuffer) => {
   const digest = await crypto.subtle.digest('SHA-256', value);
   return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, '0')).join('');
@@ -54,23 +56,30 @@ Deno.serve(async (request) => {
 
   const { slug, action, noticeVersion } = await request.json() as {
     slug?: string;
-    action?: 'colab' | 'download';
+    action?: NotebookAction;
     noticeVersion?: string;
   };
-  if (!slug || !action || !noticeVersion) {
-    return jsonResponse({ error: 'Notebook, action, and notice acknowledgment are required.' }, 400);
+  if (!slug || !action || (action !== 'view' && !noticeVersion)) {
+    return jsonResponse({ error: 'Notebook, action, and any required notice acknowledgment are required.' }, 400);
   }
 
-  const { data, error } = await userClient.rpc('prepare_ae_notebook_delivery', {
-    p_slug: slug,
-    p_action: action,
-    p_notice_version: noticeVersion,
-  });
+  const preparation = action === 'view'
+    ? await userClient.rpc('prepare_ae_notebook_view', { p_slug: slug })
+    : await userClient.rpc('prepare_ae_notebook_delivery', {
+      p_slug: slug,
+      p_action: action,
+      p_notice_version: noticeVersion,
+    });
+  const { data, error } = preparation;
   const delivery = (data?.[0] ?? null) as DeliveryRecord | null;
-  if (error || !delivery) return jsonResponse({ error: error?.message ?? 'Notebook delivery was not authorized.' }, 403);
+  if (error || !delivery) return jsonResponse({
+    error: error?.message ?? (action === 'view'
+      ? 'Notebook viewing was not authorized.'
+      : 'Notebook delivery was not authorized.'),
+  }, 403);
 
   const finalizeAudit = async (status: 'delivered' | 'failed', failureCode: string | null = null) =>
-    userClient.rpc('finalize_ae_notebook_delivery', {
+    userClient.rpc(action === 'view' ? 'finalize_ae_notebook_view' : 'finalize_ae_notebook_delivery', {
       p_audit_id: delivery.audit_id,
       p_status: status,
       p_failure_code: failureCode,

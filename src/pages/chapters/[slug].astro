@@ -63,7 +63,7 @@ const notebookCount = inventory.notebooks.filter((notebook) => notebook.chapter 
           <div class="chapter-resource-list">
             <a href={`/resources?chapter=${chapter.number}`}><BookOpen aria-hidden="true" size={20} /><span><strong>Chapter catalog</strong>Find this chapter’s indexed examples and related topics.</span><ArrowRight aria-hidden="true" size={18} /></a>
             {notebookCount > 0 ? (
-              <a href={`/application-examples?chapter=${chapter.number}`}><Braces aria-hidden="true" size={20} /><span><strong>Application Example catalog</strong>Preview {notebookCount} validated {notebookCount === 1 ? 'notebook entry' : 'notebook entries'}; distribution is pending publisher review.</span><ArrowRight aria-hidden="true" size={18} /></a>
+              <a href={`/application-examples?chapter=${chapter.number}`}><Braces aria-hidden="true" size={20} /><span><strong>Application Example catalog</strong>Open {notebookCount} validated {notebookCount === 1 ? 'notebook' : 'notebooks'} with a verified portal account.</span><ArrowRight aria-hidden="true" size={18} /></a>
             ) : (
               <div><Braces aria-hidden="true" size={20} /><span><strong>Python notebooks</strong>No companion AE notebooks are currently assigned to this chapter.</span><em>None</em></div>
             )}
