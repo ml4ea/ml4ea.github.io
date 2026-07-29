@@ -69,7 +69,7 @@ export function sanitizeNotebookHtml(value: string) {
     const cells = Array.from(row.children);
     if (cells.length < 2 || cells[0]?.textContent?.trim() !== 'Notebook license') continue;
     cells[0].textContent = 'Access status';
-    cells[1].textContent = 'Restricted prelaunch preview';
+    cells[1].textContent = 'Signed-in portal access';
   }
 
   return template.innerHTML;
