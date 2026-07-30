@@ -2779,7 +2779,7 @@ p {
 .toolkit-masthead h1 {
   max-width: none;
   margin: 4px 0 8px;
-  font-size: clamp(2.7rem, 5vw, 4rem);
+  font-size: clamp(2.15rem, 3vw, 3rem);
 }
 
 .toolkit-masthead p:last-child {
