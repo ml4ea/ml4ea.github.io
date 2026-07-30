@@ -3015,7 +3015,7 @@ p {
 }
 
 .toolkit-ae-table td:last-child {
-  width: 44px;
+  width: 138px;
 }
 
 .toolkit-ae-table strong,
@@ -3031,6 +3031,22 @@ p {
 
 .toolkit-ae-table small {
   margin-top: 3px;
+}
+
+.toolkit-ae-open {
+  display: inline-flex;
+  gap: 7px;
+  align-items: center;
+  color: var(--cyan-dark);
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+
+.toolkit-ae-open svg {
+  flex: 0 0 auto;
+  color: var(--green);
 }
 
 .toolkit-resource-list {

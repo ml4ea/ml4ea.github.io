@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
+import { applicationExampleSlug } from '../lib/applicationExampleSlug';
 import { sanitizeManualHtml } from '../lib/sanitizeManualHtml';
 import { getSupabaseClient, isSupabaseConfigured } from '../lib/supabase';
 
@@ -251,7 +252,10 @@ export default function InstructorToolkit({ examples }: Props) {
         </div>
         <div className="toolkit-mode-note"><strong>{modeGuidance[mode].label}</strong><span>{modeGuidance[mode].time}</span><p>{modeGuidance[mode].activity}</p></div>
         <div className="toolkit-table-wrap">
-          <table className="toolkit-ae-table"><thead><tr><th>AE</th><th>Engineering application</th><th>Method</th><th>Level</th><th>Status</th></tr></thead><tbody>{filteredExamples.map((example) => <tr key={example.filename}><td><strong>{example.ae_number}</strong><small>Ch. {example.chapter}</small></td><td>{example.title}</td><td>{example.method}</td><td>{suggestedDifficulty(example)}</td><td><span className="toolkit-review-status"><LockKeyhole aria-hidden="true" size={15} /> Review</span></td></tr>)}</tbody></table>
+          <table className="toolkit-ae-table"><thead><tr><th>AE</th><th>Engineering application</th><th>Method</th><th>Level</th><th>Example</th></tr></thead><tbody>{filteredExamples.map((example) => {
+            const slug = applicationExampleSlug(example);
+            return <tr key={example.filename}><td><strong>{example.ae_number}</strong><small>Ch. {example.chapter}</small></td><td>{example.title}</td><td>{example.method}</td><td>{suggestedDifficulty(example)}</td><td><a className="toolkit-ae-open" href={`/application-examples/view?example=${encodeURIComponent(slug)}`}><BookOpen aria-hidden="true" size={15} /> View example</a></td></tr>;
+          })}</tbody></table>
         </div>
         {filteredExamples.length === 0 && <p className="resource-empty">No Application Examples match these filters.</p>}
       </section>
