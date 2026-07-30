@@ -3277,7 +3277,7 @@ p {
 
 .manual-masthead h1 {
   max-width: none;
-  font-size: clamp(2.1rem, 4vw, 3.3rem);
+  font-size: clamp(2.15rem, 3vw, 3rem);
 }
 
 .manual-masthead p:last-child {
