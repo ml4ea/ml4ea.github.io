@@ -113,30 +113,6 @@ p {
   transform: translateY(0);
 }
 
-.prelaunch-banner {
-  border-bottom: 1px solid color-mix(in srgb, var(--orange) 45%, var(--line));
-  background: #fff4e8;
-  color: var(--ink);
-}
-
-.prelaunch-banner .container {
-  display: flex;
-  min-height: 38px;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  font-size: 0.84rem;
-  text-align: center;
-}
-
-.prelaunch-banner strong {
-  color: #9a3d00;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.72rem;
-  font-weight: 400;
-  text-transform: uppercase;
-}
-
 .site-header {
   position: sticky;
   top: 0;

@@ -5,7 +5,7 @@ import '@fontsource/source-sans-3/500.css';
 import '@fontsource/source-serif-4/500.css';
 import '@fontsource/ibm-plex-mono/400.css';
 import Header from '../components/Header.astro';
-import { PRELAUNCH_MODE, PRELAUNCH_NOTICE } from '../config/site';
+import { PRELAUNCH_MODE } from '../config/site';
 
 interface Props {
   title?: string;
@@ -81,14 +81,6 @@ const contentSecurityPolicy = [
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
-    {PRELAUNCH_MODE && (
-      <div class="prelaunch-banner" role="status">
-        <div class="container">
-          <strong>Prelaunch preview</strong>
-          <span>{PRELAUNCH_NOTICE.replace('Prelaunch preview: ', '')}</span>
-        </div>
-      </div>
-    )}
     <Header />
     <main id="main-content">
       <slot />
