@@ -2,6 +2,7 @@ import {
   ArrowLeft,
   ArrowRight,
   BookOpen,
+  Copyright,
   Download,
   FileText,
   LockKeyhole,
@@ -10,7 +11,7 @@ import {
   ShieldCheck,
   X,
 } from 'lucide-react';
-import { type SubmitEvent, useEffect, useMemo, useState } from 'react';
+import { type SubmitEvent, useEffect, useMemo, useRef, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { sanitizeManualHtml } from '../lib/sanitizeManualHtml';
 import { getSupabaseClient, isSupabaseConfigured } from '../lib/supabase';
@@ -66,12 +67,15 @@ export default function InstructorManual() {
   const [loading, setLoading] = useState(isSupabaseConfigured);
   const [sectionLoading, setSectionLoading] = useState(false);
   const [downloading, setDownloading] = useState(false);
+  const [downloadDialogOpen, setDownloadDialogOpen] = useState(false);
+  const [copyrightAccepted, setCopyrightAccepted] = useState(false);
   const [tocOpen, setTocOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [searching, setSearching] = useState(false);
   const [results, setResults] = useState<SearchResult[]>([]);
   const [searchComplete, setSearchComplete] = useState(false);
   const [error, setError] = useState('');
+  const downloadDialogRef = useRef<HTMLDialogElement>(null);
 
   const loadManual = async (activeSession: Session | null) => {
     const supabase = getSupabaseClient();
@@ -168,6 +172,11 @@ export default function InstructorManual() {
   }, [sections]);
 
   useEffect(() => {
+    if (!downloadDialogOpen || !downloadDialogRef.current || downloadDialogRef.current.open) return;
+    downloadDialogRef.current.showModal();
+  }, [downloadDialogOpen]);
+
+  useEffect(() => {
     const supabase = getSupabaseClient();
     if (!supabase || !selectedSlug || !approved) return;
     let current = true;
@@ -240,9 +249,17 @@ export default function InstructorManual() {
     setSearchComplete(false);
   };
 
+  const closeDownloadDialog = () => {
+    if (downloading) return;
+    downloadDialogRef.current?.close();
+    setDownloadDialogOpen(false);
+    setCopyrightAccepted(false);
+    setError('');
+  };
+
   const downloadPdf = async () => {
     const supabase = getSupabaseClient();
-    if (!supabase || !edition) return;
+    if (!supabase || !edition || !copyrightAccepted) return;
     setDownloading(true);
     setError('');
     const { data, error: downloadError } = await supabase.storage
@@ -253,6 +270,9 @@ export default function InstructorManual() {
       setError(downloadError.message);
       return;
     }
+    downloadDialogRef.current?.close();
+    setDownloadDialogOpen(false);
+    setCopyrightAccepted(false);
     window.open(data.signedUrl, '_blank', 'noopener,noreferrer');
   };
 
@@ -269,8 +289,38 @@ export default function InstructorManual() {
           {tocOpen ? <X aria-hidden="true" size={19} /> : <Menu aria-hidden="true" size={19} />} Contents
         </button>
         <div className="manual-edition"><span>{edition.version_label} edition</span><small>{reviewOnly ? 'Publisher review preview' : 'Protected instructor resource'}</small></div>
-        {reviewOnly ? <a className="button button-secondary" href="/publisher-review/"><ArrowLeft aria-hidden="true" size={17} /> Review workspace</a> : <button className="button button-secondary" type="button" onClick={downloadPdf} disabled={downloading}><Download aria-hidden="true" size={17} /> {downloading ? 'Preparing…' : 'Download PDF'}</button>}
+        {reviewOnly ? <a className="button button-secondary" href="/publisher-review/"><ArrowLeft aria-hidden="true" size={17} /> Review workspace</a> : <button className="button button-secondary" type="button" onClick={() => { setError(''); setDownloadDialogOpen(true); }}><Download aria-hidden="true" size={17} /> Download PDF</button>}
       </header>
+
+      {downloadDialogOpen && <dialog ref={downloadDialogRef} className="ae-use-dialog manual-download-dialog" aria-labelledby="manual-download-title" onCancel={(event) => { event.preventDefault(); closeDownloadDialog(); }} onClose={() => setDownloadDialogOpen(false)}>
+        <button className="ae-use-dialog-close" type="button" onClick={closeDownloadDialog} aria-label="Close copyright notice" disabled={downloading}>
+          <X aria-hidden="true" size={22} />
+        </button>
+        <p className="eyebrow">Protected instructor resource</p>
+        <h2 id="manual-download-title">Review copyright restrictions.</h2>
+        <p className="ae-use-dialog-description">{edition.title} · {edition.version_label} edition</p>
+
+        <div className="ae-access-notice">
+          <Copyright aria-hidden="true" size={21} />
+          <div>
+            <strong>Copyright and permitted use</strong>
+            <p>This manual and its contents are protected by copyright. The downloaded copy is for your personal use in preparing and teaching courses. Do not share, post publicly, reproduce, redistribute, or provide the file to others. Approved access does not transfer copyright.</p>
+          </div>
+        </div>
+
+        <label className="ae-acknowledgment">
+          <input type="checkbox" checked={copyrightAccepted} onChange={(event) => setCopyrightAccepted(event.target.checked)} disabled={downloading} />
+          <span>I have read these restrictions and agree to use the downloaded manual only as permitted.</span>
+        </label>
+
+        {error && <p className="form-message form-error" role="alert">{error}</p>}
+        <div className="ae-use-dialog-actions">
+          <button className="button button-secondary" type="button" onClick={closeDownloadDialog} disabled={downloading}>Cancel</button>
+          <button className="button button-primary" type="button" onClick={() => void downloadPdf()} disabled={!copyrightAccepted || downloading}>
+            <Download aria-hidden="true" size={17} /> {downloading ? 'Preparing PDF…' : 'Download PDF'}
+          </button>
+        </div>
+      </dialog>}
 
       <div className="manual-workspace">
         <aside id="manual-toc" className={`manual-toc${tocOpen ? ' is-open' : ''}`} aria-label="Manual contents">
