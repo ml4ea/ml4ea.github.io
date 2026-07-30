@@ -2656,6 +2656,10 @@ p {
   background: var(--orange);
 }
 
+.curated-masthead h1 {
+  font-size: clamp(2rem, 3.6vw, 3.4rem);
+}
+
 .curated-container {
   padding-bottom: 70px;
 }
@@ -2663,6 +2667,15 @@ p {
 .curated-contributions {
   display: grid;
   gap: 34px;
+}
+
+.curated-contributions h2,
+.curated-container .account-state h2 {
+  font-size: 1.25rem;
+}
+
+.curated-contributions h3 {
+  font-size: 1.08rem;
 }
 
 .curated-contributions-intro {
@@ -2716,7 +2729,7 @@ p {
 
 .curated-empty h3 {
   font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 1.45rem;
+  font-size: 1.08rem;
 }
 
 .curated-empty p {
