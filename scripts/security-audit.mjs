@@ -63,7 +63,7 @@ function auditStaticBuild() {
   for (const file of htmlFiles) {
     const html = fs.readFileSync(file, 'utf8');
     check(html.includes('noindex, nofollow, noarchive'), `${path.relative(root, file)} is missing the prelaunch robots directive.`);
-    check(html.includes('Prelaunch preview'), `${path.relative(root, file)} is missing the prelaunch notice.`);
+    check(!html.includes('class="prelaunch-banner"'), `${path.relative(root, file)} still includes the prelaunch banner.`);
     check(html.includes('strict-origin-when-cross-origin'), `${path.relative(root, file)} is missing the referrer policy.`);
     check(html.includes('Content-Security-Policy'), `${path.relative(root, file)} is missing the Content Security Policy.`);
     check(html.includes("object-src 'none'"), `${path.relative(root, file)} does not block embedded objects.`);
