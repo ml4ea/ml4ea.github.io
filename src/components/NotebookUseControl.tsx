@@ -336,7 +336,7 @@ export default function NotebookUseControl({ slug, aeNumber, title }: Props) {
       <FileCode2 aria-hidden="true" size={18} /> Use example
     </button>
     <p>{anyAvailable
-      ? 'Authorized personal use only. Each transfer requires acknowledgment and is recorded.'
+      ? 'Restricted personal learning and teaching use. Each transfer requires acknowledgment and is recorded.'
       : 'Notebook transfer is temporarily unavailable.'}</p>
 
     {open && <dialog ref={dialogRef} className="ae-use-dialog" aria-labelledby="ae-use-title" onCancel={(event) => { event.preventDefault(); close(); }} onClose={() => setOpen(false)}>
@@ -363,7 +363,11 @@ export default function NotebookUseControl({ slug, aeNumber, title }: Props) {
 
       <div className="ae-access-notice">
         <LockKeyhole aria-hidden="true" size={20} />
-        <div><strong>Access and use restrictions</strong><p>{capabilities.notice_text}</p></div>
+        <div>
+          <strong>Access and use restrictions</strong>
+          <p>{capabilities.notice_text}</p>
+          <a className="text-link" href="/application-examples/terms/" target="_blank" rel="noreferrer">Read the full access and use terms</a>
+        </div>
       </div>
 
       {!anyAvailable && <p className="form-message" role="status">Notebook transfer is temporarily unavailable. Please try again later.</p>}

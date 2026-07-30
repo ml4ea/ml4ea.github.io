@@ -67,9 +67,26 @@ export function sanitizeNotebookHtml(value: string) {
 
   for (const row of template.content.querySelectorAll('tr')) {
     const cells = Array.from(row.children);
-    if (cells.length < 2 || cells[0]?.textContent?.trim() !== 'Notebook license') continue;
-    cells[0].textContent = 'Access status';
-    cells[1].textContent = 'Signed-in portal access';
+    if (cells.length < 2) continue;
+    const label = cells[0]?.textContent?.trim();
+    if (label !== 'Notebook license' && label !== 'Access and use') continue;
+    cells[0].textContent = 'Access and use';
+    cells[1].replaceChildren();
+    const termsLink = document.createElement('a');
+    termsLink.href = '/application-examples/terms/';
+    termsLink.textContent = 'Restricted educational use';
+    cells[1].append(termsLink);
+  }
+
+  for (const link of template.content.querySelectorAll<HTMLAnchorElement>('a[href]')) {
+    const target = new URL(link.href, window.location.origin);
+    if (target.hostname !== 'github.com' || !target.pathname.startsWith('/ml4ea/ae-notebooks')) continue;
+    const container = link.closest('p');
+    if (container?.textContent?.trim().startsWith('Project links:')) {
+      container.remove();
+    } else {
+      link.replaceWith(document.createTextNode(link.textContent ?? ''));
+    }
   }
 
   return template.innerHTML;

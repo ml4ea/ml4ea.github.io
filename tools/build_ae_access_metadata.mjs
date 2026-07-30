@@ -8,7 +8,7 @@ const inventoryPath = path.join(root, 'src/data/application-examples.json');
 const notebookDirectory = path.join(root, 'AE-notebooks');
 const outputPath = path.join(
   root,
-  'supabase/migrations/202607290002_all_ae_notebook_metadata.sql',
+  'supabase/migrations/202607300002_restricted_ae_notebook_metadata.sql',
 );
 
 const legacySlugs = {
@@ -58,7 +58,7 @@ const values = examples.map((example) => {
   )`;
 });
 
-const migration = `-- Generated metadata for all validated AE notebooks.
+const migration = `-- Refreshed metadata after adding Restricted Educational Use Terms.
 -- Notebook contents remain exclusively in the private ml4ea/ae-notebooks repository.
 
 insert into public.ae_notebook_files (
