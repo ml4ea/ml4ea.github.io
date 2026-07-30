@@ -2867,6 +2867,10 @@ p {
   margin-bottom: 0;
 }
 
+.toolkit-section-heading h2 {
+  font-size: clamp(1.85rem, 2.8vw, 2.65rem);
+}
+
 .toolkit-section-heading > p {
   color: var(--ink-soft);
 }
