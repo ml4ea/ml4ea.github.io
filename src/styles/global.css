@@ -3945,7 +3945,7 @@ p {
 
 .admin-user-table {
   width: 100%;
-  min-width: 940px;
+  min-width: 1120px;
   border-collapse: collapse;
   text-align: left;
 }
@@ -3984,6 +3984,16 @@ p {
 .admin-user-review.is-pending { color: #9a5500; }
 .admin-user-review.is-rejected { color: #9c3028; }
 .admin-user-review.is-none { color: var(--ink-soft); }
+
+.admin-user-download {
+  display: inline-block;
+  color: var(--ink-soft);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.admin-user-download.is-issued { color: var(--green); }
 
 .admin-user-pagination {
   display: flex;

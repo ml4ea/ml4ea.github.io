@@ -114,6 +114,16 @@ verifies its SHA-256 checksum, and returns it to the authorized browser. The
 GitHub token and automatic service-role key remain server-side Edge Function
 secrets.
 
+Apply `migrations/202607290003_instructor_manual_download_audit.sql` to record
+successful Instructor's Manual PDF download authorizations. Deploy the
+`deliver-instructor-manual` Edge Function after applying the migration. The
+function verifies approved-instructor or portal-administrator access, confirms
+the current copyright-notice version, creates the 60-second signed URL, records
+the event, and only then returns the URL to the browser. The administrator user
+directory shows **Download issued**, the number of issued downloads, and the
+latest issuance time. An issuance record does not claim that the browser
+completed the file transfer.
+
 The Google OAuth web client must remain restricted to the portal origin, with
 its public client ID stored as
 `PUBLIC_GOOGLE_DRIVE_CLIENT_ID` in GitHub Actions variables. The browser asks

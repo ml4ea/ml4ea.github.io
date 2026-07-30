@@ -44,6 +44,8 @@ interface SearchResult {
   rank: number;
 }
 
+const MANUAL_COPYRIGHT_NOTICE_VERSION = 'manual-copyright-2026-07-29';
+
 const sectionFromUrl = () => new URLSearchParams(window.location.search).get('section');
 
 function SearchSnippet({ text }: { text: string }) {
@@ -262,18 +264,29 @@ export default function InstructorManual() {
     if (!supabase || !edition || !copyrightAccepted) return;
     setDownloading(true);
     setError('');
-    const { data, error: downloadError } = await supabase.storage
-      .from('instructor-materials')
-      .createSignedUrl(edition.pdf_storage_path, 60);
+    const { data, error: downloadError } = await supabase.functions.invoke('deliver-instructor-manual', {
+      body: {
+        editionId: edition.id,
+        noticeVersion: MANUAL_COPYRIGHT_NOTICE_VERSION,
+      },
+    });
     setDownloading(false);
     if (downloadError) {
-      setError(downloadError.message);
+      const response = (downloadError as { context?: Response }).context;
+      const responseBody = response
+        ? await response.clone().json().catch(() => null) as { error?: string } | null
+        : null;
+      setError(responseBody?.error ?? data?.error ?? downloadError.message);
+      return;
+    }
+    if (!data?.signedUrl) {
+      setError(data?.error ?? 'The protected manual download could not be prepared.');
       return;
     }
     downloadDialogRef.current?.close();
     setDownloadDialogOpen(false);
     setCopyrightAccepted(false);
-    window.open(data.signedUrl, '_blank', 'noopener,noreferrer');
+    window.open(data.signedUrl as string, '_blank', 'noopener,noreferrer');
   };
 
   if (!isSupabaseConfigured) return <div className="account-state account-unconfigured"><LockKeyhole aria-hidden="true" size={28} /><div><h2>The online manual is being connected.</h2><p>The protected edition will appear after the account service is configured.</p></div></div>;

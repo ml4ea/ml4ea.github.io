@@ -15,6 +15,8 @@ interface DirectoryUser {
   position_title: string | null;
   instructor_reviewed_at: string | null;
   roles: string[];
+  manual_download_count: number;
+  last_manual_download_issued_at: string | null;
   total_count: number;
 }
 
@@ -137,7 +139,7 @@ export default function AdminUsers() {
     {!loading && users.length === 0 ? <div className="admin-empty"><UsersRound aria-hidden="true" size={27} /><div><h2>No matching accounts.</h2><p>Try another search or directory view.</p></div></div> : (
       <div className="admin-user-table-wrap" aria-busy={loading}>
         <table className="admin-user-table">
-          <thead><tr><th>User</th><th>Portal roles</th><th>Instructor review</th><th>Last sign-in</th><th>Account created</th></tr></thead>
+          <thead><tr><th>User</th><th>Portal roles</th><th>Instructor review</th><th>Manual PDF</th><th>Last sign-in</th><th>Account created</th></tr></thead>
           <tbody>
             {users.map((user) => (
               <tr key={user.user_id}>
@@ -146,6 +148,12 @@ export default function AdminUsers() {
                 <td>
                   <span className={`admin-user-review is-${user.instructor_status ?? 'none'}`}>{user.instructor_status ?? 'No request'}</span>
                   {user.institution && <small>{[user.position_title, user.institution].filter(Boolean).join(' · ')}</small>}
+                </td>
+                <td>
+                  {user.manual_download_count > 0 && user.last_manual_download_issued_at ? <>
+                    <span className="admin-user-download is-issued">Download issued</span>
+                    <small>{user.manual_download_count} {user.manual_download_count === 1 ? 'time' : 'times'} · latest {formatDate(user.last_manual_download_issued_at)}</small>
+                  </> : <span className="admin-user-download">None issued</span>}
                 </td>
                 <td><time dateTime={user.last_sign_in_at}>{formatDate(user.last_sign_in_at)}</time></td>
                 <td><time dateTime={user.account_created_at}>{formatDate(user.account_created_at)}</time></td>
