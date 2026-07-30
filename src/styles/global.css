@@ -3535,7 +3535,7 @@ p {
 .manual-article-heading h2 {
   max-width: 18ch;
   margin: 0;
-  font-size: clamp(2.15rem, 4vw, 3.5rem);
+  font-size: clamp(1.9rem, 3vw, 2.75rem);
 }
 
 .manual-section-loading {
@@ -6041,9 +6041,12 @@ p {
     padding-inline: 0;
   }
 
-  .manual-masthead h1,
-  .manual-article-heading h2 {
+  .manual-masthead h1 {
     font-size: 2.1rem;
+  }
+
+  .manual-article-heading h2 {
+    font-size: 1.9rem;
   }
 
   .notebook-masthead h1 {
