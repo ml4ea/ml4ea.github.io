@@ -44,7 +44,7 @@ const portalPages: CatalogItem[] = [
   {
     id: 'application-examples',
     title: 'Application Example notebooks',
-    description: 'Preview a catalog of 56 validated engineering machine learning notebooks while distribution undergoes publisher review.',
+    description: 'Explore 56 validated engineering machine learning notebooks with protected browser, Colab, and download workflows.',
     type: 'Portal page',
     href: '/application-examples',
     tags: ['Application Examples', 'Python', 'Notebooks', 'Google Colab'],
@@ -92,7 +92,7 @@ const portalPages: CatalogItem[] = [
   {
     id: 'community-overview',
     title: 'ML4EA community',
-    description: 'How readers, students, engineers, and instructors will discuss and contribute to the portal.',
+    description: 'How readers, students, engineers, and instructors discuss and contribute to the portal.',
     type: 'Portal page',
     href: '/community',
     tags: ['Community', 'Contributions', 'Discussion'],
@@ -100,7 +100,7 @@ const portalPages: CatalogItem[] = [
   {
     id: 'contribute',
     title: 'Contribute to ML4EA',
-    description: 'Report corrections and propose teaching resources; notebook contribution intake will open after publisher review.',
+    description: 'Report corrections and propose teaching resources; notebook contribution intake is currently closed.',
     type: 'Portal page',
     href: '/contribute',
     tags: ['Contribute', 'Corrections', 'GitHub', 'Application Examples'],
@@ -117,20 +117,20 @@ const portalPages: CatalogItem[] = [
 
 const updates: CatalogItem[] = [
   {
-    id: 'update-prelaunch-review',
-    title: 'Portal entered prelaunch review',
-    description: 'The portal is available as a no-index preview while Application Example distribution and release language are reviewed.',
+    id: 'update-portal-review',
+    title: 'Portal review phase established',
+    description: 'The portal adopted no-index instructions while Application Example distribution and release language underwent review.',
     type: 'Update',
-    href: '/updates#prelaunch-review',
-    tags: ['Portal', 'Prelaunch', 'Publisher review'],
+    href: '/updates#portal-review',
+    tags: ['Portal', 'Publisher review'],
   },
   {
-    id: 'update-preview-prepared',
-    title: 'Companion portal preview prepared',
-    description: 'The ML4EA book overview, chapter directory, resource catalog, teaching workspace, updates, and search are ready for review.',
+    id: 'update-portal-prepared',
+    title: 'Companion portal foundation prepared',
+    description: 'The ML4EA book overview, chapter directory, resource catalog, teaching workspace, updates, and search were prepared for review.',
     type: 'Update',
-    href: '/updates#preview-prepared',
-    tags: ['Portal', 'Preview'],
+    href: '/updates#portal-prepared',
+    tags: ['Portal'],
   },
 ];
 

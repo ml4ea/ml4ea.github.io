@@ -1,6 +1,6 @@
 # ML4EA Security Role Matrix
 
-This matrix describes the enforced portal boundaries during prelaunch. Page
+This matrix describes the currently enforced portal boundaries. Page
 visibility is not an authorization mechanism; protected access is enforced by
 Supabase grants, Row Level Security, RPC checks, and private Storage policies.
 
@@ -16,7 +16,7 @@ Supabase grants, Row Level Security, RPC checks, and private Storage policies.
 | Submit an instructor application | No | Institutional email only | Yes | No resubmission while approved | No role-based grant | Dormant | Yes | Yes |
 | Read an instructor application | No | Own record only | Own record only | Own record only | Own record only | Dormant | All records | All records |
 | Read protected resource metadata | No | No | No | Published records | No | Dormant | All records | All records |
-| Read online manual sections | No | No | No | Yes | Preview only | Dormant | Yes | Yes |
+| Read online manual sections | No | No | No | Yes | Review access only | Dormant | Yes | Yes |
 | Download private instructor files | No | No | No | 60-second signed URL | No | Dormant | 60-second signed URL | 60-second signed URL |
 | Approve instructor access | No | No | No | No | No | Dormant | Yes | Yes |
 | Moderate discussions and edit announcements | No | No | No | No | No | Dormant | Yes | Yes |
@@ -37,7 +37,7 @@ Supabase grants, Row Level Security, RPC checks, and private Storage policies.
 - AE notebook files remain in the private repository. The browser receives only
   the individually authorized notebook through the Edge Function after its
   SHA-256 checksum is verified.
-- Publisher review continues to permit an online manual preview. It does not
+- Publisher review permits online manual review access. It does not
   grant private repository access, instructor resources, instructor
   discussions, or administrator functions.
 - The `book_owner` entitlement type exists but cannot be granted. Its RPC

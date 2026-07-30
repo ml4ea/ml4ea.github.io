@@ -11,7 +11,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <PageHero
     eyebrow="Contribute"
     title="Help make ML4EA more useful."
-    description="Report a correction or propose a teaching resource through a reviewable process. Notebook contributions are paused during prelaunch."
+    description="Report a correction or propose a teaching resource through a reviewable process. Notebook contribution intake is currently paused."
     accent="green"
   />
 
@@ -21,7 +21,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p class="eyebrow">Choose a route</p>
         <h2>Send each contribution to the right place.</h2>
       </div>
-      <p>Book corrections and teaching-resource proposals use GitHub so the review history remains attributable. Application Example code submissions will open after publisher review.</p>
+      <p>Book corrections and teaching-resource proposals use GitHub so the review history remains attributable. Application Example code submissions remain closed while the intake process is finalized.</p>
     </div>
 
     <div class="container contribution-routes">
@@ -50,7 +50,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p class="eyebrow">Application Examples</p>
         <h2>Improve a notebook</h2>
         <p>Report reproducible failures, incorrect results, broken data links, unclear explanations, or metadata problems.</p>
-        <span class="route-status"><LockKeyhole aria-hidden="true" size={17} /> Intake opens after publisher review</span>
+        <span class="route-status"><LockKeyhole aria-hidden="true" size={17} /> Notebook intake is currently closed</span>
       </article>
 
       <article>
@@ -58,7 +58,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p class="eyebrow">New material</p>
         <h2>Propose an example or extension</h2>
         <p>Describe the engineering problem, learning value, data rights, method, and relationship to the book before developing a full contribution.</p>
-        <span class="route-status"><LockKeyhole aria-hidden="true" size={17} /> Intake opens after publisher review</span>
+        <span class="route-status"><LockKeyhole aria-hidden="true" size={17} /> Proposal intake is currently closed</span>
       </article>
     </div>
   </section>
@@ -90,8 +90,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="container action-band-inner">
       <div>
         <p class="eyebrow">Application Examples</p>
-        <h2>Notebook distribution is under review.</h2>
-        <p>The public catalog remains available for reference, while repository access and notebook contribution routes are held during prelaunch.</p>
+        <h2>Notebook access is available to signed-in users.</h2>
+        <p>The complete catalog and protected notebook workflows are active, while private repository access and notebook contribution routes remain controlled.</p>
       </div>
       <a class="button button-secondary" href="/application-examples">
         Browse the AE catalog <ArrowRight aria-hidden="true" size={17} />

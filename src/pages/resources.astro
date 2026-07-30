@@ -9,13 +9,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <PageHero
     eyebrow="Resources"
     title="Find the right chapter or engineering example."
-    description="Search chapter guides and book topics, or preview the Application Example catalog during prelaunch review."
+    description="Search chapter guides and book topics, or explore the complete Application Example catalog."
     accent="cyan"
   />
   <section class="content-section catalog-section">
     <div class="container">
       <div class="resource-callout">
-        <div><p class="eyebrow">Prelaunch catalog</p><h2>Preview all 56 Application Examples.</h2></div>
+        <div><p class="eyebrow">Application Example catalog</p><h2>Explore all 56 Application Examples.</h2></div>
         <a class="button button-primary" href="/application-examples">Explore the AE catalog</a>
       </div>
       <CatalogExplorer items={resourceItems} initialQueryFromUrl={true} client:load />

@@ -116,7 +116,7 @@ export default function AccountAccess() {
         <ShieldCheck aria-hidden="true" size={28} />
         <div>
           <h2>Account services are being connected.</h2>
-          <p>The prelaunch portal remains available for review. Instructor applications will open when the secure account service is connected.</p>
+          <p>The public portal remains available. Instructor applications will open when the secure account service is connected.</p>
         </div>
       </div>
     );

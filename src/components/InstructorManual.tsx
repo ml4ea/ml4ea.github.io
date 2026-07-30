@@ -301,7 +301,7 @@ export default function InstructorManual() {
         <button className="manual-toc-toggle" type="button" onClick={() => setTocOpen(!tocOpen)} aria-expanded={tocOpen} aria-controls="manual-toc">
           {tocOpen ? <X aria-hidden="true" size={19} /> : <Menu aria-hidden="true" size={19} />} Contents
         </button>
-        <div className="manual-edition"><span>{edition.version_label} edition</span><small>{reviewOnly ? 'Publisher review preview' : 'Protected instructor resource'}</small></div>
+        <div className="manual-edition"><span>{edition.version_label} edition</span><small>{reviewOnly ? 'Publisher review access' : 'Protected instructor resource'}</small></div>
         {reviewOnly ? <a className="button button-secondary" href="/publisher-review/"><ArrowLeft aria-hidden="true" size={17} /> Review workspace</a> : <button className="button button-secondary" type="button" onClick={() => { setError(''); setDownloadDialogOpen(true); }}><Download aria-hidden="true" size={17} /> Download PDF</button>}
       </header>
 

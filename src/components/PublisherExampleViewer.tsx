@@ -89,7 +89,7 @@ export default function PublisherExampleViewer({ examples }: Props) {
     return <div className="ae-single-state account-state"><ShieldCheck aria-hidden="true" size={28} /><div><h2>Sign in to read this example.</h2><p>All Application Examples are available to verified portal accounts and approved instructors.</p><a className="button button-primary" href={`/account?next=${encodeURIComponent(returnPath)}`}>Sign in</a></div></div>;
   }
   if (!notebookHtml) {
-    return <div className="ae-single-state account-state account-unconfigured"><LockKeyhole aria-hidden="true" size={28} /><div><h2>This example could not be opened.</h2><p>The address may be invalid, or the protected preview may be temporarily unavailable.</p>{error && <p className="form-message form-error" role="alert">{error}</p>}<a className="button button-secondary" href="/application-examples#notebooks">Return to the catalog</a></div></div>;
+    return <div className="ae-single-state account-state account-unconfigured"><LockKeyhole aria-hidden="true" size={28} /><div><h2>This example could not be opened.</h2><p>The address may be invalid, or the protected example may be temporarily unavailable.</p>{error && <p className="form-message form-error" role="alert">{error}</p>}<a className="button button-secondary" href="/application-examples#notebooks">Return to the catalog</a></div></div>;
   }
 
   return <article className="ae-single-example">
