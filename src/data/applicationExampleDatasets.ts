@@ -60,7 +60,7 @@ const externalSources: Record<string, Omit<DatasetDescriptor, 'detail'>> = {
   'https://www.kaggle.com/datasets/brjapon/cwru-bearing-datasets': { label: 'CWRU Bearing Dataset', url: 'https://www.kaggle.com/datasets/brjapon/cwru-bearing-datasets' },
   'https://www.kaggle.com/datasets/ignaciovinuales/battery-remaining-useful-life-rul': { label: 'Battery Remaining Useful Life', url: 'https://www.kaggle.com/datasets/ignaciovinuales/battery-remaining-useful-life-rul' },
   'https://www.kaggle.com/datasets/kaustubhdikshit/neu-surface-defect-database': { label: 'NEU Surface Defect Database', url: 'https://www.kaggle.com/datasets/kaustubhdikshit/neu-surface-defect-database' },
-  'https://www.kaggle.com/datasets/mathchi/diabetes-data-set/data': { label: 'Diabetes Dataset', url: 'https://www.kaggle.com/datasets/mathchi/diabetes-data-set/data' },
+  'https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database': { label: 'Pima Indians Diabetes Database', url: 'https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database' },
   'https://www.kaggle.com/datasets/palbha/cmapss-jet-engine-simulated-data': { label: 'C-MAPSS Jet Engine Data', url: 'https://www.kaggle.com/datasets/palbha/cmapss-jet-engine-simulated-data' },
   'https://www.kaggle.com/datasets/programmer3/aging-bridge-shm-time-series-dataset': { label: 'Aging Bridge SHM Time Series', url: 'https://www.kaggle.com/datasets/programmer3/aging-bridge-shm-time-series-dataset' },
   'https://www.kaggle.com/datasets/programmer3/anomaly-detection-in-oil-and-gas-chemical-plants': { label: 'Oil and Gas Plant Anomaly Data', url: 'https://www.kaggle.com/datasets/programmer3/anomaly-detection-in-oil-and-gas-chemical-plants' },

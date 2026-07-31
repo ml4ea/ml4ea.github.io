@@ -392,7 +392,7 @@
       "title": "Predicting the Onset of Diabetes Based on Diagnostic Measures",
       "method": "regularized neural-network classification",
       "source_urls": [
-        "https://www.kaggle.com/datasets/mathchi/diabetes-data-set/data"
+        "https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database"
       ],
       "packages": [
         "matplotlib",

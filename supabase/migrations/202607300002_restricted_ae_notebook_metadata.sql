@@ -193,7 +193,7 @@ insert into public.ae_notebook_files (
     '9.4.5',
     'Predicting the Onset of Diabetes Based on Diagnostic Measures',
     'Notebook-09.4.5-Regularization-Diabetes.ipynb',
-    '30910914fe9e6b32a5f300214ceabdcde052d1c9a48bec728011f73645e958be',
+    '090eadc0c5b0517937cb8173d22b733275be2b65155ec215b782fec596c7c80d',
     '1.0',
     'notebooks/Notebook-09.4.5-Regularization-Diabetes.ipynb',
     'Notebook-09.4.5-Regularization-Diabetes.ipynb',
