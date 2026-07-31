@@ -4964,7 +4964,7 @@ p {
 .chapter-hero h1 {
   max-width: 16ch;
   margin-bottom: 14px;
-  font-size: clamp(2.35rem, 3.7vw, 3.5rem);
+  font-size: 3rem;
 }
 
 .chapter-hero-grid > div > p:last-child {
@@ -4993,6 +4993,10 @@ p {
 
 .chapter-main > section + section {
   padding-top: 70px;
+}
+
+.chapter-main h2 {
+  font-size: 2.25rem;
 }
 
 .topic-grid {
@@ -5718,6 +5722,10 @@ p {
   .page-hero h1,
   .chapter-hero h1 {
     font-size: 2.2rem;
+  }
+
+  .chapter-main h2 {
+    font-size: 1.85rem;
   }
 
   .protected-resource-list > div,
