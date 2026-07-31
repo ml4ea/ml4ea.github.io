@@ -2145,6 +2145,43 @@ p {
   color: var(--green);
 }
 
+.ae-dataset-meta {
+  display: grid;
+  grid-template-columns: 18px auto minmax(0, max-content) minmax(0, 1fr);
+  gap: 5px 9px;
+  align-items: center;
+  margin-top: 13px;
+  color: var(--ink-soft);
+  font-size: 0.84rem;
+}
+
+.ae-dataset-meta > svg {
+  color: var(--orange);
+}
+
+.ae-dataset-meta > span {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.ae-dataset-meta a,
+.ae-dataset-meta strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.ae-dataset-meta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  text-underline-offset: 3px;
+}
+
+.ae-dataset-meta em {
+  font-style: normal;
+}
+
 .ae-resource-meta a {
   color: var(--ink-soft);
   text-underline-offset: 3px;
@@ -5401,6 +5438,26 @@ h2.compact-section-heading {
 }
 
 @media (max-width: 700px) {
+  .ae-dataset-meta {
+    grid-template-columns: 18px minmax(0, 1fr);
+  }
+
+  .ae-dataset-meta > svg {
+    grid-row: 1 / span 3;
+  }
+
+  .ae-dataset-meta > span,
+  .ae-dataset-meta > a,
+  .ae-dataset-meta > strong,
+  .ae-dataset-meta > em {
+    grid-column: 2;
+  }
+
+  .ae-dataset-meta > a,
+  .ae-dataset-meta > strong {
+    overflow-wrap: anywhere;
+  }
+
   .page-hero {
     min-height: 400px;
   }

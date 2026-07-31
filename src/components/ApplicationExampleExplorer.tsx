@@ -1,6 +1,7 @@
-import { BookOpen, CheckCircle2, KeyRound, LogIn, Search, X } from 'lucide-react';
+import { BookOpen, CheckCircle2, Database, ExternalLink, KeyRound, LogIn, Search, X } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
+import { getApplicationExampleDataset } from '../data/applicationExampleDatasets';
 import { applicationExampleSlug } from '../lib/applicationExampleSlug';
 import { getSupabaseClient } from '../lib/supabase';
 
@@ -74,6 +75,7 @@ export default function ApplicationExampleExplorer({ examples }: Props) {
         example.title,
         example.method,
         example.chapter_title,
+        getApplicationExampleDataset(example).label,
         ...example.packages,
       ].join(' ');
       const matchesQuery = !needle || normalize(searchable).includes(needle);
@@ -128,6 +130,7 @@ export default function ApplicationExampleExplorer({ examples }: Props) {
           {results.map((example) => {
             const slug = applicationExampleSlug(example);
             const examplePath = `/application-examples/view?example=${encodeURIComponent(slug)}`;
+            const dataset = getApplicationExampleDataset(example);
             return (
               <li key={example.filename}>
                 <article className="ae-result">
@@ -139,6 +142,16 @@ export default function ApplicationExampleExplorer({ examples }: Props) {
                     </div>
                     <h2>{example.title}</h2>
                     <p>{example.method} · {example.chapter_title}</p>
+                    <div className="ae-dataset-meta">
+                      <Database aria-hidden="true" size={15} />
+                      <span>Dataset</span>
+                      {dataset.url ? (
+                        <a href={dataset.url} target="_blank" rel="noreferrer">
+                          {dataset.label} <ExternalLink aria-hidden="true" size={14} />
+                        </a>
+                      ) : <strong>{dataset.label}</strong>}
+                      <em>{dataset.detail}</em>
+                    </div>
                     <div className="ae-resource-meta">
                       <span className="validation-complete"><CheckCircle2 aria-hidden="true" size={14} /> Validated in Google Colab</span>
                     </div>
