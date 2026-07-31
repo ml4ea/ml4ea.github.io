@@ -15,7 +15,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     accent="orange"
   />
 
-  <section class="content-section">
+  <section class="content-section learn-section">
     <div class="container">
       <SectionHeading eyebrow="Choose a starting point" title="Four useful entry paths" />
       <div class="pathway-grid">
@@ -27,21 +27,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <section class="content-section surface-soft">
+  <section class="content-section surface-soft learn-section">
     <div class="container">
       <SectionHeading eyebrow="Part I · Chapters 1–4" title="Mathematical foundations" description="Build or refresh the concepts that make later algorithms interpretable." />
       <ChapterList chapters={chaptersByPart[1]} />
     </div>
   </section>
 
-  <section class="content-section">
+  <section class="content-section learn-section">
     <div class="container">
       <SectionHeading eyebrow="Part II · Chapters 5–15" title="Concepts and algorithms" description="Study individual learning paradigms, then connect them into complete engineering systems." />
       <ChapterList chapters={chaptersByPart[2]} />
     </div>
   </section>
 
-  <section class="action-band">
+  <section class="action-band learn-action-band">
     <div class="container action-band-inner">
       <div><p class="eyebrow">Learn through application</p><h2>Run the engineering examples.</h2></div>
       <a class="button button-secondary" href="/application-examples">Explore Application Examples <ArrowRight aria-hidden="true" size={18} /></a>

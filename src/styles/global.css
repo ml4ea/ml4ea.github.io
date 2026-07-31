@@ -293,6 +293,11 @@ p {
   font-size: 1.08rem;
 }
 
+.learn-section .section-heading h2,
+.learn-action-band h2 {
+  font-size: 2.25rem;
+}
+
 .audience-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -5725,6 +5730,11 @@ p {
   }
 
   .chapter-main h2 {
+    font-size: 1.85rem;
+  }
+
+  .learn-section .section-heading h2,
+  .learn-action-band h2 {
     font-size: 1.85rem;
   }
 
