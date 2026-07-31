@@ -15,7 +15,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <section class="content-section">
     <div class="container">
-      <SectionHeading eyebrow="Course design" title="Use the book at the depth your course needs." />
+      <SectionHeading eyebrow="Course design" title="Use the book at the depth your course needs." compact />
       <div class="course-paths">
         <article><span>01</span><h3>One-semester core</h3><p>Foundations, supervised and unsupervised learning, neural networks, and system integration.</p></article>
         <article><span>02</span><h3>Quarter system</h3><p>A compressed core with selected Application Examples and a focused project.</p></article>
@@ -29,7 +29,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="container teaching-principles">
       <div>
         <p class="eyebrow">Teaching emphasis</p>
-        <h2>Keep engineering decisions visible.</h2>
+        <h2 class="compact-section-heading">Keep engineering decisions visible.</h2>
       </div>
       <div class="feature-lines">
         <div><CheckCircle2 aria-hidden="true" size={20} /><p>Balance conceptual understanding, mathematical reasoning, and implementation.</p></div>
@@ -41,7 +41,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <section class="content-section">
     <div class="container">
-      <SectionHeading eyebrow="Verified resources" title="From guidance to a working course." description="Approved instructors receive an online manual plus editable planning, activity, assessment, and setup resources." />
+      <SectionHeading eyebrow="Verified resources" title="From guidance to a working course." description="Approved instructors receive an online manual plus editable planning, activity, assessment, and setup resources." compact />
       <div class="protected-resource-list">
         <div><BookMarked aria-hidden="true" size={22} /><span><strong>Online instructor’s manual</strong>Searchable course design, pedagogical advice, chapter notes, assessment guidance, and practical resources.</span><LockKeyhole aria-label="Protected" size={18} /></div>
         <div><CalendarRange aria-hidden="true" size={22} /><span><strong>Course-planning kit</strong>Editable semester, quarter, advanced-topic, and project-based syllabus templates.</span><LockKeyhole aria-label="Protected" size={18} /></div>
@@ -60,7 +60,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <section class="verification-band">
     <div class="container verification-grid">
-      <div><p class="eyebrow">Instructor verification</p><h2>Access requires a verified teaching role.</h2></div>
+      <div><p class="eyebrow">Instructor verification</p><h2 class="compact-section-heading">Access requires a verified teaching role.</h2></div>
       <ol>
         <li><span>1</span>Confirm ownership of an institutional email.</li>
         <li><span>2</span>Submit institution, position, and faculty-profile information.</li>

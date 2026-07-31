@@ -338,7 +338,7 @@ export default function DiscussionBoard() {
       ) : (
         <>
           <div className="discussion-board-toolbar">
-            <div><p className="eyebrow">Discussion board</p><h2>Questions, reasoning, and experience.</h2><p>Use discussions for conversation. Use Contributions when proposing a correction or reusable resource for review.</p></div>
+            <div><p className="eyebrow">Discussion board</p><h2 className="compact-section-heading">Questions, reasoning, and experience.</h2><p>Use discussions for conversation. Use Contributions when proposing a correction or reusable resource for review.</p></div>
             {session ? <button className="button button-primary" type="button" onClick={() => setComposerOpen(!composerOpen)}>{composerOpen ? <X aria-hidden="true" size={17} /> : <Plus aria-hidden="true" size={17} />}{composerOpen ? 'Close' : 'Start a discussion'}</button> : <a className="button button-primary" href="/account?next=/community"><MessageSquareText aria-hidden="true" size={17} /> Sign in to post</a>}
           </div>
 
