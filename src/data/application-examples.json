@@ -298,7 +298,7 @@
       "title": "Evaluating and Interpreting a Random Forest",
       "method": "random-forest evaluation and interpretation",
       "source_urls": [
-        "https://www.kaggle.com/datasets/sgwgl/flotation-plant"
+        "https://www.kaggle.com/datasets/edumagalhaes/quality-prediction-in-a-mining-process"
       ],
       "packages": [
         "gdown",

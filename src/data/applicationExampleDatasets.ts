@@ -66,7 +66,7 @@ const externalSources: Record<string, Omit<DatasetDescriptor, 'detail'>> = {
   'https://www.kaggle.com/datasets/programmer3/anomaly-detection-in-oil-and-gas-chemical-plants': { label: 'Oil and Gas Plant Anomaly Data', url: 'https://www.kaggle.com/datasets/programmer3/anomaly-detection-in-oil-and-gas-chemical-plants' },
   'https://www.kaggle.com/datasets/raminhuseyn/energy-consumption-dataset': { label: 'Energy Consumption Dataset', url: 'https://www.kaggle.com/datasets/raminhuseyn/energy-consumption-dataset' },
   'https://www.kaggle.com/datasets/safi842/highcarbon-micrographs': { label: 'High-Carbon Steel Micrographs', url: 'https://www.kaggle.com/datasets/safi842/highcarbon-micrographs' },
-  'https://www.kaggle.com/datasets/sgwgl/flotation-plant': { label: 'Mineral Flotation Plant', url: 'https://www.kaggle.com/datasets/sgwgl/flotation-plant' },
+  'https://www.kaggle.com/datasets/edumagalhaes/quality-prediction-in-a-mining-process': { label: 'Quality Prediction in a Mining Process', url: 'https://www.kaggle.com/datasets/edumagalhaes/quality-prediction-in-a-mining-process' },
   'https://www.kaggle.com/datasets/vinayak123tyagi/bearing-dataset': { label: 'Bearing Degradation Dataset', url: 'https://www.kaggle.com/datasets/vinayak123tyagi/bearing-dataset' },
 };
 
