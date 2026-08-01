@@ -63,7 +63,6 @@ const externalSources: Record<string, Omit<DatasetDescriptor, 'detail'>> = {
   'https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database': { label: 'Pima Indians Diabetes Database', url: 'https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database' },
   'https://www.kaggle.com/datasets/palbha/cmapss-jet-engine-simulated-data': { label: 'C-MAPSS Jet Engine Data', url: 'https://www.kaggle.com/datasets/palbha/cmapss-jet-engine-simulated-data' },
   'https://www.kaggle.com/datasets/programmer3/aging-bridge-shm-time-series-dataset': { label: 'Aging Bridge SHM Time Series', url: 'https://www.kaggle.com/datasets/programmer3/aging-bridge-shm-time-series-dataset' },
-  'https://drive.google.com/file/d/1D1bsG2KeVRZx5zjidGfRd8JsGVszJt5v/view': { label: 'Oil and Gas Plant Sensor Data', url: 'https://drive.google.com/file/d/1D1bsG2KeVRZx5zjidGfRd8JsGVszJt5v/view' },
   'https://www.kaggle.com/datasets/raminhuseyn/energy-consumption-dataset': { label: 'Energy Consumption Dataset', url: 'https://www.kaggle.com/datasets/raminhuseyn/energy-consumption-dataset' },
   'https://www.kaggle.com/datasets/safi842/highcarbon-micrographs': { label: 'High-Carbon Steel Micrographs', url: 'https://www.kaggle.com/datasets/safi842/highcarbon-micrographs' },
   'https://www.kaggle.com/datasets/edumagalhaes/quality-prediction-in-a-mining-process': { label: 'Quality Prediction in a Mining Process', url: 'https://www.kaggle.com/datasets/edumagalhaes/quality-prediction-in-a-mining-process' },
@@ -73,6 +72,7 @@ const externalSources: Record<string, Omit<DatasetDescriptor, 'detail'>> = {
 const notebookSources: Record<string, DatasetDescriptor> = {
   '6.6.4': { label: 'Generated in notebook', detail: 'Synthetic engineering data' },
   '9.2.5': { label: 'Defined in notebook', detail: 'Illustrative manufacturing data' },
+  '10.2.4': { label: 'Dataset provided with notebook', detail: 'Original external source is no longer available' },
   '10.2.6': { label: 'Generated in notebook', detail: 'Simulated sensor network data' },
   '11.3.2': { label: 'Simulated environment', detail: 'Adaptive cruise control' },
   '11.3.4': { label: 'Simulated environment', detail: 'Traffic intersection control' },
