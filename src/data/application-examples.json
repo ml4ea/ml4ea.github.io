@@ -608,9 +608,7 @@
       "chapter_title": "Unsupervised Learning",
       "title": "Autoencoder for Structural Health Monitoring with Sensor Arrays",
       "method": "autoencoders",
-      "source_urls": [
-        "https://www.kaggle.com/datasets/programmer3/aging-bridge-shm-time-series-dataset"
-      ],
+      "source_urls": [],
       "packages": [
         "matplotlib",
         "numpy",

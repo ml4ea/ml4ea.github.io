@@ -292,7 +292,7 @@ insert into public.ae_notebook_files (
     '10.3.6',
     'Autoencoder for Structural Health Monitoring with Sensor Arrays',
     'Notebook-10.3.6-UMAP-tSNE-SHM.ipynb',
-    '6e5325e374a6367ca463fd085881bc0ea0f71bb799cdcce8aeeb5956b3dc922b',
+    'c0a5c882bbd07a0ad19b248e32464dc7b634a6bc621aec1643726532facd11b9',
     '1.0',
     'notebooks/Notebook-10.3.6-UMAP-tSNE-SHM.ipynb',
     'Notebook-10.3.6-UMAP-tSNE-SHM.ipynb',
