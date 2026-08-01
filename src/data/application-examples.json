@@ -515,7 +515,7 @@
       "title": "Hierarchical Clustering for Anomaly Detection in Oil and Gas Chemical Plants",
       "method": "hierarchical clustering",
       "source_urls": [
-        "https://www.kaggle.com/datasets/programmer3/anomaly-detection-in-oil-and-gas-chemical-plants"
+        "https://drive.google.com/file/d/1D1bsG2KeVRZx5zjidGfRd8JsGVszJt5v/view"
       ],
       "packages": [
         "matplotlib",

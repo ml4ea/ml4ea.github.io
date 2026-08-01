@@ -63,7 +63,7 @@ const externalSources: Record<string, Omit<DatasetDescriptor, 'detail'>> = {
   'https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database': { label: 'Pima Indians Diabetes Database', url: 'https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database' },
   'https://www.kaggle.com/datasets/palbha/cmapss-jet-engine-simulated-data': { label: 'C-MAPSS Jet Engine Data', url: 'https://www.kaggle.com/datasets/palbha/cmapss-jet-engine-simulated-data' },
   'https://www.kaggle.com/datasets/programmer3/aging-bridge-shm-time-series-dataset': { label: 'Aging Bridge SHM Time Series', url: 'https://www.kaggle.com/datasets/programmer3/aging-bridge-shm-time-series-dataset' },
-  'https://www.kaggle.com/datasets/programmer3/anomaly-detection-in-oil-and-gas-chemical-plants': { label: 'Oil and Gas Plant Anomaly Data', url: 'https://www.kaggle.com/datasets/programmer3/anomaly-detection-in-oil-and-gas-chemical-plants' },
+  'https://drive.google.com/file/d/1D1bsG2KeVRZx5zjidGfRd8JsGVszJt5v/view': { label: 'Oil and Gas Plant Sensor Data', url: 'https://drive.google.com/file/d/1D1bsG2KeVRZx5zjidGfRd8JsGVszJt5v/view' },
   'https://www.kaggle.com/datasets/raminhuseyn/energy-consumption-dataset': { label: 'Energy Consumption Dataset', url: 'https://www.kaggle.com/datasets/raminhuseyn/energy-consumption-dataset' },
   'https://www.kaggle.com/datasets/safi842/highcarbon-micrographs': { label: 'High-Carbon Steel Micrographs', url: 'https://www.kaggle.com/datasets/safi842/highcarbon-micrographs' },
   'https://www.kaggle.com/datasets/edumagalhaes/quality-prediction-in-a-mining-process': { label: 'Quality Prediction in a Mining Process', url: 'https://www.kaggle.com/datasets/edumagalhaes/quality-prediction-in-a-mining-process' },

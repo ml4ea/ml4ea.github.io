@@ -248,7 +248,7 @@ insert into public.ae_notebook_files (
     '10.2.4',
     'Hierarchical Clustering for Anomaly Detection in Oil and Gas Chemical Plants',
     'Notebook-10.2.4-H-Clustering-.ipynb',
-    '8b24e259ca8e7c933cda059f12dbdd36de066b8ee89819c21ca5b7f12ba19c54',
+    '86c84421a9e5855aabef85265d10d7b4a4aa8f10ce51f2048420d6b5534061d6',
     '1.0',
     'notebooks/Notebook-10.2.4-H-Clustering-.ipynb',
     'Notebook-10.2.4-H-Clustering-.ipynb',
