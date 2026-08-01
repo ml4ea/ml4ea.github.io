@@ -4,13 +4,14 @@ interface Props {
   title: string;
   description?: string;
   compact?: boolean;
+  id?: string;
 }
 
-const { eyebrow, title, description, compact = false } = Astro.props;
+const { eyebrow, title, description, compact = false, id } = Astro.props;
 ---
 
 <header class="section-heading">
   <p class="eyebrow">{eyebrow}</p>
-  <h2 class:list={{ 'compact-section-heading': compact }}>{title}</h2>
+  <h2 id={id} class:list={{ 'compact-section-heading': compact }}>{title}</h2>
   {description && <p>{description}</p>}
 </header>

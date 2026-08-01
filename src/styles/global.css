@@ -4847,6 +4847,10 @@ p {
   grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.6fr);
 }
 
+.updates-section + .updates-section {
+  margin-top: clamp(56px, 8vw, 96px);
+}
+
 .update-feed {
   margin: 0;
   padding: 0;

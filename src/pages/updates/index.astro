@@ -1,5 +1,5 @@
 ---
-import { ArrowRight, CheckCircle2, Clock3, FileText } from 'lucide-react';
+import { ArrowRight, BookOpen, CheckCircle2, Clock3, FileText } from 'lucide-react';
 import PageHero from '../../components/PageHero.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
@@ -16,28 +16,53 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   <section class="content-section">
     <div class="container updates-layout">
       <div>
-        <SectionHeading eyebrow="Latest" title="Portal updates" compact />
-        <ol class="update-feed">
-          <li id="ae-access-opened">
-            <div class="update-date"><time datetime="2026-07-29">July 29, 2026</time><span>Application Examples</span></div>
-            <div><h2>Publisher permission received for companion notebooks</h2><p>All 56 validated Application Examples are now available to verified portal accounts. Signed-in users can read executed notebooks online and, after accepting the use restrictions, load a personal copy into Google Colab or download the `.ipynb` file.</p></div>
-          </li>
-          <li id="portal-review">
-            <div class="update-date"><time datetime="2026-07-23">July 23, 2026</time><span>Review</span></div>
-            <div><h2>Portal review phase established</h2><p>The portal adopted a site-wide no-index instruction while Application Example distribution and release language underwent publisher review.</p></div>
-          </li>
-          <li id="portal-prepared">
-            <div class="update-date"><time datetime="2026-07-21">July 21, 2026</time><span>Portal</span></div>
-            <div><h2>Companion portal foundation prepared</h2><p>The book overview, 15 chapter hubs, searchable Application Example catalog, protected teaching workspace, community framework, updates, and errata register were prepared for review.</p></div>
-          </li>
-          <li>
-            <div class="update-date"><time datetime="2026-07-20">July 20, 2026</time><span>Foundation</span></div>
-            <div><h2>ML4EA design foundation established</h2><p>The Engineering Field Guide visual system and automated GitHub Pages deployment were established as the portal foundation.</p></div>
-          </li>
-        </ol>
+        <section class="updates-section" aria-labelledby="portal-updates-heading">
+          <SectionHeading eyebrow="Latest" title="Portal updates" compact id="portal-updates-heading" />
+          <ol class="update-feed">
+            <li id="ae-access-opened">
+              <div class="update-date"><time datetime="2026-07-29">July 29, 2026</time><span>Application Examples</span></div>
+              <div><h2>Publisher permission received for companion notebooks</h2><p>All 56 validated Application Examples are now available to verified portal accounts. Signed-in users can read executed notebooks online and, after accepting the use restrictions, load a personal copy into Google Colab or download the `.ipynb` file.</p></div>
+            </li>
+            <li id="portal-review">
+              <div class="update-date"><time datetime="2026-07-23">July 23, 2026</time><span>Review</span></div>
+              <div><h2>Portal review phase established</h2><p>The portal adopted a site-wide no-index instruction while Application Example distribution and release language underwent publisher review.</p></div>
+            </li>
+            <li id="portal-prepared">
+              <div class="update-date"><time datetime="2026-07-21">July 21, 2026</time><span>Portal</span></div>
+              <div><h2>Companion portal foundation prepared</h2><p>The book overview, 15 chapter hubs, searchable Application Example catalog, protected teaching workspace, community framework, updates, and errata register were prepared for review.</p></div>
+            </li>
+            <li>
+              <div class="update-date"><time datetime="2026-07-20">July 20, 2026</time><span>Foundation</span></div>
+              <div><h2>ML4EA design foundation established</h2><p>The Engineering Field Guide visual system and automated GitHub Pages deployment were established as the portal foundation.</p></div>
+            </li>
+          </ol>
+        </section>
+
+        <section class="updates-section" id="book-updates" aria-labelledby="book-updates-heading">
+          <SectionHeading eyebrow="Companion materials" title="Book updates" compact id="book-updates-heading" />
+          <ol class="update-feed">
+            <li id="ae-8-5-4-dataset-update">
+              <div class="update-date"><time datetime="2026-07-31">July 31, 2026</time><span>AE 8.5.4</span></div>
+              <div><h2>Mining-process dataset reference corrected</h2><p>The dataset reference for evaluating and interpreting a random forest now points to the current Quality Prediction in a Mining Process listing.</p></div>
+            </li>
+            <li id="ae-9-4-5-dataset-update">
+              <div class="update-date"><time datetime="2026-07-31">July 31, 2026</time><span>AE 9.4.5</span></div>
+              <div><h2>Diabetes dataset reference corrected</h2><p>The diagnostic-measures example now points to the current Pima Indians Diabetes Database listing.</p></div>
+            </li>
+            <li id="ae-10-2-4-dataset-update">
+              <div class="update-date"><time datetime="2026-07-31">July 31, 2026</time><span>AE 10.2.4</span></div>
+              <div><h2>Dataset availability and provenance clarified</h2><p>The original external source is no longer available. The catalog now identifies the plant sensor data as provided with the notebook, and the notebook page links to the supplied file.</p></div>
+            </li>
+            <li id="ae-10-3-6-dataset-update">
+              <div class="update-date"><time datetime="2026-07-31">July 31, 2026</time><span>AE 10.3.6</span></div>
+              <div><h2>Dataset availability and provenance clarified</h2><p>The original external source is no longer available. The catalog now identifies the structural-health-monitoring data as provided with the notebook, and the notebook page links to the supplied file.</p></div>
+            </li>
+          </ol>
+        </section>
       </div>
       <aside class="updates-index" aria-label="Update categories">
         <h2>Track changes</h2>
+        <a href="#book-updates"><BookOpen aria-hidden="true" size={19} /><span><strong>Book updates</strong>Application Example references and source notes</span><ArrowRight aria-hidden="true" size={17} /></a>
         <a href="/updates/errata"><FileText aria-hidden="true" size={19} /><span><strong>Errata</strong>Verified corrections by chapter</span><ArrowRight aria-hidden="true" size={17} /></a>
         <div><CheckCircle2 aria-hidden="true" size={19} /><span><strong>New materials</strong>Validated scripts and resources</span></div>
         <div><Clock3 aria-hidden="true" size={19} /><span><strong>Software notes</strong>Compatibility and environment changes</span></div>
