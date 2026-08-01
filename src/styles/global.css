@@ -1362,53 +1362,6 @@ p {
   background: var(--paper);
 }
 
-.community-launch-announcement {
-  border-bottom: 1px solid var(--line);
-  background: var(--paper);
-}
-
-.community-launch-inner {
-  display: grid;
-  grid-template-columns: 34px minmax(0, 1fr) auto;
-  gap: 18px 24px;
-  align-items: center;
-  padding-block: clamp(32px, 5vw, 54px);
-}
-
-.community-launch-inner > svg {
-  align-self: start;
-  color: var(--magenta);
-}
-
-.community-launch-inner .eyebrow,
-.community-launch-inner h2,
-.community-launch-inner p {
-  margin: 0;
-}
-
-.community-launch-inner h2 {
-  margin-top: 4px;
-  font-size: clamp(1.65rem, 2.2vw, 2rem);
-}
-
-.community-launch-inner p:last-child {
-  max-width: 78ch;
-  margin-top: 8px;
-  color: var(--ink-soft);
-}
-
-.community-launch-actions {
-  display: grid;
-  gap: 12px;
-  justify-items: start;
-}
-
-.community-launch-actions .text-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
 .community-board-section {
   padding-top: clamp(54px, 7vw, 88px);
 }
@@ -5476,14 +5429,6 @@ h2.compact-section-heading {
   .community-purpose-grid > a {
     border-top: 1px solid var(--line);
     border-left: 0;
-  }
-
-  .community-launch-inner {
-    grid-template-columns: 34px minmax(0, 1fr);
-  }
-
-  .community-launch-actions {
-    grid-column: 2;
   }
 
   .contribution-discussion-inner {
