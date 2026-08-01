@@ -1,5 +1,5 @@
 ---
-import { ArrowRight, FileCheck2, MessageSquareText, Scale, ShieldCheck } from 'lucide-react';
+import { ArrowRight, FileCheck2, Megaphone, MessageSquareText, Scale, ShieldCheck } from 'lucide-react';
 import DiscussionBoard from '../components/DiscussionBoard';
 import PageHero from '../components/PageHero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -20,7 +20,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <section class="content-section community-board-section">
+  <section class="community-launch-announcement" aria-labelledby="community-launch-title">
+    <div class="container community-launch-inner">
+      <Megaphone aria-hidden="true" size={25} />
+      <div>
+        <p class="eyebrow">Announcement · July 31, 2026</p>
+        <h2 id="community-launch-title">The ML4EA companion portal is now open.</h2>
+        <p>After careful design and development, followed by diligent verification of its content and key workflows, we are pleased to launch the companion portal for <em>Machine Learning for Engineering Applications</em>. Explore the book resources, share questions and insights, and help this community grow through thoughtful discussion and contributions.</p>
+      </div>
+      <div class="community-launch-actions">
+        <a class="button button-primary" href="#community-discussions">Join the discussion</a>
+        <a class="text-link" href="/updates#portal-launched">Read the launch note <ArrowRight aria-hidden="true" size={16} /></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section community-board-section" id="community-discussions">
     <div class="container community-board-container">
       <DiscussionBoard client:load />
     </div>
