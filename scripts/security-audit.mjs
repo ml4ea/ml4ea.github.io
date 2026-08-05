@@ -149,6 +149,22 @@ function auditUserDirectoryMigration() {
   check(!migration.includes('to anon'), 'Anonymous users received access to the administrator user directory.');
 }
 
+function auditInstructorPreapprovalMigration() {
+  const migrationPath = path.join(root, 'supabase/migrations/202608050001_instructor_preapprovals.sql');
+  check(fs.existsSync(migrationPath), 'The instructor-preapproval migration is missing.');
+  if (!fs.existsSync(migrationPath)) return;
+
+  const migration = fs.readFileSync(migrationPath, 'utf8');
+  check(migration.includes('public.instructor_preapprovals'), 'The instructor-preapproval table is not defined.');
+  check(migration.includes('enable row level security'), 'Instructor preapprovals do not enable Row Level Security.');
+  check(migration.includes('public.is_portal_admin()'), 'Instructor preapproval management is not restricted to administrators.');
+  check(migration.includes('account.email_confirmed_at is not null'), 'Preapproved instructor access does not require a confirmed email.');
+  check(migration.includes("preapproval.email = lower(auth.jwt() ->> 'email')"), 'Preapproved instructor access is not bound to the exact authenticated email.');
+  check(migration.includes("preapproval.status = 'active'"), 'Revoked instructor preapprovals may still grant access.');
+  check(migration.includes('public.claim_preapproved_instructor_access'), 'The exact-email preapproval claim function is missing.');
+  check(!migration.includes('Ada Example') && !migration.includes('example.edu'), 'Private instructor data was added to the public migration.');
+}
+
 async function auditAnonymousApi() {
   const localEnv = readLocalEnv();
   const supabaseUrl = process.env.PUBLIC_SUPABASE_URL || localEnv.PUBLIC_SUPABASE_URL;
@@ -197,6 +213,7 @@ async function auditAnonymousApi() {
     'ae_delivery_audit',
     'ae_notebook_view_audit',
     'instructor_applications',
+    'instructor_preapprovals',
     'instructor_resources',
     'instructor_manual_editions',
     'instructor_manual_sections',
@@ -212,6 +229,7 @@ async function auditAnonymousApi() {
     'is_portal_admin',
     'is_portal_owner',
     'is_approved_instructor',
+    'claim_preapproved_instructor_access',
     'is_publisher_reviewer',
     'is_verified_book_owner',
     'can_view_instructor_manual',
@@ -286,6 +304,7 @@ async function auditAnonymousApi() {
 auditAccessMigration();
 auditPublisherExamplesMigration();
 auditUserDirectoryMigration();
+auditInstructorPreapprovalMigration();
 await auditAnonymousApi();
 auditStaticBuild();
 

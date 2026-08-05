@@ -4,7 +4,7 @@ This matrix describes the currently enforced portal boundaries. Page
 visibility is not an authorization mechanism; protected access is enforced by
 Supabase grants, Row Level Security, RPC checks, and private Storage policies.
 
-| Capability | Anonymous | Signed-in participant | Instructor applicant | Approved instructor | Publisher reviewer | Book owner | Delegated administrator | Owner (`yjin@usc.edu`) |
+| Capability | Anonymous | Signed-in participant | Instructor applicant | Approved or preapproved instructor | Publisher reviewer | Book owner | Delegated administrator | Owner (`yjin@usc.edu`) |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Read public portal and AE catalog | Yes | Yes | Yes | Yes | Yes | Dormant | Yes | Yes |
 | Read all AE notebooks in the browser | No | Yes | Yes | Yes | Yes | Yes through signed-in account | Yes | Yes |
@@ -26,8 +26,8 @@ Supabase grants, Row Level Security, RPC checks, and private Storage policies.
 
 ## Identity bindings
 
-- Instructor access requires an approved application for the authenticated
-  Supabase user ID and an exact match between the approved email and the
+- Instructor access requires either an approved application or an active
+  owner-created preapproval, plus an exact match between that record and the
   verified email in the current authentication token.
 - Publisher review requires the matching authenticated user ID, exact current
   verified email, active entitlement, and an unexpired review period.
@@ -48,7 +48,9 @@ Supabase grants, Row Level Security, RPC checks, and private Storage policies.
 - A delegated administrator requires an owner-created assignment for the
   authenticated user ID, a confirmed account email, and an exact match with the
   appointed email.
-- A matching email string alone never grants access.
+- A matching email string alone never grants access. The user must complete
+  Supabase email verification and hold an authenticated session for that exact
+  address.
 - Publisher grants, revocations, expiration dates, and target accounts are
   recorded through administrator-only RPCs and the administrator audit log.
 

@@ -36,6 +36,7 @@ const emptyForm = {
 export default function InstructorPortal() {
   const [session, setSession] = useState<Session | null>(null);
   const [application, setApplication] = useState<Application | null>(null);
+  const [approved, setApproved] = useState(false);
   const [resources, setResources] = useState<InstructorResource[]>([]);
   const [form, setForm] = useState(emptyForm);
   const [loading, setLoading] = useState(isSupabaseConfigured);
@@ -47,6 +48,7 @@ export default function InstructorPortal() {
     const supabase = getSupabaseClient();
     if (!supabase || !activeSession) {
       setApplication(null);
+      setApproved(false);
       setResources([]);
       setLoading(false);
       return;
@@ -54,20 +56,32 @@ export default function InstructorPortal() {
 
     setLoading(true);
     setError('');
-    const { data, error: applicationError } = await supabase
-      .from('instructor_applications')
-      .select('id,email,institution,department,position_title,faculty_url,course_context,status,decision_note,updated_at')
-      .eq('user_id', activeSession.user.id)
-      .maybeSingle();
+    const { error: claimError } = await supabase.rpc('claim_preapproved_instructor_access');
+    if (claimError) {
+      setError(claimError.message);
+      setLoading(false);
+      return;
+    }
 
-    if (applicationError) {
-      setError(applicationError.message);
+    const [{ data, error: applicationError }, { data: approvedAccess, error: accessError }] = await Promise.all([
+      supabase
+        .from('instructor_applications')
+        .select('id,email,institution,department,position_title,faculty_url,course_context,status,decision_note,updated_at')
+        .eq('user_id', activeSession.user.id)
+        .maybeSingle(),
+      supabase.rpc('is_approved_instructor'),
+    ]);
+
+    if (applicationError || accessError) {
+      setError(applicationError?.message ?? accessError?.message ?? 'Instructor access could not be checked.');
       setLoading(false);
       return;
     }
 
     const currentApplication = data as Application | null;
+    const hasApprovedAccess = Boolean(approvedAccess);
     setApplication(currentApplication);
+    setApproved(hasApprovedAccess);
     if (currentApplication) {
       setForm({
         institution: currentApplication.institution,
@@ -78,8 +92,7 @@ export default function InstructorPortal() {
       });
     }
 
-    const currentEmail = activeSession.user.email?.toLowerCase();
-    if (currentApplication?.status === 'approved' && currentApplication.email.toLowerCase() === currentEmail) {
+    if (hasApprovedAccess) {
       const { data: resourceData, error: resourceError } = await supabase
         .from('instructor_resources')
         .select('id,title,description,category,storage_path')
@@ -172,11 +185,11 @@ export default function InstructorPortal() {
     return <div className="account-state"><GraduationCap aria-hidden="true" size={28} /><div><h2>Sign in or request instructor access.</h2><p>Use the email address associated with your institution. Email verification is required for new requests.</p><a className="button button-primary" href="/account?next=/instructor">Sign in or create an account</a></div></div>;
   }
 
-  if (application?.status === 'approved' && application.email.toLowerCase() !== session.user.email?.toLowerCase()) {
+  if (!approved && application?.status === 'approved' && application.email.toLowerCase() !== session.user.email?.toLowerCase()) {
     return <div className="account-state account-unconfigured"><ShieldAlert aria-hidden="true" size={28} /><div><h2>Your approved email no longer matches this account.</h2><p>Protected access has been paused. Sign in with the originally approved institutional address or contact the portal administrator for a new review.</p></div></div>;
   }
 
-  if (application?.status === 'approved') {
+  if (approved) {
     return (
       <div className="instructor-approved">
         <div className="access-status access-approved"><CheckCircle2 aria-hidden="true" size={24} /><div><p className="eyebrow">Approved instructor</p><h2>Protected teaching resources</h2><p>Signed downloads expire after 60 seconds and require your approved account.</p></div></div>
