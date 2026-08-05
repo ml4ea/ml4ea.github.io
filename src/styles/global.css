@@ -3961,7 +3961,7 @@ p {
 
 .admin-user-scopes {
   display: inline-grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   border: 1px solid var(--line-strong);
 }
 
@@ -4024,6 +4024,8 @@ p {
   border-collapse: collapse;
   text-align: left;
 }
+
+.admin-preapproval-table { min-width: 780px; }
 
 .admin-user-table th {
   padding: 13px 16px;

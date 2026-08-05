@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight, GraduationCap, Search, ShieldCheck, UsersRound } from 'lucide-react';
+import { ChevronLeft, ChevronRight, GraduationCap, Search, ShieldCheck, UserCheck, UsersRound } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { getSupabaseClient, isSupabaseConfigured } from '../lib/supabase';
@@ -20,7 +20,16 @@ interface DirectoryUser {
   total_count: number;
 }
 
-type Scope = 'signed_in' | 'instructors';
+interface InstructorPreapproval {
+  id: number;
+  name: string;
+  email: string;
+  status: 'active' | 'revoked';
+  claimed_at: string | null;
+  created_at: string;
+}
+
+type Scope = 'signed_in' | 'instructors' | 'preapproved';
 
 const PAGE_SIZE = 50;
 
@@ -37,6 +46,7 @@ export default function AdminUsers() {
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(0);
   const [users, setUsers] = useState<DirectoryUser[]>([]);
+  const [preapprovals, setPreapprovals] = useState<InstructorPreapproval[]>([]);
   const [total, setTotal] = useState(0);
   const [checkingAccess, setCheckingAccess] = useState(isSupabaseConfigured);
   const [loading, setLoading] = useState(false);
@@ -49,6 +59,7 @@ export default function AdminUsers() {
     const checkAccess = async (activeSession: Session | null) => {
       setSession(activeSession);
       setUsers([]);
+      setPreapprovals([]);
       setTotal(0);
       if (!activeSession) {
         setIsAdmin(false);
@@ -86,6 +97,32 @@ export default function AdminUsers() {
     const load = async () => {
       setLoading(true);
       setError('');
+      if (scope === 'preapproved') {
+        const { data, error: preapprovalError } = await supabase
+          .from('instructor_preapprovals')
+          .select('id,name,email,status,claimed_at,created_at')
+          .eq('status', 'active')
+          .order('name');
+        if (!current) return;
+        if (preapprovalError) {
+          setPreapprovals([]);
+          setTotal(0);
+          setError(preapprovalError.message);
+        } else {
+          const normalizedSearch = search.toLowerCase();
+          const matching = ((data ?? []) as InstructorPreapproval[]).filter((entry) => (
+            !normalizedSearch
+            || entry.name.toLowerCase().includes(normalizedSearch)
+            || entry.email.toLowerCase().includes(normalizedSearch)
+          ));
+          setUsers([]);
+          setTotal(matching.length);
+          setPreapprovals(matching.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE));
+        }
+        setLoading(false);
+        return;
+      }
+
       const { data, error: directoryError } = await supabase.rpc('get_portal_user_directory', {
         p_scope: scope,
         p_search: search || null,
@@ -95,11 +132,13 @@ export default function AdminUsers() {
       if (!current) return;
       if (directoryError) {
         setUsers([]);
+        setPreapprovals([]);
         setTotal(0);
         setError(directoryError.message);
       } else {
         const nextUsers = (data ?? []) as DirectoryUser[];
         setUsers(nextUsers);
+        setPreapprovals([]);
         setTotal(nextUsers[0]?.total_count ?? 0);
       }
       setLoading(false);
@@ -124,6 +163,9 @@ export default function AdminUsers() {
         <button className={scope === 'instructors' ? 'is-current' : ''} type="button" aria-pressed={scope === 'instructors'} onClick={() => { setScope('instructors'); setPage(0); }}>
           <GraduationCap aria-hidden="true" size={18} /> Approved instructors
         </button>
+        <button className={scope === 'preapproved' ? 'is-current' : ''} type="button" aria-pressed={scope === 'preapproved'} onClick={() => { setScope('preapproved'); setPage(0); }}>
+          <UserCheck aria-hidden="true" size={18} /> Preapproved instructors
+        </button>
       </div>
       <label className="admin-user-search">
         <span>Search accounts</span>
@@ -132,11 +174,27 @@ export default function AdminUsers() {
     </div>
 
     <div className="catalog-status admin-user-status">
-      <p>{loading ? 'Loading accounts...' : `${total} ${scope === 'instructors' ? 'approved instructors' : total === 1 ? 'signed-in user' : 'signed-in users'}`}</p>
+      <p>{loading ? 'Loading accounts...' : `${total} ${scope === 'instructors' ? 'approved instructors' : scope === 'preapproved' ? 'preapproved instructors' : total === 1 ? 'signed-in user' : 'signed-in users'}`}</p>
       <a className="text-link" href="/admin/">Administrator dashboard</a>
     </div>
 
-    {!loading && users.length === 0 ? <div className="admin-empty"><UsersRound aria-hidden="true" size={27} /><div><h2>No matching accounts.</h2><p>Try another search or directory view.</p></div></div> : (
+    {!loading && users.length === 0 && preapprovals.length === 0 ? <div className="admin-empty"><UsersRound aria-hidden="true" size={27} /><div><h2>No matching accounts.</h2><p>Try another search or directory view.</p></div></div> : scope === 'preapproved' ? (
+      <div className="admin-user-table-wrap" aria-busy={loading}>
+        <table className="admin-user-table admin-preapproval-table">
+          <thead><tr><th>Instructor</th><th>Access</th><th>Portal account</th><th>Added</th></tr></thead>
+          <tbody>
+            {preapprovals.map((entry) => (
+              <tr key={entry.id}>
+                <td><strong>{entry.name}</strong><small>{entry.email}</small></td>
+                <td><span className="admin-user-review is-approved">Preapproved</span></td>
+                <td>{entry.claimed_at ? <><span className="admin-user-download is-issued">Verified and linked</span><small>{formatDate(entry.claimed_at)}</small></> : <><span className="admin-user-download">Not linked yet</span><small>Access begins after exact-email verification.</small></>}</td>
+                <td><time dateTime={entry.created_at}>{formatDate(entry.created_at)}</time></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    ) : (
       <div className="admin-user-table-wrap" aria-busy={loading}>
         <table className="admin-user-table">
           <thead><tr><th>User</th><th>Portal roles</th><th>Instructor review</th><th>Manual PDF</th><th>Last sign-in</th><th>Account created</th></tr></thead>
