@@ -212,7 +212,21 @@ class BlockStore:
 
 
 def split_items(content: str) -> list[str]:
-    positions = [match.start() for match in re.finditer(r"\\item(?:\s|$)", content)]
+    positions: list[int] = []
+    depth = 0
+    token_pattern = re.compile(
+        r"\\begin\{(?:itemize|enumerate)\}|"
+        r"\\end\{(?:itemize|enumerate)\}|"
+        r"\\item(?=\s|$)"
+    )
+    for match in token_pattern.finditer(content):
+        token = match.group(0)
+        if token.startswith("\\begin"):
+            depth += 1
+        elif token.startswith("\\end"):
+            depth = max(0, depth - 1)
+        elif depth == 0:
+            positions.append(match.start())
     if not positions:
         return [content]
     items: list[str] = []
@@ -345,7 +359,8 @@ def render_tex(source: str, compact: bool = False) -> str:
         else:
             rendered = inline_tex(chunk).strip()
             if rendered:
-                paragraphs.append(rendered if compact else f"<p>{rendered}</p>")
+                is_first_inline_chunk = compact and not paragraphs
+                paragraphs.append(rendered if is_first_inline_chunk else f"<p>{rendered}</p>")
     return store.restore("".join(paragraphs))
 
 
